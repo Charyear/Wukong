@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>黑神话·悟空 - 直面天命</title>
+    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap');
+        @font-face {
+            font-family: 'MaoBiFont';
+            src: url('file/menu_ima/FZSTK.TTF') format('truetype');
+            font-display: swap;
+        }
+
+        body, html {
+            cursor: url('image/Cursor.svg'), auto;
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Noto Serif SC', 'STSong', 'SimSun', serif;
+            background-color: #000;
+        }
+        .decorative-element {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #c4b55f, #c4b55f, transparent);
+            box-shadow: 0 0 5px #c4b55f, 0 0 10px #c4b55f, 0 0 15px #c4b55f;
+            z-index: 1000;
+            opacity: 0.7;
+        }
+
+        .decorative-element::before,
+        .decorative-element::after {
+            content: '卍';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 24px;
+            color: #c4b55f;
+            text-shadow: 0 0 5px #c4b55f;
+        }
+
+        .decorative-element::before {
+            left: -30px;
+        }
+
+        .decorative-element::after {
+            right: -30px;
+        }
+
+        @keyframes rotate {
+            from { transform: translateY(-50%) rotate(0deg); }
+            to { transform: translateY(-50%) rotate(360deg); }
+        }
+
+        .decorative-element::before,
+        .decorative-element::after {
+            animation: rotate 10s linear infinite;
+        }
+
+        .container {
+
+            display: flex;
+            height: 100%;
+        }
+        .chapter {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            padding: 20px 0;
+            cursor: pointer; /* 添加这行，使鼠标悬停时变为手型 */
+        }
+        .chapter:hover {
+            flex: 1.5;
+        }
+        .chapter::before,
+        .chapter::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            transition: opacity 0.3s ease;
+        }
+        .chapter::before {
+            background-size: cover;
+            background-position: center;
+            opacity: 0.3;
+            z-index: 1;
+        }
+        .chapter::after {
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 2;
+        }
+        .chapter:hover::before {
+            opacity: 0.8;
+        }
+        .chapter:hover::after {
+            opacity: 0;
+        }
+        .chapter-content {
+            position: relative;
+            z-index: 3;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+        h2 {
+            font-family: 'Ma Shan Zheng', cursive;
+            font-size: 2em;
+            margin: 0;
+            padding: 10px;
+            font-weight: 400;
+            writing-mode: vertical-rl;
+            text-orientation: upright;
+            letter-spacing: 0.3em;
+            line-height: 1.5;
+            color: rgba(232, 195, 125, 0.3); /* 默认颜色设置为暗淡的金色 */
+            transition: all 0.3s ease;
+            text-shadow: 
+                1px 1px 0 #000,
+                -1px -1px 0 #000,
+                1px -1px 0 #000,
+                -1px 1px 0 #000,
+                0 1px 0 #000,
+                1px 0 0 #000,
+                0 -1px 0 #000,
+                -1px 0 0 #000;
+        }
+        .chapter:hover h2 {
+            color: inherit; /* 使用 inherit 来恢复到原本设定的颜色 */
+        }
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300&display=swap');
+
+        .chapter p {
+            font-family: 'Ma Shan Zheng', 'Noto Serif SC', 'STKaiti', 'KaiTi', 'FangSong', serif;
+            font-size: 1em;
+            font-weight: 400;
+            color: #e8c37d;
+            margin: 10px 0;
+            letter-spacing: 2px;
+            line-height: 1.6;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+            opacity: 0.9;
+            transition: all 0.3s ease;
+        }
+
+        .chapter:hover p {
+            color: #ffd700;
+            opacity: 1;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+        }
+        #ch1 { color: #FFD700; }
+        #ch1::before { background-image: url('index_ima/111.png'); }
+        #ch2 { color: #E6E6FA; }
+        #ch2::before { background-image: url('index_ima/222-原.png'); }
+        #ch3 { color: #98FB98; }
+        #ch3::before { background-image: url('index_ima/333-原.png'); }
+        #ch4 { color: #87CEEB; }
+        #ch4::before { background-image: url('index_ima/444-原.png'); }
+        #ch5 { color: #FFA07A; }
+        #ch5::before { background-image: url('index_ima/555.png'); }
+        #ch6 { color: #E0FFFF; }
+        #ch6::before { background-image: url('index_ima/666.png'); }
+        #ch1 h2 { color: rgba(255, 215, 0, 0.3); } /* 暗淡的金色 */
+        #ch2 h2 { color: rgba(230, 230, 250, 0.3); } /* 暗淡的淡紫色 */
+        #ch3 h2 { color: rgba(152, 251, 152, 0.3); } /* 暗淡的淡绿色 */
+        #ch4 h2 { color: rgba(135, 206, 235, 0.3); } /* 暗淡的天蓝色 */
+        #ch5 h2 { color: rgba(255, 160, 122, 0.3); } /* 暗淡的浅鲑鱼色 */
+        #ch6 h2 { color: rgba(224, 255, 255, 0.3); } /* 暗淡的淡青色 */
+
+        #ch1:hover h2 { color: #FFD700; }
+        #ch2:hover h2 { color: #E6E6FA; }
+        #ch3:hover h2 { color: #98FB98; }
+        #ch4:hover h2 { color: #87CEEB; }
+        #ch5:hover h2 { color: #FFA07A; }
+        #ch6:hover h2 { color: #E0FFFF; }
+    </style>
+    <link rel="preload" href="file/menu_ima/FZSTK.TTF" as="font" type="font/ttf" crossorigin>
+</head>
+<body>
+    <div class="decorative-element"></div>
+    <div class="container">
+        <div id="ch1" class="chapter" onclick="navigateToChapter(1)">
+            <div class="chapter-content">
+                <h2>火烧黑云</h2>
+            </div>
+            <p>烈焰燃烧，驱散黑暗</p>
+        </div>
+        <div id="ch2" class="chapter" onclick="navigateToChapter(2)">
+            <div class="chapter-content">
+                <h2>风起黄昏</h2>
+            </div>
+            <p>狂风呼啸，黄昏将至</p>
+        </div>
+        <div id="ch3" class="chapter" onclick="navigateToChapter(3)">
+            <div class="chapter-content">
+                <h2>夜生白露</h2>
+            </div>
+            <p>夜幕降临，白露凝结</p>
+        </div>
+        <div id="ch4" class="chapter" onclick="navigateToChapter(4)">
+            <div class="chapter-content">
+                <h2>曲度紫鸳</h2>
+            </div>
+            <p>紫鸳交织，命运弯曲</p>
+        </div>
+        <div id="ch5" class="chapter" onclick="navigateToChapter(5)">
+            <div class="chapter-content">
+                <h2>日落红尘</h2>
+            </div>
+            <p>落日余晖，红尘缭绕</p>
+        </div>
+        <div id="ch6" class="chapter" onclick="navigateToChapter(6)">
+            <div class="chapter-content">
+                <h2>未竟</h2>
+            </div>
+            <p>故事未完，征程继续</p>
+        </div>
+    </div>
+
+    <script src="JS/index.js"></script>
+</body>
+</html>

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>欢迎来到悟空世界</title>
+    <!-- 引入谷歌字体 -->
+    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+    <style>
+        body {
+            cursor: url('image/Cursor.svg'), auto;
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            background: #000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #fff;
+        }
+
+        #bg-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+        .zh_logo {
+            position: absolute;
+            top: 20px;
+            right: 110px;
+            width: 36.26rem;
+            height: 24.54rem;
+            background-image: url(image/logo-zh.png);
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+        .logo {
+            position: absolute;
+            top: 10%;
+            right: 5%;
+            width: 400px;
+            height: auto;
+        }
+
+        .menu-container {
+            position: absolute;
+            bottom: 15%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+        }
+
+        .menu-item {
+            position: relative;
+            width: 80px;
+            height: 80px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .menu-item .circle {
+            width: 60px;
+            height: 60px;
+            background: url('image/sign.png') no-repeat center center;
+            background-size: contain;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .hover-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #fff;
+            font-family: 'Ma Shan Zheng', cursive;
+            font-size: 16px;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+            white-space: nowrap;
+            pointer-events: none;
+        }
+
+        .menu-item:hover {
+            transform: scale(1.1);
+        }
+
+        .menu-item:hover .hover-text {
+            opacity: 1;
+        }
+
+        .copyright {
+            position: fixed;
+            bottom: 20px;
+            width: 100%;
+            text-align: center;
+            color: #666;
+            font-size: 12px;
+        }
+
+        .music-icon {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 30px;
+            height: 30px;
+            background: url('image/music_icon.png') no-repeat center center;
+            background-size: contain;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .music-icon.playing {
+            animation: rotate 3s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .nav-links {
+            position: fixed;
+            bottom: 50px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .nav-links a {
+            color: #ff0000;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 14px;
+        }
+
+        .nav-links a:hover {
+            text-decoration: underline;
+        }
+
+        .menu-container a {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <video id="bg-video" poster="image/img_bg_title.png" loop muted autoplay playsinline>
+        <source src="video/video_WebTitle_batch.mp4" type="video/mp4">
+        您的浏览器不支持本视频播放，请尝试换一个浏览器或升级到最新版本
+    </video>
+    <a href="index.html" class="zh_logo"></a>
+
+    <div class="music-icon" onclick="toggleMusic()"></div>
+    <audio id="bgMusic" src="music/background.mp3" loop></audio>
+
+    <div class="menu-container">
+        <a href="#" class="menu-item" id="characters-link">
+            <div class="circle">
+                <span class="hover-text">人物介绍</span>
+            </div>
+        </a>
+        <a href="#" class="menu-item" id="guides-link">
+            <div class="circle">
+                <span class="hover-text">游戏攻略</span>
+            </div>
+        </a>
+        <a href="#" class="menu-item" id="culture-link">
+            <div class="circle">
+                <span class="hover-text">文化探索</span>
+            </div>
+        </a>
+        <a href="#" class="menu-item" id="classics-link">
+            <div class="circle">
+                <span class="hover-text">经典回顾</span>
+            </div>
+        </a>
+    </div>
+
+    <div class="nav-links">
+        <a href="index.html">关于本站</a> |
+        <a href="#">网站招聘</a> |
+        <a href="#">联系我们</a> |
+        <a href="https://wiki.biligame.com/wukong/%E9%A6%96%E9%A1%B5">玩家投稿</a> |
+        <a href="https://www.heishenhua.com">友情链接</a>
+    </div>
+
+    <div class="copyright">
+        Copyfrom©2003-2024 https://www.heishenhua.com. 黑马喽 版权所有
+    </div>
+
+    <script src="JS/menu.js"></script>
+</body>
+</html>
