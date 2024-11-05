@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>黄袍员外 - 黑神话·悟空</title>
+    <style>
+        body {
+            font-family: 'ZCOOL XiaoWei', 'Microsoft YaHei', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('image/bg.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            background-color: #000;
+            color: #e8d5a9;
+        }
+        .container {
+            display: flex;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(5px);
+        }
+        .sidebar {
+            width: 250px;
+            background-color: rgba(17, 17, 17, 0.7);
+            padding: 20px;
+            margin-right: 20px;
+            border-right: 1px solid rgba(232, 213, 169, 0.2);
+        }
+        .main-content {
+            flex-grow: 1;
+        }
+        .character-info {
+            float: right;
+            width: 300px;
+            margin-left: 20px;
+            background-color: rgba(17, 17, 17, 0.7);
+            padding: 20px;
+            border-radius: 5px;
+            border: 1px solid rgba(232, 213, 169, 0.2);
+        }
+        h1, h2 {
+            color: #e8d5a9;
+            border-bottom: 1px solid rgba(232, 213, 169, 0.3);
+            text-shadow: 0 0 10px rgba(232, 213, 169, 0.3);
+        }
+        .info-table {
+            margin-top: 20px;
+            width: 100%;
+        }
+        .info-table td {
+            padding: 5px 10px;
+            border-bottom: 1px solid rgba(232, 213, 169, 0.2);
+        }
+        .info-table td:first-child {
+            font-weight: bold;
+            color: #e8d5a9;
+        }
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        .sidebar li {
+            margin-bottom: 10px;
+        }
+        .sidebar a {
+            color: #e8d5a9;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .sidebar a:hover {
+            color: #fff;
+            text-shadow: 0 0 10px #e8d5a9;
+        }
+        .poem {
+            font-style: italic;
+            margin: 20px 0;
+            padding: 15px;
+            background-color: rgba(17, 17, 17, 0.5);
+            border-left: 3px solid #e8d5a9;
+            color: #e8d5a9;
+        }
+        .dialogue {
+            margin-top: 10px;
+            padding-left: 20px;
+        }
+        .tab-nav {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 0 0 10px 0;
+        }
+        .tab-btn {
+            background-color: rgba(17, 17, 17, 0.7);
+            border: 1px solid rgba(232, 213, 169, 0.3);
+            color: #e8d5a9;
+            padding: 8px 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .tab-btn:hover {
+            background-color: rgba(232, 213, 169, 0.2);
+        }
+        .tab-btn.active {
+            background-color: rgba(232, 213, 169, 0.3);
+            border-color: #e8d5a9;
+        }
+        .tab-content {
+            padding: 4px 0;
+        }
+        .tab-pane {
+            display: none;
+        }
+        .tab-pane.active {
+            display: block;
+        }
+        .character-image {
+            width: 100%;
+            height: auto;
+            display: none;
+        }
+        .character-image.active {
+            display: block;
+        }
+        /* 新增和修改的样式 */
+        .section {
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(232, 213, 169, 0.2);
+        }
+
+        .section:last-child {
+            border-bottom: none;
+        }
+
+        .dialogue-entry {
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed rgba(232, 213, 169, 0.2);
+        }
+
+        .dialogue-entry:last-child {
+            border-bottom: none;
+        }
+
+        .sidebar {
+            position: sticky;
+            top: 20px;
+            align-self: flex-start;
+        }
+
+        /* 修改目录样式 */
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar li {
+            margin-bottom: 10px;
+        }
+
+        /* 一级目录项 */
+        .sidebar > ul > li > a {
+            color: #94885f;
+            text-decoration: none;
+            font-size: 1.1em;
+            display: block;
+            padding: 5px 0;
+        }
+
+        /* 二级目录项 */
+        .sidebar ul ul {
+            padding-left: 20px;
+            margin-top: 5px;
+        }
+
+        .sidebar ul ul li {
+            margin-bottom: 5px;
+        }
+
+        .sidebar ul ul a {
+            color: #94885f;
+            text-decoration: none;
+            font-size: 0.95em;
+            opacity: 0.9;
+            display: block;
+            padding: 3px 0;
+        }
+
+        .sidebar a:hover {
+            text-decoration: underline;
+            color: #fff;
+            text-shadow: 0 0 10px #94885f;
+        }
+
+        /* 添加遮罩层 */
+        .page-wrapper {
+            background-color: rgba(0, 0, 0, 0.75);
+            min-height: 100vh;
+        }
+
+        .submenu {
+            display: none;
+            padding-left: 20px;
+            margin-top: 5px;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .submenu.active {
+            display: block;
+        }
+
+        .toggle-icon {
+            display: inline-block;
+            width: 16px;
+            text-align: center;
+            margin-left: 5px;
+            transition: transform 0.3s ease;
+        }
+
+        .menu-toggle {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            text-decoration: none;
+            color: #94885f;
+        }
+
+        .menu-toggle.active .toggle-icon {
+            transform: rotate(45deg);
+        }
+
+        .has-submenu > a {
+            display: flex !important;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <h2>目录</h2>
+            <ul>
+                <li><a href="#overview">概述</a></li>
+                <li><a href="#story">故事</a></li>
+                <li class="has-submenu">
+                    <a href="#dialogue-sources" class="menu-toggle">
+                        台词 <span class="toggle-icon">+</span>
+                    </a>
+                    <ul class="submenu">
+                        <li><a href="#first-meet">初见</a></li>
+                        <li><a href="#sober-up">交付醒酒石</a></li>
+                        <li><a href="#hint">提示</a></li>
+                        <li><a href="#temple">卧虎寺</a></li>
+                        <li><a href="#lotus">交付碧藕</a></li>
+                        <li><a href="#battle">战斗</a></li>
+                        <li><a href="#ancient">古国传说</a></li>
+                    </ul>
+                </li>
+                <li><a href="#achievements">成就</a></li>
+                <li><a href="#trivia">杂谈</a></li>
+            </ul>
+        </div>
+        <div class="main-content">
+            <h1>黄袍员外</h1>
+            
+            <div class="character-info">
+                <div class="tab-nav">
+                    <button class="tab-btn active" data-tab="yingshen">影神图</button>
+                    <button class="tab-btn" data-tab="shiji">实机图</button>
+                </div>
+                <div class="tab-content">
+                    <img class="character-image active" id="yingshen" src="image/黄袍员外影神图.png" alt="黄袍员外影神图">
+                    <img class="character-image" id="shiji" src="image/黄袍员外.jpg" alt="黄袍员外实机图">
+                </div>
+                
+                <div class="poem">
+                    <p>锦袍丝绦飘晃晃，长嘴怪相目有光。</p>
+                    <p>兴来醉酒卧荒冢，剑甲长，亮欺霜。</p>
+                </div>
+                
+                <table class="info-table">
+                    <tr>
+                        <td>名称</td>
+                        <td>黄袍员外</td>
+                    </tr>
+                    <tr>
+                        <td>称号</td>
+                        <td>梅山六兄弟之一</td>
+                    </tr>
+                    <tr>
+                        <td>地点</td>
+                        <td>黄风岭-挟魂崖</td>
+                    </tr>
+                    <tr>
+                        <td>特征</td>
+                        <td>好酒贪财，性情豪爽</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div id="overview" class="section">
+                <h2>概述</h2>
+                <p>黄袍员外是梅山六兄弟之一，最初出现在黄风岭-挟魂崖。是任务"黄金引路"和"折梅见赠"的重要角色。他会开启隐藏地图斯哈哩国。击败他可获得头冠-长嘴脸和1,037灵蕴。</p>
+            </div>
+
+            <div id="story" class="section">
+                <h2>故事</h2>
+                <div class="quote">
+                    <p>风沙，烈日，茫茫荒芜。一个无头僧人与黄袍员外，同在枯木下歇凉。僧人弹着手中的三弦，摇摇晃晃。员外不喜其扰，递过酒囊想要安抚，却引发了一场关于金子和因果的对话。</p>
+                    <p>黄袍员外不以为然地谈论着剥取佛像上的金子，对僧人所说的因果报应置若罔闻。临走时，他还说要去"抠点金子换酒"，留下无头僧人独自弹着哀怨的曲子。</p>
+                </div>
+            </div>
+
+            <div id="dialogue-sources" class="section">
+                <h2>台词</h2>
+                
+                <div id="first-meet" class="dialogue-entry">
+                    <h3>初见</h3>
+                    <blockquote>
+                        <p>把酒仰问天，古今谁不死？</p>
+                        <p>不妙，误了正事......</p>
+                        <p>去给咱找解酒的来......</p>
+                    </blockquote>
+                </div>
+
+                <div id="sober-up" class="dialogue-entry">
+                    <h3>交付醒酒石</h3>
+                    <blockquote>
+                        <p>神清气爽！是你把咱叫醒的？多谢</p>
+                        <p>（嘿嘿嘿嘿）不过（呃）咱现在肚子空空，（呵呵）恕不奉陪</p>
+                        <p>咱现在得填饱肚子</p>
+                    </blockquote>
+                </div>
+
+                <div id="hint" class="dialogue-entry">
+                    <h3>提示</h3>
+                    <blockquote>
+                        <p>都道卧虎寺内有肉吃，那可得去瞧瞧。</p>
+                        <p>吃饱喝足才好做事，肚肠空空可是没戏</p>
+                        <p>（嗯？）你这瘦鬼身子，也该多吃点，走走走，跟咱去卧虎寺</p>
+                    </blockquote>
+                </div>
+
+                <div id="temple" class="dialogue-entry">
+                    <h3>卧虎寺</h3>
+                    <blockquote>
+                        <p>这些烂鼠肉食之若啮檗吞针</p>
+                        <p>气煞咱！</p>
+                        <p>老夫馋那碧藕馋得紧，在此干旱之地，可能寻到？</p>
+                    </blockquote>
+                </div>
+
+                <div id="lotus" class="dialogue-entry">
+                    <h3>交付碧藕</h3>
+                    <blockquote>
+                        <p>（嗯——）偶尔吃吃素，也未尝不可</p>
+                        <p>（嗯）事情有了些眉目。那黄金之国，真与这不毛之地有关</p>
+                        <p>传说中黄金之国是太阳西沉落海之地，那里的人们以鼠为尊</p>
+                        <p>适才咱尝了尝那些鼠精鼠怪，咂摸着像是还带点人味儿（嗯—）</p>
+                    </blockquote>
+                </div>
+
+                <div id="battle" class="dialogue-entry">
+                    <h3>战斗</h3>
+                    <blockquote>
+                        <p>大哥给的金片，为何在你那里？</p>
+                        <p>好身手！痛快！</p>
+                        <p>（喝喝喝哈哈）如此甚好，与咱同赴古国如何！</p>
+                    </blockquote>
+                </div>
+
+                <div id="ancient" class="dialogue-entry">
+                    <h3>古国传说</h3>
+                    <blockquote>
+                        <p>今人不见古时月，今月曾经照古人</p>
+                        <p>你看，黄金之国也好，落日之国也罢，都已不复存在</p>
+                        <p>传说这里的茫茫沙海之中，曾蛰伏一只上古巨虫...</p>
+                        <p>适逢一只黄毛貂鼠下界途径此地，感应到那巨虫身上似有无限佛力，于是施法镇住巨虫，收为己用。</p>
+                    </blockquote>
+                </div>
+            </div>
+
+            <div id="achievements" class="section">
+                <h2>成就</h2>
+                <ul>
+                    <li>【黄金引路十九难】醉酒的家伙说，此地有黄金……你信？</li>
+                    <li>【折梅见赠六十一难】一意逆流冷乡心，孰能轻易忘旧情？</li>
+                </ul>
+            </div>
+
+            <div id="trivia" class="section">
+                <h2>杂谈</h2>
+                <ul>
+                    <li>黄袍员外的外形更接近非洲疣猪，而非亚洲的野猪。</li>
+                    <li>黄袍员外掉落的1037灵蕴其实是与冯骥的母校华中科技大学相关的彩蛋，1037意指华科大的地址（湖北省武汉市洪山区珞喻路1037号）；而作为野猪精黄袍员外的掉落，则可能与华科大校园内常有野猪闯入有关。</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll('.tab-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const tabId = button.getAttribute('data-tab');
+                document.querySelectorAll('.tab-btn, .character-image').forEach(el => el.classList.remove('active'));
+                button.classList.add('active');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+
+        document.querySelectorAll('.menu-toggle').forEach(toggle => {
+            toggle.addEventListener('click', (e) => {
+                e.preventDefault();
+                const submenu = toggle.nextElementSibling;
+                const isActive = toggle.classList.contains('active');
+
+                // 先关闭所有打开的子菜单
+                document.querySelectorAll('.menu-toggle.active').forEach(activeToggle => {
+                    if (activeToggle !== toggle) {
+                        activeToggle.classList.remove('active');
+                        activeToggle.nextElementSibling.classList.remove('active');
+                    }
+                });
+
+                // 切换���前子菜单的状态
+                if (!isActive) {
+                    toggle.classList.add('active');
+                    submenu.classList.add('active');
+                } else {
+                    toggle.classList.remove('active');
+                    submenu.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

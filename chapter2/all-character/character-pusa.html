@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>灵吉菩萨 - 黑神话·悟空</title>
+    <style>
+        body {
+            font-family: 'ZCOOL XiaoWei', 'Microsoft YaHei', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('image/bg.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            background-color: #000;
+            color: #e8d5a9;
+        }
+        .container {
+            display: flex;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(5px);
+        }
+        .sidebar {
+            width: 250px;
+            background-color: rgba(17, 17, 17, 0.7);
+            padding: 20px;
+            margin-right: 20px;
+            border-right: 1px solid rgba(232, 213, 169, 0.2);
+        }
+        .main-content {
+            flex-grow: 1;
+        }
+        .character-info {
+            float: right;
+            width: 300px;
+            margin-left: 20px;
+            background-color: rgba(17, 17, 17, 0.7);
+            padding: 20px;
+            border-radius: 5px;
+            border: 1px solid rgba(232, 213, 169, 0.2);
+        }
+        h1, h2 {
+            color: #e8d5a9;
+            border-bottom: 1px solid rgba(232, 213, 169, 0.3);
+            text-shadow: 0 0 10px rgba(232, 213, 169, 0.3);
+        }
+        .info-table {
+            margin-top: 20px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .info-table tr {
+            display: flex;
+            justify-content: space-between;
+        }
+        .info-table td {
+            padding: 5px 10px;
+            border-bottom: 1px solid rgba(232, 213, 169, 0.2);
+            flex: 1;
+        }
+        .info-table td:first-child {
+            font-weight: bold;
+            color: #e8d5a9;
+        }
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        .sidebar li {
+            margin-bottom: 10px;
+        }
+        .sidebar a {
+            color: #e8d5a9;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .sidebar a:hover {
+            color: #fff;
+            text-shadow: 0 0 10px #e8d5a9;
+        }
+        .poem {
+            font-style: italic;
+            margin: 20px 0;
+            padding: 15px;
+            background-color: rgba(17, 17, 17, 0.5);
+            border-left: 3px solid #e8d5a9;
+            color: #e8d5a9;
+        }
+        .dialogue {
+            margin-top: 10px;
+            padding-left: 20px;
+        }
+        .tab-nav {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 0 0 10px 0;
+        }
+        .tab-btn {
+            background-color: rgba(17, 17, 17, 0.7);
+            border: 1px solid rgba(232, 213, 169, 0.3);
+            color: #e8d5a9;
+            padding: 8px 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .tab-btn:hover {
+            background-color: rgba(232, 213, 169, 0.2);
+        }
+        .tab-btn.active {
+            background-color: rgba(232, 213, 169, 0.3);
+            border-color: #e8d5a9;
+        }
+        .tab-content {
+            padding: 4px 0;
+        }
+        .tab-pane {
+            display: none;
+        }
+        .tab-pane.active {
+            display: block;
+        }
+        .character-image {
+            width: 100%;
+            height: auto;
+            display: none;
+        }
+        .character-image.active {
+            display: block;
+        }
+        /* 新增和修改的样式 */
+        .section {
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(232, 213, 169, 0.2);
+        }
+
+        .section:last-child {
+            border-bottom: none;
+        }
+
+        .dialogue-entry {
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed rgba(232, 213, 169, 0.2);
+        }
+
+        .dialogue-entry:last-child {
+            border-bottom: none;
+        }
+
+        .sidebar {
+            position: sticky;
+            top: 20px;
+            align-self: flex-start;
+        }
+
+        /* 修改目录样式 */
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar li {
+            margin-bottom: 10px;
+        }
+
+        /* 一级目录项 */
+        .sidebar > ul > li > a {
+            color: #94885f;
+            text-decoration: none;
+            font-size: 1.1em;
+            display: block;
+            padding: 5px 0;
+        }
+
+        /* 二级目录项 */
+        .sidebar ul ul {
+            padding-left: 20px;
+            margin-top: 5px;
+        }
+
+        .sidebar ul ul li {
+            margin-bottom: 5px;
+        }
+
+        .sidebar ul ul a {
+            color: #94885f;
+            text-decoration: none;
+            font-size: 0.95em;
+            opacity: 0.9;
+            display: block;
+            padding: 3px 0;
+        }
+
+        .sidebar a:hover {
+            text-decoration: underline;
+            color: #fff;
+            text-shadow: 0 0 10px #94885f;
+        }
+
+        /* 添加遮罩层 */
+        .page-wrapper {
+            background-color: rgba(0, 0, 0, 0.75);
+            min-height: 100vh;
+        }
+
+        .submenu {
+            display: none;
+            padding-left: 20px;
+            margin-top: 5px;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .submenu.active {
+            display: block;
+        }
+
+        .toggle-icon {
+            display: inline-block;
+            width: 16px;
+            text-align: center;
+            margin-left: 5px;
+            transition: transform 0.3s ease;
+        }
+
+        .menu-toggle {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            text-decoration: none;
+            color: #94885f;
+        }
+
+        .menu-toggle.active .toggle-icon {
+            transform: rotate(45deg);
+        }
+
+        .has-submenu > a {
+            display: flex !important;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <h2>目录</h2>
+            <ul>
+                <li><a href="#overview">概述</a></li>
+                <li><a href="#background">背景</a></li>
+                <li class="has-submenu">
+                    <a href="#dialogue-sources" class="menu-toggle">
+                        人物评价 <span class="toggle-icon">+</span>
+                    </a>
+                    <ul class="submenu">
+                        <li><a href="#tiger">虎先锋</a></li>
+                        <li><a href="#sha-king">沙国王</a></li>
+                        <li><a href="#sha-er">沙二郎</a></li>
+                        <li><a href="#ma">马天霸</a></li>
+                        <li><a href="#huang">黄风大圣</a></li>
+                    </ul>
+                </li>
+                <li><a href="#original-text">考据</a></li>
+                <li><a href="#basic-info">基本信息</a></li>
+            </ul>
+        </div>
+        <div class="main-content">
+            <h1>灵吉菩萨</h1>
+            
+            <div class="character-info">
+                <div class="tab-nav">
+                    <button class="tab-btn active" data-tab="yingshen">影神图</button>
+                    <button class="tab-btn" data-tab="shiji">实机图</button>
+                </div>
+                <div class="tab-content">
+                    <img class="character-image active" id="yingshen" src="image/灵吉菩萨影神图.png" alt="灵吉菩萨影神图">
+                    <img class="character-image" id="shiji" src="image/灵吉菩萨.jpg" alt="灵吉菩萨实机图">
+                </div>
+                
+                <div class="poem">
+                    <p>因空见色色生灾，因慈生欲欲如海。</p>
+                    <p>前事快意后事悔，洗心绝念等风来。</p>
+                </div>
+                
+                <table class="info-table">
+                    <tr>
+                        <td>名称</td>
+                        <td>灵吉菩萨</td>
+                    </tr>
+                    <tr>
+                        <td>称号</td>
+                        <td>无头僧</td>
+                    </tr>
+                    <tr>
+                        <td>地点</td>
+                        <td>黄风岭</td>
+                    </tr>
+                    <tr>
+                        <td>特征</td>
+                        <td>被斩首的菩萨，与黄风怪有深仇</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div id="overview" class="section">
+                <h2>概述</h2>
+                <p>灵吉菩萨是黄风岭中的神秘人物，即无头僧的真身。在《西游记》中曾帮助唐僧师徒降服黄风大圣。他与黄风怪之间似有深仇大恨，但关于他被斩首的原因，众说纷纭。</p>
+            </div>
+
+            <div id="background" class="section">
+                <h2>背景</h2>
+                <p>关于灵吉菩萨被斩首的往事，各方说法不一。虎先锋认为这是黄风大圣最痛恨的人物，拜师之举不过是为求庇佑。沙国王则透露曾见过一只背负佛头的大虫子��与灵吉被斩的头颅极为相似。后来沙国遭遇鼠祸，黄风大圣称是灵吉引来的灾祸。黄风大圣本人对此事的评价是："灾人者，人必反灾之。不是我，也会有别人。"</p>
+            </div>
+
+            <div id="dialogue-sources" class="section">
+                <h2>相关人物评价</h2>
+                
+                <div id="tiger" class="dialogue-entry">
+                    <h3>虎先锋</h3>
+                    <blockquote>
+                        <p>大王的师父，岂是我等可议论的？不过，我曾听父亲提起，大王最恨这鸟人。说是拜师，我倒寻思是为求个庇佑。山野妖怪，就得看开神佛哪有什么垂怜，各取所需罢了。</p>
+                    </blockquote>
+                </div>
+
+                <div id="sha-king" class="dialogue-entry">
+                    <h3>沙国王</h3>
+                    <blockquote>
+                        <p>昔年，大王替我那小国消灾解难时，我曾见过一眼那大虫子。它背上有个佛头，与大王砍的那脑袋，一模一样哩。哎，后来我那城中，人人都变了老鼠，大王只说是他引来的祸事，就带着手下都走了。我知道，大王其实不想走的，他一直想让妖怪们，过些体面日子……</p>
+                    </blockquote>
+                </div>
+
+                <div id="sha-er" class="dialogue-entry">
+                    <h3>沙二郎</h3>
+                    <blockquote>
+                        <p>大王，不坏。大鸟，活该。</p>
+                    </blockquote>
+                </div>
+
+                <div id="ma" class="dialogue-entry">
+                    <h3>马天霸</h3>
+                    <blockquote>
+                        <p>偷油的老鼠上高台，定是有人架梯来。</p>
+                    </blockquote>
+                </div>
+
+                <div id="huang" class="dialogue-entry">
+                    <h3>黄风大圣</h3>
+                    <blockquote>
+                        <p>灾人者，人必反灾之。不是我，也会有别人。</p>
+                    </blockquote>
+                </div>
+            </div>
+
+            <div id="original-text" class="section">
+                <h2>考据</h2>
+                <div class="quote">
+                    <p>灵吉菩萨是《西游记》中虚构的人物。游戏中，灵吉菩萨的大鸟形象，可能源自佛教中的"孔雀大明王菩萨"。</p>
+                </div>
+            </div>
+
+            <div id="basic-info" class="section">
+                <h2>基本信息</h2>
+                <table class="info-table">
+                    <tr>
+                        <td>名称</td>
+                        <td>灵吉菩萨</td>
+                    </tr>
+                    <tr>
+                        <td>称号</td>
+                        <td>无头僧</td>
+                    </tr>
+                    <tr>
+                        <td>地点</td>
+                        <td>黄风岭</td>
+                    </tr>
+                    <tr>
+                        <td>特征</td>
+                        <td>被斩首的菩萨，与黄风怪有深仇</td>
+                    </tr>
+                    <tr>
+                        <td>相关人物</td>
+                        <td>黄风大圣、沙国王、虎先锋</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll('.tab-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const tabId = button.getAttribute('data-tab');
+                document.querySelectorAll('.tab-btn, .character-image').forEach(el => el.classList.remove('active'));
+                button.classList.add('active');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+
+        document.querySelectorAll('.menu-toggle').forEach(toggle => {
+            toggle.addEventListener('click', (e) => {
+                e.preventDefault();
+                const submenu = toggle.nextElementSibling;
+                const isActive = toggle.classList.contains('active');
+
+                // 先关闭所有打开的子菜单
+                document.querySelectorAll('.menu-toggle.active').forEach(activeToggle => {
+                    if (activeToggle !== toggle) {
+                        activeToggle.classList.remove('active');
+                        activeToggle.nextElementSibling.classList.remove('active');
+                    }
+                });
+
+                // 切换当前子菜单的状态
+                if (!isActive) {
+                    toggle.classList.add('active');
+                    submenu.classList.add('active');
+                } else {
+                    toggle.classList.remove('active');
+                    submenu.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

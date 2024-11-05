@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>无头僧 - 黑神话·悟空</title>
+    <style>
+        body {
+            font-family: 'ZCOOL XiaoWei', 'Microsoft YaHei', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('image/bg.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            background-color: #000;
+            color: #e8d5a9;
+        }
+        .container {
+            display: flex;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(5px);
+        }
+        .sidebar {
+            width: 250px;
+            background-color: rgba(17, 17, 17, 0.7);
+            padding: 20px;
+            margin-right: 20px;
+            border-right: 1px solid rgba(232, 213, 169, 0.2);
+        }
+        .main-content {
+            flex-grow: 1;
+        }
+        .character-info {
+            float: right;
+            width: 300px;
+            margin-left: 20px;
+            background-color: rgba(17, 17, 17, 0.7);
+            padding: 20px;
+            border-radius: 5px;
+            border: 1px solid rgba(232, 213, 169, 0.2);
+        }
+        h1, h2 {
+            color: #e8d5a9;
+            border-bottom: 1px solid rgba(232, 213, 169, 0.3);
+            text-shadow: 0 0 10px rgba(232, 213, 169, 0.3);
+        }
+        .info-table {
+            margin-top: 20px;
+            width: 100%;
+        }
+        .info-table td {
+            padding: 5px 10px;
+            border-bottom: 1px solid rgba(232, 213, 169, 0.2);
+        }
+        .info-table td:first-child {
+            font-weight: bold;
+            color: #e8d5a9;
+        }
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        .sidebar li {
+            margin-bottom: 10px;
+        }
+        .sidebar a {
+            color: #e8d5a9;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .sidebar a:hover {
+            color: #fff;
+            text-shadow: 0 0 10px #e8d5a9;
+        }
+        .poem {
+            font-style: italic;
+            margin: 20px 0;
+            padding: 15px;
+            background-color: rgba(17, 17, 17, 0.5);
+            border-left: 3px solid #e8d5a9;
+            color: #e8d5a9;
+        }
+        .dialogue {
+            margin-top: 10px;
+            padding-left: 20px;
+        }
+        .tab-nav {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 0 0 10px 0;
+        }
+        .tab-btn {
+            background-color: rgba(17, 17, 17, 0.7);
+            border: 1px solid rgba(232, 213, 169, 0.3);
+            color: #e8d5a9;
+            padding: 8px 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .tab-btn:hover {
+            background-color: rgba(232, 213, 169, 0.2);
+        }
+        .tab-btn.active {
+            background-color: rgba(232, 213, 169, 0.3);
+            border-color: #e8d5a9;
+        }
+        .tab-content {
+            padding: 4px 0;
+        }
+        .tab-pane {
+            display: none;
+        }
+        .tab-pane.active {
+            display: block;
+        }
+        .character-image {
+            width: 100%;
+            height: auto;
+            display: none;
+        }
+        .character-image.active {
+            display: block;
+        }
+        /* 新增和修改的样式 */
+        .section {
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(232, 213, 169, 0.2);
+        }
+
+        .section:last-child {
+            border-bottom: none;
+        }
+
+        .dialogue-entry {
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed rgba(232, 213, 169, 0.2);
+        }
+
+        .dialogue-entry:last-child {
+            border-bottom: none;
+        }
+
+        .sidebar {
+            position: sticky;
+            top: 20px;
+            align-self: flex-start;
+        }
+
+        /* 修改目录样式 */
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar li {
+            margin-bottom: 10px;
+        }
+
+        /* 一级目录项 */
+        .sidebar > ul > li > a {
+            color: #94885f;
+            text-decoration: none;
+            font-size: 1.1em;
+            display: block;
+            padding: 5px 0;
+        }
+
+        /* 二级目录项 */
+        .sidebar ul ul {
+            padding-left: 20px;
+            margin-top: 5px;
+        }
+
+        .sidebar ul ul li {
+            margin-bottom: 5px;
+        }
+
+        .sidebar ul ul a {
+            color: #94885f;
+            text-decoration: none;
+            font-size: 0.95em;
+            opacity: 0.9;
+            display: block;
+            padding: 3px 0;
+        }
+
+        .sidebar a:hover {
+            text-decoration: underline;
+            color: #fff;
+            text-shadow: 0 0 10px #94885f;
+        }
+
+        /* 添加遮罩层 */
+        .page-wrapper {
+            background-color: rgba(0, 0, 0, 0.75);
+            min-height: 100vh;
+        }
+
+        .submenu {
+            display: none;
+            padding-left: 20px;
+            margin-top: 5px;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .submenu.active {
+            display: block;
+        }
+
+        .toggle-icon {
+            display: inline-block;
+            width: 16px;
+            text-align: center;
+            margin-left: 5px;
+            transition: transform 0.3s ease;
+        }
+
+        .menu-toggle {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            text-decoration: none;
+            color: #94885f;
+        }
+
+        .menu-toggle.active .toggle-icon {
+            transform: rotate(45deg);
+        }
+
+        .has-submenu > a {
+            display: flex !important;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <h2>目录</h2>
+            <ul>
+                <li><a href="#overview">概述</a></li>
+                <li><a href="#background">背景</a></li>
+                <li class="has-submenu">
+                    <a href="#dialogue-sources" class="menu-toggle">
+                        台词 <span class="toggle-icon">+</span>
+                    </a>
+                    <ul class="submenu">
+                        <li><a href="#first-meet">初见</a></li>
+                        <li><a href="#help">帮助天命人</a></li>
+                        <li><a href="#leave">离去</a></li>
+                        <li><a href="#defeat-sha">击败沙二郎</a></li>
+                        <li><a href="#defeat-both">击败沙国王父子</a></li>
+                        <li><a href="#hint">密道提示</a></li>
+                        <li><a href="#copper-head">获得铜头铁臂</a></li>
+                        <li><a href="#outer-body">获得身外身法</a></li>
+                    </ul>
+                </li>
+                <li><a href="#story">传说</a></li>
+                <li><a href="#achievements">成就</a></li>
+            </ul>
+        </div>
+        <div class="main-content">
+            <h1>无头僧</h1>
+            
+            <div class="character-info">
+                <div class="tab-nav">
+                    <button class="tab-btn active" data-tab="yingshen">影神图</button>
+                    <button class="tab-btn" data-tab="shiji">实机图</button>
+                </div>
+                <div class="tab-content">
+                    <img class="character-image active" id="yingshen" src="image/无头僧影神图.png" alt="无头僧影神图">
+                    <img class="character-image" id="shiji" src="image/无头僧.jpg" alt="无头僧实机图">
+                </div>
+                
+                <div class="poem">
+                    <p>三弦三弦，郁愤难言。势败奴欺，羞到佛前。</p>
+                    <p>忧困忧困，仇生于恩。风遮沙掩，真假谁辩。</p>
+                </div>
+                
+                <table class="info-table">
+                    <tr>
+                        <td>名称</td>
+                        <td>无头僧</td>
+                    </tr>
+                    <tr>
+                        <td>称号</td>
+                        <td>灵吉菩萨</td>
+                    </tr>
+                    <tr>
+                        <td>地点</td>
+                        <td>黄风岭</td>
+                    </tr>
+                    <tr>
+                        <td>特征</td>
+                        <td>善弹三弦，通晓法术</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div id="overview" class="section">
+                <h2>概述</h2>
+                <p>无头僧是黄风岭上一位神秘的僧人，虽无头颅却精通三弦琴艺和佛门法术。他常在山间游荡，时而显灵帮助路人，时而弹唱诉说往事。其真实身份是灵吉菩萨，与黄风大圣之间似有深仇大恨。</p>
+            </div>
+
+            <div id="background" class="section">
+                <h2>背景</h2>
+                <p>在定风庄的传说中，无头僧初次现身是在黄风山刚刮起怪风之时。他常靠在山石边弹唱，歌中多述说黄风岭的变迁。虽然形貌骇人，但他性情温和，曾用法术治愈受伤的孩童。他的出现往往伴随着一阵风沙，消失时也化作风沙散去。</p>
+            </div>
+
+            <div id="dialogue-sources" class="section">
+                <h2>台词</h2>
+                
+                <div id="first-meet" class="dialogue-entry">
+                    <h3>初见</h3>
+                    <blockquote>
+                        <p>黄风岭，八百里，曾是关外富饶地；</p>
+                        <p>一朝鼠患凭空起，乌烟瘴气渺人迹；</p>
+                        <p>无父无君无法纪，为非作歹有天庇；</p>
+                        <p>幸得大圣借佛力，邪风一时偃旌旗；</p>
+                        <p>哪知不测奇祸起旦夕，那黄毛孽畜再回籍；</p>
+                        <p>凶犯不死好得意，福星横尸却成谜。</p>
+                    </blockquote>
+                </div>
+
+                <div id="help" class="dialogue-entry">
+                    <h3>帮助天命人</h3>
+                    <blockquote>
+                        <p>呵呵呵…小施主来此的目的，老衲（儿）多少猜到几许。</p>
+                        <p>心急吃不了热面皮，暂且助你一臂力。</p>
+                    </blockquote>
+                </div>
+
+                <div id="leave" class="dialogue-entry">
+                    <h3>离去</h3>
+                    <blockquote>
+                        <p>血化风，沙化雨，无主的猫鼠儿串一气。</p>
+                        <p>成败生死莫讲理，不强走那正道才有戏。</p>
+                    </blockquote>
+                </div>
+
+                <div id="defeat-sha" class="dialogue-entry">
+                    <h3>击败沙二郎</h3>
+                    <blockquote>
+                        <p>普天之下！父子君臣纲纪，伦常规矩天理；</p>
+                        <p>哪个说了才算，哪个放任不管；</p>
+                        <p>你瞧那鼠辈倒讲人情————怎么就落得个子亡父逃尸骨寒</p>
+                    </blockquote>
+                </div>
+
+                <div id="defeat-both" class="dialogue-entry">
+                    <h3>击败沙国王父子</h3>
+                    <blockquote>
+                        <p>好一个心狠手辣的泼赖猴，可怜那鼠怪耗精地府走；</p>
+                        <p>眼见得父死子亡又生离愁，老衲我有手无头空虚久。</p>
+                    </blockquote>
+                </div>
+
+                <div id="hint" class="dialogue-entry">
+                    <h3>密道提示</h3>
+                    <blockquote>
+                        <p>世人都爱拼利害，偏偏破门敲不开；</p>
+                        <p>神风奇术蔽日月，三昧妙法障山海；</p>
+                        <p>要想见那黄毛鼠精，必须要得心腹口令；</p>
+                        <p>一个不够凑一双，那缩卵风魔不死也得伤。</p>
+                    </blockquote>
+                </div>
+
+                <div id="copper-head" class="dialogue-entry">
+                    <h3>获得铜头铁臂</h3>
+                    <blockquote>
+                        <p>金铁击石全无力，大圣天蓬遭虎欺；</p>
+                        <p>枪刀剑戟浑不避，石猴似你不似你————</p>
+                        <p>小施主筋骨清奇，正相应这铜头铁臂。</p>
+                    </blockquote>
+                </div>
+
+                <div id="outer-body" class="dialogue-entry">
+                    <h3>获得身外身法</h3>
+                    <blockquote>
+                        <p>且慢走，且慢走，再走怕你也无头。</p>
+                        <p>甭急，甭急。（嘿嘿嘿）好灵，好灵！亏得我一直存着，算是找着正主了！</p>
+                        <p>无生有，莫强求，方便法门鬼见愁；</p>
+                        <p>旁人以为稀罕物，左道旁门不入流。</p>
+                    </blockquote>
+                </div>
+            </div>
+
+            <div id="story" class="section">
+                <h2>传说</h2>
+                <div class="quote">
+                    <p>定风庄的村民曾遇过这样一件事，那是发生在黄风山刚刮起怪风之时。那日，村里的孩童正聚在村口玩耍，隐隐听得有三弦的琴声传来。他们顺着琴声望去，看见有个身影，正靠在一块大石上弹唱。</p>
+                    <p>一个叫成大的孩子跌倒后，无头僧不仅用法术治愈了他的伤，还修复了他破损的衣物。这件事在定风庄广为流传，虽然大人们都说"哪个神仙没有头"，但孩子们坚信他们遇到了神仙。</p>
+                </div>
+            </div>
+
+            <div id="achievements" class="section">
+                <h2>成就</h2>
+                <ul>
+                    <li>【法性颇通七十五难】诸般术法，本来一体。</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll('.tab-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const tabId = button.getAttribute('data-tab');
+                document.querySelectorAll('.tab-btn, .character-image').forEach(el => el.classList.remove('active'));
+                button.classList.add('active');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+
+        document.querySelectorAll('.menu-toggle').forEach(toggle => {
+            toggle.addEventListener('click', (e) => {
+                e.preventDefault();
+                const submenu = toggle.nextElementSibling;
+                const isActive = toggle.classList.contains('active');
+
+                // 先关闭所有打开的子菜单
+                document.querySelectorAll('.menu-toggle.active').forEach(activeToggle => {
+                    if (activeToggle !== toggle) {
+                        activeToggle.classList.remove('active');
+                        activeToggle.nextElementSibling.classList.remove('active');
+                    }
+                });
+
+                // 切换当前子菜单的状态
+                if (!isActive) {
+                    toggle.classList.add('active');
+                    submenu.classList.add('active');
+                } else {
+                    toggle.classList.remove('active');
+                    submenu.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
