@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>袁守诚 - 黑神话·悟空</title>
+    <style>
+        body {
+            font-family: 'ZCOOL XiaoWei', 'Microsoft YaHei', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('image/bg.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            background-color: #000;
+            color: #e8d5a9;
+        }
+        .container {
+            display: flex;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(5px);
+        }
+        .sidebar {
+            width: 250px;
+            background-color: rgba(17, 17, 17, 0.7);
+            padding: 20px;
+            margin-right: 20px;
+            border-right: 1px solid rgba(232, 213, 169, 0.2);
+        }
+        .main-content {
+            flex-grow: 1;
+        }
+        .character-info {
+            float: right;
+            width: 300px;
+            margin-left: 20px;
+            background-color: rgba(17, 17, 17, 0.7);
+            padding: 20px;
+            border-radius: 5px;
+            border: 1px solid rgba(232, 213, 169, 0.2);
+        }
+        h1, h2 {
+            color: #e8d5a9;
+            border-bottom: 1px solid rgba(232, 213, 169, 0.3);
+            text-shadow: 0 0 10px rgba(232, 213, 169, 0.3);
+        }
+        .info-table {
+            margin-top: 20px;
+            width: 100%;
+        }
+        .info-table td {
+            padding: 5px 10px;
+            border-bottom: 1px solid rgba(232, 213, 169, 0.2);
+        }
+        .info-table td:first-child {
+            font-weight: bold;
+            color: #e8d5a9;
+        }
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        .sidebar li {
+            margin-bottom: 10px;
+        }
+        .sidebar a {
+            color: #e8d5a9;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .sidebar a:hover {
+            color: #fff;
+            text-shadow: 0 0 10px #e8d5a9;
+        }
+        .poem {
+            font-style: italic;
+            margin: 20px 0;
+            padding: 15px;
+            background-color: rgba(17, 17, 17, 0.5);
+            border-left: 3px solid #e8d5a9;
+            color: #e8d5a9;
+        }
+        .dialogue {
+            margin-top: 10px;
+            padding-left: 20px;
+        }
+        .tab-nav {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 0 0 10px 0;
+        }
+        .tab-btn {
+            background-color: rgba(17, 17, 17, 0.7);
+            border: 1px solid rgba(232, 213, 169, 0.3);
+            color: #e8d5a9;
+            padding: 8px 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .tab-btn:hover {
+            background-color: rgba(232, 213, 169, 0.2);
+        }
+        .tab-btn.active {
+            background-color: rgba(232, 213, 169, 0.3);
+            border-color: #e8d5a9;
+        }
+        .tab-content {
+            padding: 4px 0;
+        }
+        .tab-pane {
+            display: none;
+        }
+        .tab-pane.active {
+            display: block;
+        }
+        .character-image {
+            width: 100%;
+            height: auto;
+            display: none;
+        }
+        .character-image.active {
+            display: block;
+        }
+        /* 新增和修改的样式 */
+        .section {
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(232, 213, 169, 0.2);
+        }
+
+        .section:last-child {
+            border-bottom: none;
+        }
+
+        .dialogue-entry {
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed rgba(232, 213, 169, 0.2);
+        }
+
+        .dialogue-entry:last-child {
+            border-bottom: none;
+        }
+
+        .sidebar {
+            position: sticky;
+            top: 20px;
+            align-self: flex-start;
+        }
+
+        /* 修改目录样式 */
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar li {
+            margin-bottom: 10px;
+        }
+
+        /* 一级目录项 */
+        .sidebar > ul > li > a {
+            color: #94885f;
+            text-decoration: none;
+            font-size: 1.1em;
+            display: block;
+            padding: 5px 0;
+        }
+
+        /* 二级目录项 */
+        .sidebar ul ul {
+            padding-left: 20px;
+            margin-top: 5px;
+        }
+
+        .sidebar ul ul li {
+            margin-bottom: 5px;
+        }
+
+        .sidebar ul ul a {
+            color: #94885f;
+            text-decoration: none;
+            font-size: 0.95em;
+            opacity: 0.9;
+            display: block;
+            padding: 3px 0;
+        }
+
+        .sidebar a:hover {
+            text-decoration: underline;
+            color: #fff;
+            text-shadow: 0 0 10px #94885f;
+        }
+
+        /* 添加遮罩层 */
+        .page-wrapper {
+            background-color: rgba(0, 0, 0, 0.75);
+            min-height: 100vh;
+        }
+
+        .submenu {
+            display: none;
+            padding-left: 20px;
+            margin-top: 5px;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .submenu.active {
+            display: block;
+        }
+
+        .toggle-icon {
+            display: inline-block;
+            width: 16px;
+            text-align: center;
+            margin-left: 5px;
+            transition: transform 0.3s ease;
+        }
+
+        .menu-toggle {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            text-decoration: none;
+            color: #94885f;
+        }
+
+        .menu-toggle.active .toggle-icon {
+            transform: rotate(45deg);
+        }
+
+        .has-submenu > a {
+            display: flex !important;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <h2>目录</h2>
+            <ul>
+                <li><a href="#overview">概述</a></li>
+                <li><a href="#background">背景</a></li>
+                <li class="has-submenu">
+                    <a href="#dialogue-sources" class="menu-toggle">
+                        台词 <span class="toggle-icon">+</span>
+                    </a>
+                    <ul class="submenu">
+                        <li><a href="#first-meet">初次相遇</a></li>
+                        <li><a href="#yellow-wind">黄风岭</a></li>
+                        <li><a href="#small-west-heaven">小西天</a></li>
+                        <li><a href="#spider-cliff">盘丝岭</a></li>
+                        <li><a href="#yellow-flower">黄花观</a></li>
+                        <li><a href="#flame-mountain">火焰山</a></li>
+                        <li><a href="#buddha-dialogue">佛道对话</a></li>
+                    </ul>
+                </li>
+                <li class="has-submenu">
+                    <a href="#dragon-kings" class="menu-toggle">
+                        四渎龙王诗词 <span class="toggle-icon">+</span>
+                    </a>
+                    <ul class="submenu">
+                        <li><a href="#red-dragon">赤髯龙</a></li>
+                        <li><a href="#black-dragon">小骊龙</a></li>
+                        <li><a href="#blue-dragon">青背龙</a></li>
+                        <li><a href="#yellow-dragon">小黄龙</a></li>
+                    </ul>
+                </li>
+                <li><a href="#encounters">重要遭遇</a></li>
+                <li><a href="#achievements">成就</a></li>
+                <li><a href="#misc">杂谈</a></li>
+                <li><a href="#basic-info">基本信息</a></li>
+            </ul>
+        </div>
+        <div class="main-content">
+            <h1>袁守诚</h1>
+            
+            <div class="character-info">
+                <div class="tab-nav">
+                    <button class="tab-btn active" data-tab="yingshen">影神图</button>
+                    <button class="tab-btn" data-tab="shiji">实机图</button>
+                </div>
+                <div class="tab-content">
+                    <img class="character-image active" id="yingshen" src="image/袁守诚影神图.png" alt="袁守诚影神图" onerror="this.onerror=null; this.src='image/image-placeholder.png';">
+                    <img class="character-image" id="shiji" src="image/袁守诚.jpg" alt="袁守诚实机图" onerror="this.onerror=null; this.src='image/image-placeholder.png';">
+                </div>
+                
+                <div class="poem">
+                    <p>半世虚度半世忙，一朝彻悟一朝忘。</p>
+                    <p>袖课岂知天下计，卦辞怎阻痴心郎。</p>
+                </div>
+                
+                <table class="info-table">
+                    <tr>
+                        <td>名称</td>
+                        <td>袁守诚</td>
+                    </tr>
+                    <tr>
+                        <td>分类</td>
+                        <td>人物</td>
+                    </tr>
+                    <tr>
+                        <td>地点</td>
+                        <td>黑风山</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div id="overview" class="section">
+                <h2>概述</h2>
+                <p>袁守诚是一位精通占卜之术的神秘人物，在游戏中多次出现在天命人的旅程中。他善于推演命数，通晓阴阳，对天命人的旅程有重要的指引作用。</p>
+            </div>
+
+            <div id="background" class="section">
+                <h2>背景</h2>
+                <div class="background-content">
+                    <p>袁守诚出自《西游记》第九回，是袁天罡的叔叔，以精准的算命技艺闻名。在原著中，他曾与泾河龙王有过一段著名的算卦故事。</p>
+                </div>
+            </div>
+
+            <div id="encounters" class="section">
+                <h2>重要遭遇</h2>
+                <ul>
+                    <li>黑风山翠竹林 - 初次相遇，传授超度之法</li>
+                    <li>黄风岭镇风门 - 讲述四渎龙王往事</li>
+                    <li>小西天安身寺 - 传授防身御寒之术</li>
+                    <li>盘丝岭坠龙涯 - 揭示因果</li>
+                    <li>黄花观 - 弹奏《戒网》</li>
+                    <li>火焰山丹灶谷 - 论道饮酒</li>
+                </ul>
+            </div>
+
+            <div id="achievements" class="section">
+                <h2>成就</h2>
+                <ul>
+                    <li>【云游有伴四十九难】真怪，怎的哪里都能撞见这老头？</li>
+                    <li>【法性颂通七十五难】诸般术法，本来一体。</li>
+                </ul>
+            </div>
+
+            <div id="dialogue-sources" class="section">
+                <h2>台词</h2>
+                
+                <div id="first-meet" class="dialogue-entry">
+                    <h3>初次相遇（黑风山翠竹林）</h3>
+                    <div class="dialogue">
+                        <p>"久在樊笼里，复得返自然。"（自言自语）</p>
+                        <p>"路上可曾见到那些无主孤魂？"</p>
+                        <p>"灵韵不散，浮于空中。"</p>
+                        <p>"可惜你的葫芦不中用，我这葫芦又认主。"</p>
+                        <p>"（哎）我有一法，可超度孤魂，归全返真，与你必有帮助。"</p>
+                        <p>"（取过天命人的葫芦画了画，又摇了摇）这才像样，不能装天却可度人，荡去痴念，早入轮回。"</p>
+                        <p>"既承天命，自是无法回头。"</p>
+                        <p>"你我无非都是这茫茫天地间的蓬草，能往返何处去呢？"</p>
+                        <p>"胜景易朽，以笔存之。"</p>
+                        <p>"你已在路上，又如何能停下脚步。"</p>
+                        <p>"只管任意向前，你我还会再见。"</p>
+                    </div>
+                </div>
+
+                <div id="yellow-wind" class="dialogue-entry">
+                    <h3>黄风岭镇风门</h3>
+                    <div class="dialogue">
+                        <p>"分散逐风转，此已非常身。"</p>
+                        <p>"当年泾河龙王违抗天命，玉帝震怒欲行连坐之罪。"</p>
+                        <p>"吓得那四渎龙神躲了起来。"</p>
+                        <p>"神仙？神仙又有何异？"</p>
+                        <p>"只要染了因果，不过是盘中餐、池中物。"</p>
+                        <p>"江河淮济，四渎龙神，生死已定，你我皆然。"</p>
+                    </div>
+                </div>
+
+                <div id="small-west-heaven" class="dialogue-entry">
+                    <h3>小西天安身寺</h3>
+                    <div class="dialogue">
+                        <p>"巧了巧了，天寒遇故友，夫复何求。"</p>
+                        <p>"来来来，一起赏雪吟诗。"</p>
+                        <h4>战斗时：</h4>
+                        <p>"美不美，家乡水，亲不亲，故乡人，你打轻一些儿。"</p>
+                        <p>"唉，看来这茶今天喝不成了。"</p>
+                        <p>"你俩且斗着，我袖传一课，断个胜负。"</p>
+                        <h4>战胜赤尻马猴后：</h4>
+                        <p>"（哎）莫急，猴兄弟。来，先坐下。"</p>
+                        <p>"那怪黑毛赤尻，面相奸顽，可不好捉（哎）"</p>
+                        <p>"你虽有些粗浅修为，但这极北之地天寒地冻。"</p>
+                        <p>"胡乱轻造，性命难保。"</p>
+                        <p>"今日既然有缘再见，我便教给你一招防身御寒的小神通。"</p>
+                        <p>"我非一般人，此非一般火。"</p>
+                        <p>"以后无论伤了寒了冷了，就用棒子在地上画个圈儿。"</p>
+                        <p>"凭他甚么虎豹狼虫、妖魔鬼怪，俱莫敢近。"</p>
+                    </div>
+                </div>
+
+                <div id="spider-cliff" class="dialogue-entry">
+                    <h3>盘丝岭坠龙涯</h3>
+                    <div class="dialogue">
+                        <p>"你那三个兄弟，皆已诛服。"</p>
+                        <p>"不去相会，更待何时？"</p>
+                        <p>"缘起缘落，不妨再赌一把……"</p>
+                    </div>
+                </div>
+
+                <div id="yellow-flower" class="dialogue-entry">
+                    <h3>黄花观</h3>
+                    <div class="dialogue">
+                        <p>"但识琴中趣，何劳弦上音。"</p>
+                        <p>"情啊爱啊，不过是白云苍狗，终归都会结满蛛网，重归虚无。"</p>
+                        <p>"猴兄弟，破镜难重圆。"</p>
+                        <p>"你有空劝劝那位猪长老，可别陷得太深。"</p>
+                        <p>"本是女中仙，思凡堕九天。作茧缚洞中，人间又一年。"</p>
+                    </div>
+                </div>
+
+                <div id="flame-mountain" class="dialogue-entry">
+                    <h3>火焰山丹灶谷</h3>
+                    <div class="dialogue">
+                        <p>"何以称我情，浊酒且自陶。"</p>
+                        <p>"好酒当配好器。"</p>
+                        <p>"这个，拿去！"</p>
+                        <p>"千秋万岁后，谁知荣与辱。"</p>
+                        <p>"但恨在世时，饮酒不得足。"</p>
+                        <p>"你身上怎么破烂流丢一葫芦，去换个中看的来与我对饮"</p>
+                        <p>"牛魔王认了命，可是有人不想认"</p>
+                        <p>"清官难断家务，你我何必沾手。"</p>
+                        <p>"喝上一壶好酒，忘绝烦恼忧愁。"</p>
+                    </div>
+                </div>
+
+                <div id="buddha-dialogue" class="dialogue-entry">
+                    <h3>与弥勒对话</h3>
+                    <div class="dialogue">
+                        <p>弥勒："若他能从这幅画中出来，这天命又该做何说法？"</p>
+                        <p>袁守诚："（呵）我不过是个卖卦之人，卦象如何，天命便如何。"</p>
+                        <p>弥勒："未来之所以是未来，在于未定。"</p>
+                        <p>弥勒："未定之事，天也难算。"</p>
+                        <p>袁守诚："天命，即因果。"</p>
+                        <p>袁守诚："前因既定，谁也逃不脱后果。"</p>
+                        <p>袁守诚："我算不出来，无非前因知道的还不够多。"</p>
+                        <p>弥勒："诶，这世上竟有先生算不出来的事情。"</p>
+                        <p>袁守诚："（哼哼哼）"</p>
+                        <p>弥勒："好事，好事！"</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="dragon-kings" class="section">
+                <h2>四渎龙王诗词</h2>
+                
+                <div id="red-dragon" class="dialogue-entry">
+                    <h3>赤髯龙</h3>
+                    <div class="poem">
+                        <p>无有因，头悬市曹何故？</p>
+                        <p>无有因，四渎失管何故？</p>
+                        <p>无有因，诸色惘惘何故？</p>
+                        <p>无有因，慈悲颠倒何故？</p>
+                        <p>无有因，林隐赤髯何故？</p>
+                        <p>是曰：</p>
+                        <p>木生炉烟，雾长雷电，</p>
+                        <p>击背而歌，真义自现。</p>
+                    </div>
+                </div>
+
+                <div id="black-dragon" class="dialogue-entry">
+                    <h3>小骊龙</h3>
+                    <div class="poem">
+                        <p>无有因，头悬市曹何故？</p>
+                        <p>无有因，四渎失管何故？</p>
+                        <p>无有因，诸色惘惘何故？</p>
+                        <p>无有因，慈悲颠倒何故？</p>
+                        <p>无有因，沙掩骊鬓何故？</p>
+                        <p>是曰：</p>
+                        <p>声震波浑，滩余旧痕，</p>
+                        <p>藏战于守，巧便为门。</p>
+                    </div>
+                </div>
+
+                <div id="blue-dragon" class="dialogue-entry">
+                    <h3>青背龙</h3>
+                    <div class="poem">
+                        <p>无有因，头悬市曹何故？</p>
+                        <p>无有因，四渎失管何故？</p>
+                        <p>无有因，诸色惘惘何故？</p>
+                        <p>无有因，慈悲颠倒何故？</p>
+                        <p>无有因，岸伏青背何故？</p>
+                        <p>是曰：</p>
+                        <p>夕照剑辙，万象澄澈，</p>
+                        <p>电光朝露，聚散离合。</p>
+                    </div>
+                </div>
+
+                <div id="yellow-dragon" class="dialogue-entry">
+                    <h3>小黄龙</h3>
+                    <div class="poem">
+                        <p>无有因，头悬市曹何故？</p>
+                        <p>无有因，四渎失管何故？</p>
+                        <p>无有因，诸色惘惘何故？</p>
+                        <p>无有因，慈悲颠倒何故？</p>
+                        <p>无有因，庙潜黄衣何故？</p>
+                        <p>是曰：</p>
+                        <p>细碎沾衣，萦空堕地，</p>
+                        <p>犁然寡欲，心动神疲。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="misc" class="section">
+                <h2>杂谈</h2>
+                <ul>
+                    <li>袁守诚疑似为影神图作者。</li>
+                    <li>天命人第一次与袁守诚相遇时，他面前桌上摆的空白画册与影神图形式一致。</li>
+                    <li>在预告片中，影神图赞词落款为"神课先生"。发售后的游戏里，影神图并无落款。</li>
+                    <li>《西游记》第九回「袁守诚妙算无私曲 老龙王拙计犯天条」中提到："招牌有字书名姓，神课先生袁守诚。"</li>
+                </ul>
+            </div>
+
+            <div id="basic-info" class="section">
+                <h2>基本信息</h2>
+                <table class="info-table">
+                    <tr>
+                        <td>名称</td>
+                        <td>袁守诚</td>
+                    </tr>
+                    <tr>
+                        <td>身份</td>
+                        <td>神课先生</td>
+                    </tr>
+                    <tr>
+                        <td>特长</td>
+                        <td>占卜、推演命数</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll('.tab-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const tabId = button.getAttribute('data-tab');
+                document.querySelectorAll('.tab-btn, .character-image').forEach(el => el.classList.remove('active'));
+                button.classList.add('active');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+
+        document.querySelectorAll('.menu-toggle').forEach(toggle => {
+            toggle.addEventListener('click', (e) => {
+                e.preventDefault();
+                const submenu = toggle.nextElementSibling;
+                const isActive = toggle.classList.contains('active');
+
+                // 先关闭所有打开的子菜单
+                document.querySelectorAll('.menu-toggle.active').forEach(activeToggle => {
+                    if (activeToggle !== toggle) {
+                        activeToggle.classList.remove('active');
+                        activeToggle.nextElementSibling.classList.remove('active');
+                    }
+                });
+
+                // 切换当前子菜单的状态
+                if (!isActive) {
+                    toggle.classList.add('active');
+                    submenu.classList.add('active');
+                } else {
+                    toggle.classList.remove('active');
+                    submenu.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

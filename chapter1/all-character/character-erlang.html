@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>二郎显圣真君 - 黑神话·悟空</title>
+    <style>
+        body {
+            font-family: 'ZCOOL XiaoWei', 'Microsoft YaHei', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('image/bg.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            background-color: #000;
+            color: #e8d5a9;
+        }
+        .container {
+            display: flex;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(5px);
+        }
+        .sidebar {
+            width: 250px;
+            background-color: rgba(17, 17, 17, 0.7);
+            padding: 20px;
+            margin-right: 20px;
+            border-right: 1px solid rgba(232, 213, 169, 0.2);
+        }
+        .main-content {
+            flex-grow: 1;
+        }
+        .character-info {
+            float: right;
+            width: 300px;
+            margin-left: 20px;
+            background-color: rgba(17, 17, 17, 0.7);
+            padding: 20px;
+            border-radius: 5px;
+            border: 1px solid rgba(232, 213, 169, 0.2);
+        }
+        h1, h2 {
+            color: #e8d5a9;
+            border-bottom: 1px solid rgba(232, 213, 169, 0.3);
+            text-shadow: 0 0 10px rgba(232, 213, 169, 0.3);
+        }
+        .info-table {
+            margin-top: 20px;
+            width: 100%;
+        }
+        .info-table td {
+            padding: 5px 10px;
+            border-bottom: 1px solid rgba(232, 213, 169, 0.2);
+        }
+        .info-table td:first-child {
+            font-weight: bold;
+            color: #e8d5a9;
+        }
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        .sidebar li {
+            margin-bottom: 10px;
+        }
+        .sidebar a {
+            color: #e8d5a9;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .sidebar a:hover {
+            color: #fff;
+            text-shadow: 0 0 10px #e8d5a9;
+        }
+        .poem {
+            font-style: italic;
+            margin: 20px 0;
+            padding: 15px;
+            background-color: rgba(17, 17, 17, 0.5);
+            border-left: 3px solid #e8d5a9;
+            color: #e8d5a9;
+        }
+        .dialogue {
+            margin-top: 10px;
+            padding-left: 20px;
+        }
+        .tab-nav {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 0 0 10px 0;
+        }
+        .tab-btn {
+            background-color: rgba(17, 17, 17, 0.7);
+            border: 1px solid rgba(232, 213, 169, 0.3);
+            color: #e8d5a9;
+            padding: 8px 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .tab-btn:hover {
+            background-color: rgba(232, 213, 169, 0.2);
+        }
+        .tab-btn.active {
+            background-color: rgba(232, 213, 169, 0.3);
+            border-color: #e8d5a9;
+        }
+        .tab-content {
+            padding: 4px 0;
+        }
+        .tab-pane {
+            display: none;
+        }
+        .tab-pane.active {
+            display: block;
+        }
+        .character-image {
+            width: 100%;
+            height: auto;
+            display: none;
+        }
+        .character-image.active {
+            display: block;
+        }
+        /* 新增和修改的样式 */
+        .section {
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(232, 213, 169, 0.2);
+        }
+
+        .section:last-child {
+            border-bottom: none;
+        }
+
+        .dialogue-entry {
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed rgba(232, 213, 169, 0.2);
+        }
+
+        .dialogue-entry:last-child {
+            border-bottom: none;
+        }
+
+        .sidebar {
+            position: sticky;
+            top: 20px;
+            align-self: flex-start;
+        }
+
+        /* 修改目录样式 */
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar li {
+            margin-bottom: 10px;
+        }
+
+        /* 一级目录项 */
+        .sidebar > ul > li > a {
+            color: #94885f;
+            text-decoration: none;
+            font-size: 1.1em;
+            display: block;
+            padding: 5px 0;
+        }
+
+        /* 二级目录项 */
+        .sidebar ul ul {
+            padding-left: 20px;
+            margin-top: 5px;
+        }
+
+        .sidebar ul ul li {
+            margin-bottom: 5px;
+        }
+
+        .sidebar ul ul a {
+            color: #94885f;
+            text-decoration: none;
+            font-size: 0.95em;
+            opacity: 0.9;
+            display: block;
+            padding: 3px 0;
+        }
+
+        .sidebar a:hover {
+            text-decoration: underline;
+            color: #fff;
+            text-shadow: 0 0 10px #94885f;
+        }
+
+        /* 添加遮罩层 */
+        .page-wrapper {
+            background-color: rgba(0, 0, 0, 0.75);
+            min-height: 100vh;
+        }
+
+        .submenu {
+            display: none;
+            padding-left: 20px;
+            margin-top: 5px;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .submenu.active {
+            display: block;
+        }
+
+        .toggle-icon {
+            display: inline-block;
+            width: 16px;
+            text-align: center;
+            margin-left: 5px;
+            transition: transform 0.3s ease;
+        }
+
+        .menu-toggle {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            text-decoration: none;
+            color: #94885f;
+        }
+
+        .menu-toggle.active .toggle-icon {
+            transform: rotate(45deg);
+        }
+
+        .has-submenu > a {
+            display: flex !important;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <h2>目录</h2>
+            <ul>
+                <li><a href="#overview">概述</a></li>
+                <li><a href="#background">背景</a></li>
+                <li class="has-submenu">
+                    <a href="#dialogue-sources" class="menu-toggle">
+                        台词 <span class="toggle-icon">+</span>
+                    </a>
+                    <ul class="submenu">
+                        <li><a href="#quote-1">第六十三回</a></li>
+                        <li><a href="#quote-2">第六回</a></li>
+                        <li><a href="#quote-3">战斗对话</a></li>
+                        <li><a href="#quote-4">变身对决</a></li>
+                        <li><a href="#quote-5">特殊台词</a></li>
+                        <li><a href="#quote-6">心境独白</a></li>
+                    </ul>
+                </li>
+                <li><a href="#dialogue">对话</a></li>
+                <li><a href="#basic-info">基本信息</a></li>
+            </ul>
+        </div>
+        <div class="main-content">
+            <h1>二郎显圣真君</h1>
+            
+            <div class="character-info">
+                <div class="tab-nav">
+                    <button class="tab-btn active" data-tab="yingshen">影神图</button>
+                    <button class="tab-btn" data-tab="shiji">实机图</button>
+                </div>
+                <div class="tab-content">
+                    <img class="character-image active" id="yingshen" src="image/179px-人物-二郎显圣真君-影神图.png" alt="二郎显圣真君影神图" onerror="this.onerror=null; this.src='image/image-placeholder.png';">
+                    <img class="character-image" id="shiji" src="image/erlang.jpg" alt="二郎显圣真君实机图" onerror="this.onerror=null; this.src='image/image-placeholder.png';">
+                </div>
+                
+                <div class="poem">
+                    <p>诸天显圣称大才，身似梅花散雪白。</p>
+                    <p>心高不认天家贵，浩气冲霄唇齿开。</p>
+                </div>
+                
+                <table class="info-table">
+                    <tr>
+                        <td>名称</td>
+                        <td>二郎显圣真君</td>
+                    </tr>
+                    <tr>
+                        <td>分类</td>
+                        <td>人物</td>
+                    </tr>
+                    <tr>
+                        <td>地点</td>
+                        <td>小西天秘山</td>
+                    </tr>
+                </table>
+            </div>
+
+            <p>二郎显圣真君是游戏中的重要角色，他原出身山六司第四任首领，沿袭李靖天君人。他曾作为主将，参与讨伐孙悟空，放使大圣身陷，他与孙悟空、杨戬等人共同分分合合，并将孙悟空封印于五指山之中。目前之后他们的关系，前世今生大不相同。</p>
+            <p>在弥勒佛的帮助下，二郎显圣真君重生于小西天秘山，等待天命人。</p>
+            
+            <div id="overview" class="section">
+                <h2>概述</h2>
+                <p>二郎显圣真君是游戏中的重要角色，他原出身山六司第四任首领，沿袭李靖天君人。他曾作为主将，参与讨伐孙悟空，放使大圣身陷，他与孙悟空、杨戬等人共同分分合合，并将孙悟空封印于五指山之中。目前之后他们的关系，前世今生大不相同。</p>
+                <p>在弥勒佛的帮助下，二郎显圣真君重生于小西天秘山，等待天命人。</p>
+                <p>"都是些骨子里一件像样的玩意也无。"</p>
+                <p>天兵甲用枪挑起一具尸身，向天兵乙指给，他们面前是刚刚结束战斗的花果山，处处是被削平缺角的岩石，被震碎成粉的古树，以及满地的尸骸。</p>
+            </div>
+
+            <div id="background" class="section">
+                <h2>背景</h2>
+                <div class="background-content">
+                    <p>二郎显圣真君又称"二郎神"。《西游记》中为玉帝外甥，与猪八戒结拜，原产自口，所谓不听言，曾在仙桃大会被贬谪人间。后在取经路上助孙悟空大战六耳猕猴，剿灭黄眉老怪。</p>
+                    <p>中国古代以来有三种说法："三郎君"、李二郎、杨二郎。李二郎为历史真人李冰之子，杨二郎为杨戬。</p>
+                    <p>《西游记》中为二郎，且并未提及二郎的具体姓名。</p>
+                    <p>《封神演义》中关于二郎神的内容如下：</p>
+                    <div class="quote">
+                        第六回「邓九公奉敕西征 孔宣师随军妖魔」
+                        <div class="source">出自《封神演义》第六回</div>
+                    </div>
+                    <p>天蓬道："我只晓得天下才貌双全，配合姻缘，生一男子，育养得他山高水低，是你么？我行不更名坐不改姓，你可晓得？"</p>
+                    <div class="quote">
+                        心高不认天家眷，性傲归来独自由。
+                        赤城昆仑为逆旅，白云青鸟伴闲游。
+                    </div>
+                    <p>出自《西游记》第六十三回「二郎神锁齐天大圣 四木禽星捉孙行者」</p>
+                    <div class="quote">
+                        "八戒，那是我七大舅爷，你怎么骂他？"八戒道："哥哥，你也忒认真。我老猪自幼儿只晓得耍笑，是我的口头声气。你虽是天蓬元帅，我也曾做过天蓬，只是你年长些儿，我年幼些儿。常言道：'长幼并行，礼却生疏。'你怎么称他做舅爷？"行者道："你还不知哩！那二郎真君，乃玉帝的外甥，我出天界时，曾与他结义，他称我做兄弟。他肯与我为兄弟，故此我称他做舅爷。"八戒笑道："哥啊，你早说时，我就不骂他了。我那里得知你有这些绸缪？"三藏道："既如此说，我等趱动些儿走过去，切莫惹他。"
+                    </div>
+                    <p>行者道："八戒，那是我七大舅爷，你怎么骂他？"八戒道："哥哥，你也忒认真。我老猪自幼儿只晓得耍笑，是我的口头声气。你虽是天蓬元帅，我也曾做过天蓬，只是你年长些儿，我年幼些儿。常言道：'长幼并行，礼却生疏。'你怎么称他做舅爷？"行者道："你还不知哩！那二郎真君，乃玉帝的外甥，我出天界时，曾与他结义，他称我做兄弟。他肯与我为兄弟，故此我称他做舅爷。"八戒笑道："哥啊，你早说时，我就不骂他了。我那里得知你有这些绸缪？"三藏道："既如此说，我等趱动些儿走过去，切莫惹他。"</p>
+                </div>
+            </div>
+
+            <div id="dialogue-sources" class="section">
+                <h2>台词出处</h2>
+                
+                <div class="dialogue-entry">
+                  <h3>1.</h3>
+                  <p class="source">第六十三回《二郎神锁齐天大圣 四木禽星捉孙行者》</p>
+                  <blockquote>
+                    行者道："但内有灵犀大罗，我辈之辈皆伏，不好见他，你去往在去。叫他一声，自然住往，齐天大圣在此进言，他若听见，断然来矣。"
+                  </blockquote>
+                </div>
+              
+                <div class="dialogue-entry">
+                  <h3>2.</h3>
+                  <p class="source">第六回《观音赴会问原因 小圣施威降大圣》</p>
+                  <blockquote>
+                    真君道："哎哟，这等不识抬举，你天神神话下界，我明天要看上界面，你们欠在此地山，多多少少，你既来了，待我动手。"四太子道："且慢，待我先行。"
+                  </blockquote>
+                  <p class="source">第二十八回《花果山群妖聚 黑松林三藏逢》</p>
+                  <blockquote>
+                    那行者走上一步，跳过了花果大泽，望东而走，径踏云光，脚下彩霞，身上霞光无限，踏着祥云，径往东来。须臾间，早至花果山，见那群猴顶礼膜拜，个个欢欣，齐声叫道："大圣爷爷，几时来也？"
+                  </blockquote>
+                  <blockquote>
+                    群妖道："自从大圣爷爷去后，这山洞紧紧关闭，谁敢开门？忽听得叩门之声，只道是大圣爷爷归来，故开门迎接。不期是二郎显圣真君，他带领梅山六将，杀进洞来，我等抵敌不住，四散逃生，各自归山。"
+                  </blockquote>
+                </div>
+              
+                <div class="dialogue-entry">
+                  <h3>3.</h3>
+                  <p class="source">第六回《观音赴会问原因 小圣施威降大圣》</p>
+                  <blockquote>
+                    真君闻言，心中大怒："泼猴！休得无礼！看手段！"大圣道："来得好！来得好！"
+                  </blockquote>
+                </div>
+              
+                <div class="dialogue-entry">
+                  <h3>4.</h3>
+                  <p class="source">第六十三回《二郎神锁齐天大圣 四木禽星捉孙行者》</p>
+                  <blockquote>
+                    二郎神赶出，撑开云角，一声叫道："大圣，你怎么大胆，变作我的模样！判官道："不是，你原是大圣。"二郎道："胡说！胡说！"行者道："不是，你原是大圣。"
+                  </blockquote>
+                </div>
+              
+                <div class="dialogue-entry">
+                  <h3>5.</h3>
+                  <p class="source">出自《二郎神锁齐天大圣》第一折中杨戬说的台词：</p>
+                  <blockquote>
+                    你手起刀落上，并无半点犹豫，想是旧山旧水。
+                  </blockquote>
+                </div>
+              
+                <div class="dialogue-entry">
+                  <h3>6.</h3>
+                  <p class="source">第五十一回《心猿空间神 木母助老僧》</p>
+                  <blockquote>
+                    行者低头暗想道："天上既无我名姓，人间必定还有。不若下界寻个山洞，却好隐姓埋名，自此逍遥快乐，不受拘束。如何？"
+                  </blockquote>
+                </div>
+              </div>
+
+            <div id="dialogue" class="section">
+                <h2>对话</h2>
+                <div class="dialogue">
+                    <p>天兵乙道："好歹在水帘洞里，喊杀得挺响亮的。"天兵之间，一轮聊入一轮尸里。</p>
+                    <p>天兵甲道："你高兴啊？这便是孙悟空的手下？真有点本事，一轮入一轮尸里。"</p>
+                    <p>天兵乙道："这倒是，我们打了半天，连个囫囵的都没有。"</p>
+                    <p>天兵甲叹道："花果山总会有猴花的。"两人说着天兵乙年。</p>
+                    <p>天兵甲道："花果山总会有猴花的？"</p>
+                    <p>天兵乙道："这倒是，你高兴啊？这便是孙悟空的手下？"</p>
+                    <p>二人抬起一看，原是枝梅花，如玉雪，朵朵娇艳。</p>
+                    <p>天兵甲道："花果山总会有梅花？"</p>
+                    <p>天兵乙道："这看着，怎么有几分像......"</p>
+                    <p>话未说完，就见那朵朵梅花忽然飞起，金光一闪，连着甲中的镶嵌也飞了。</p>
+                    <p>天兵大惊，不及多说，金光闪过。</p>
+                    <p>白云悠悠，花果山又开了静默。</p>
+                </div>
+            </div>
+            
+            <div id="basic-info" class="section">
+                <h2>基本信息</h2>
+                <table class="info-table">
+                    <tr>
+                        <td>名称</td>
+                        <td>二郎显圣真君</td>
+                    </tr>
+                    <tr>
+                        <td>分类</td>
+                        <td>人物</td>
+                    </tr>
+                    <tr>
+                        <td>地点</td>
+                        <td>小西天秘山</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll('.tab-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const tabId = button.getAttribute('data-tab');
+                document.querySelectorAll('.tab-btn, .character-image').forEach(el => el.classList.remove('active'));
+                button.classList.add('active');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+
+        document.querySelectorAll('.menu-toggle').forEach(toggle => {
+            toggle.addEventListener('click', (e) => {
+                e.preventDefault();
+                const submenu = toggle.nextElementSibling;
+                const isActive = toggle.classList.contains('active');
+
+                // 先关闭所有打开的子菜单
+                document.querySelectorAll('.menu-toggle.active').forEach(activeToggle => {
+                    if (activeToggle !== toggle) {
+                        activeToggle.classList.remove('active');
+                        activeToggle.nextElementSibling.classList.remove('active');
+                    }
+                });
+
+                // 切换当前子菜单的状态
+                if (!isActive) {
+                    toggle.classList.add('active');
+                    submenu.classList.add('active');
+                } else {
+                    toggle.classList.remove('active');
+                    submenu.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

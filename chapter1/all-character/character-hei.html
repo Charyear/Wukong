@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>黑风大王 - 黑神话·悟空</title>
+    <style>
+        body {
+            font-family: 'ZCOOL XiaoWei', 'Microsoft YaHei', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('image/bg.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            background-color: #000;
+            color: #e8d5a9;
+        }
+        .container {
+            display: flex;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(5px);
+        }
+        .sidebar {
+            width: 250px;
+            background-color: rgba(17, 17, 17, 0.7);
+            padding: 20px;
+            margin-right: 20px;
+            border-right: 1px solid rgba(232, 213, 169, 0.2);
+        }
+        .main-content {
+            flex-grow: 1;
+        }
+        .character-info {
+            float: right;
+            width: 300px;
+            margin-left: 20px;
+            background-color: rgba(17, 17, 17, 0.7);
+            padding: 20px;
+            border-radius: 5px;
+            border: 1px solid rgba(232, 213, 169, 0.2);
+        }
+        h1, h2 {
+            color: #e8d5a9;
+            border-bottom: 1px solid rgba(232, 213, 169, 0.3);
+            text-shadow: 0 0 10px rgba(232, 213, 169, 0.3);
+        }
+        .info-table {
+            margin-top: 20px;
+            width: 100%;
+        }
+        .info-table td {
+            padding: 5px 10px;
+            border-bottom: 1px solid rgba(232, 213, 169, 0.2);
+        }
+        .info-table td:first-child {
+            font-weight: bold;
+            color: #e8d5a9;
+        }
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        .sidebar li {
+            margin-bottom: 10px;
+        }
+        .sidebar a {
+            color: #e8d5a9;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .sidebar a:hover {
+            color: #fff;
+            text-shadow: 0 0 10px #e8d5a9;
+        }
+        .poem {
+            font-style: italic;
+            margin: 20px 0;
+            padding: 15px;
+            background-color: rgba(17, 17, 17, 0.5);
+            border-left: 3px solid #e8d5a9;
+            color: #e8d5a9;
+        }
+        .dialogue {
+            margin-top: 10px;
+            padding-left: 20px;
+        }
+        .tab-nav {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 0 0 10px 0;
+        }
+        .tab-btn {
+            background-color: rgba(17, 17, 17, 0.7);
+            border: 1px solid rgba(232, 213, 169, 0.3);
+            color: #e8d5a9;
+            padding: 8px 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .tab-btn:hover {
+            background-color: rgba(232, 213, 169, 0.2);
+        }
+        .tab-btn.active {
+            background-color: rgba(232, 213, 169, 0.3);
+            border-color: #e8d5a9;
+        }
+        .tab-content {
+            padding: 4px 0;
+        }
+        .tab-pane {
+            display: none;
+        }
+        .tab-pane.active {
+            display: block;
+        }
+        .character-image {
+            width: 100%;
+            height: auto;
+            display: none;
+        }
+        .character-image.active {
+            display: block;
+        }
+        /* 新增和修改的样式 */
+        .section {
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(232, 213, 169, 0.2);
+        }
+
+        .section:last-child {
+            border-bottom: none;
+        }
+
+        .dialogue-entry {
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed rgba(232, 213, 169, 0.2);
+        }
+
+        .dialogue-entry:last-child {
+            border-bottom: none;
+        }
+
+        .sidebar {
+            position: sticky;
+            top: 20px;
+            align-self: flex-start;
+        }
+
+        /* 修改目录样式 */
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar li {
+            margin-bottom: 10px;
+        }
+
+        /* 一级目录项 */
+        .sidebar > ul > li > a {
+            color: #94885f;
+            text-decoration: none;
+            font-size: 1.1em;
+            display: block;
+            padding: 5px 0;
+        }
+
+        /* 二级目录项 */
+        .sidebar ul ul {
+            padding-left: 20px;
+            margin-top: 5px;
+        }
+
+        .sidebar ul ul li {
+            margin-bottom: 5px;
+        }
+
+        .sidebar ul ul a {
+            color: #94885f;
+            text-decoration: none;
+            font-size: 0.95em;
+            opacity: 0.9;
+            display: block;
+            padding: 3px 0;
+        }
+
+        .sidebar a:hover {
+            text-decoration: underline;
+            color: #fff;
+            text-shadow: 0 0 10px #94885f;
+        }
+
+        /* 添加遮罩层 */
+        .page-wrapper {
+            background-color: rgba(0, 0, 0, 0.75);
+            min-height: 100vh;
+        }
+
+        .submenu {
+            display: none;
+            padding-left: 20px;
+            margin-top: 5px;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .submenu.active {
+            display: block;
+        }
+
+        .toggle-icon {
+            display: inline-block;
+            width: 16px;
+            text-align: center;
+            margin-left: 5px;
+            transition: transform 0.3s ease;
+        }
+
+        .menu-toggle {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            text-decoration: none;
+            color: #94885f;
+        }
+
+        .menu-toggle.active .toggle-icon {
+            transform: rotate(45deg);
+        }
+
+        .has-submenu > a {
+            display: flex !important;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <h2>目录</h2>
+            <ul>
+                <li><a href="#overview">概述</a></li>
+                <li><a href="#background">背景</a></li>
+                <li class="has-submenu">
+                    <a href="#dialogue-sources" class="menu-toggle">
+                        台词 <span class="toggle-icon">+</span>
+                    </a>
+                    <ul class="submenu">
+                        <li><a href="#first-meet">初见</a></li>
+                        <li><a href="#guangzhi">广智变身</a></li>
+                        <li><a href="#battle">战斗</a></li>
+                        <li><a href="#death">死亡</a></li>
+                        <li><a href="#defeat">击败</a></li>
+                    </ul>
+                </li>
+                <li><a href="#original-text">原著记载</a></li>
+                <li><a href="#achievements">成就</a></li>
+                <li><a href="#basic-info">基本信息</a></li>
+            </ul>
+        </div>
+        <div class="main-content">
+            <h1>黑风大王</h1>
+            
+            <div class="character-info">
+                <div class="tab-nav">
+                    <button class="tab-btn active" data-tab="yingshen">影神图</button>
+                    <button class="tab-btn" data-tab="shiji">实机图</button>
+                </div>
+                <div class="tab-content">
+                    <img class="character-image active" id="yingshen" src="image/黑风大王影神图.png" alt="黑风大王影神图">
+                    <img class="character-image" id="shiji" src="image/黑风大王.jpg" alt="黑风大王实机图">
+                </div>
+                
+                <div class="poem">
+                    <p>前程暗漆本难知，乘风得势各有时。</p>
+                    <p>既成南海修真士，却教愚迷作顽痴。</p>
+                </div>
+                
+                <table class="info-table">
+                    <tr>
+                        <td>名称</td>
+                        <td>黑风大王</td>
+                    </tr>
+                    <tr>
+                        <td>称号</td>
+                        <td>观音座下守山大神</td>
+                    </tr>
+                    <tr>
+                        <td>地点</td>
+                        <td>黑风山</td>
+                    </tr>
+                    <tr>
+                        <td>特征</td>
+                        <td>通晓起死回生之术，善于谋略</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div id="overview" class="section">
+                <h2>概述</h2>
+                <p>黑风大王是一位修为高深的妖王，曾在南海修行多年。归来后重振黑风山势力，善于谋略，不仅靠武力，更懂得笼络人心。他精通起死回生之术，曾多次尝试复活故人，却每每事与愿违。</p>
+            </div>
+
+            <div id="background" class="section">
+                <h2>背景</h2>
+                <p>黑风大王从南海归来后，为重振威望做了诸多举措。他用起死回生真言救活老友凌虚子，扶持苍狼精为新任狼王，甚至尝试复活昔日论禅的老和尚。然而这些举措都未能如愿，反而引发了一系列意外。他手下还有个白衣秀士，虽看似老实，却心思难测。</p>
+            </div>
+
+            <div id="dialogue-sources" class="section">
+                <h2>台词</h2>
+                
+                <div id="first-meet" class="dialogue-entry">
+                    <h3>初见</h3>
+                    <blockquote>
+                        <p>五百年了，我重建了观音禅院，规模比之前的更大。</p>
+                        <p>那些葬身火海的僧众，化为孤魂野鬼，在这黑风山间游荡。</p>
+                        <p>是我！亲手将他们超度。</p>
+                        <p>我甚至把那些经书残卷，一一复原。</p>
+                        <p>但我知道总有一天，你还是会找上门来！</p>
+                    </blockquote>
+                </div>
+
+                <div id="guangzhi" class="dialogue-entry">
+                    <h3>广智变身</h3>
+                    <blockquote>
+                        <p>广智！命你为师父守钟，你怎败了！</p>
+                        <p>学人玩火，难不成你想再烧一回禅院！</p>
+                    </blockquote>
+                </div>
+
+                <div id="battle" class="dialogue-entry">
+                    <h3>战斗</h3>
+                    <blockquote>
+                        <p>黑风之名，岂是浪得！</p>
+                        <p>难道你不想长生吗？</p>
+                        <p>不通遁迹之法，也敢击吾仙洞！</p>
+                        <p>你们这些猴子，来了就是烧杀掳掠，比我又高到哪里去了？</p>
+                        <p>吾乃观音座下守山大神，休得放肆！</p>
+                    </blockquote>
+                </div>
+
+                <div id="death" class="dialogue-entry">
+                    <h3>死亡</h3>
+                    <blockquote>
+                        <p>天命人，不过如此。</p>
+                        <p>你是哪寺里和尚，敢来我这里索取？</p>
+                    </blockquote>
+                </div>
+
+                <div id="defeat" class="dialogue-entry">
+                    <h3>击败</h3>
+                    <blockquote>
+                        <p>有点本事。</p>
+                        <p>有种跟我来山顶会会！</p>
+                    </blockquote>
+                </div>
+            </div>
+
+            <div id="original-text" class="section">
+                <h2>原著记载</h2>
+                <div class="quote">
+                    <p>《西游记》中黑风大王出现在三个章回：</p>
+                    <ul>
+                        <li>第十六回：观音院僧谋宝贝 黑风山怪窃袈裟</li>
+                        <li>第十七回：孙行者大闹黑风山 观世音收服熊罴怪</li>
+                        <li>第二十六回：孙悟空三岛求方 观世音甘泉活树</li>
+                    </ul>
+                    <blockquote>
+                        <p>只见那怪果生得凶险：碗子铁盔火漆光，乌金铠甲亮辉煌。皂罗袍罩风兜袖，黑绿丝绦軃穗长。手执黑缨枪一杆，足踏乌皮靴一双。眼幌金睛如掣电，正是山中黑风王。</p>
+                    </blockquote>
+                </div>
+            </div>
+
+            <div id="achievements" class="section">
+                <h2>成就</h2>
+                <ul>
+                    <li>【禅院逢友第九难】长老终于等到了黑风山土地老爷。</li>
+                    <li>【余韵远传第八难】三钟响，幽魂藏。</li>
+                </ul>
+            </div>
+
+            <div id="basic-info" class="section">
+                <h2>基本信息</h2>
+                <table class="info-table">
+                    <tr>
+                        <td>名称</td>
+                        <td>黑风大王</td>
+                    </tr>
+                    <tr>
+                        <td>称号</td>
+                        <td>观音座下守山大神</td>
+                    </tr>
+                    <tr>
+                        <td>地点</td>
+                        <td>黑风山</td>
+                    </tr>
+                    <tr>
+                        <td>特征</td>
+                        <td>通晓起死回生之术，善于谋略</td>
+                    </tr>
+                    <tr>
+                        <td>相关人物</td>
+                        <td>凌虚子、苍狼精、白衣秀士</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll('.tab-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const tabId = button.getAttribute('data-tab');
+                document.querySelectorAll('.tab-btn, .character-image').forEach(el => el.classList.remove('active'));
+                button.classList.add('active');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+
+        document.querySelectorAll('.menu-toggle').forEach(toggle => {
+            toggle.addEventListener('click', (e) => {
+                e.preventDefault();
+                const submenu = toggle.nextElementSibling;
+                const isActive = toggle.classList.contains('active');
+
+                // 先关闭所有打开的子菜单
+                document.querySelectorAll('.menu-toggle.active').forEach(activeToggle => {
+                    if (activeToggle !== toggle) {
+                        activeToggle.classList.remove('active');
+                        activeToggle.nextElementSibling.classList.remove('active');
+                    }
+                });
+
+                // 切换当前子菜单的状态
+                if (!isActive) {
+                    toggle.classList.add('active');
+                    submenu.classList.add('active');
+                } else {
+                    toggle.classList.remove('active');
+                    submenu.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

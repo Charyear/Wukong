@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>金池长老 - 黑神话·悟空</title>
+    <style>
+        body {
+            font-family: 'ZCOOL XiaoWei', 'Microsoft YaHei', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('image/bg.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            background-color: #000;
+            color: #e8d5a9;
+        }
+        .container {
+            display: flex;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(5px);
+        }
+        .sidebar {
+            width: 250px;
+            background-color: rgba(17, 17, 17, 0.7);
+            padding: 20px;
+            margin-right: 20px;
+            border-right: 1px solid rgba(232, 213, 169, 0.2);
+        }
+        .main-content {
+            flex-grow: 1;
+        }
+        .character-info {
+            float: right;
+            width: 300px;
+            margin-left: 20px;
+            background-color: rgba(17, 17, 17, 0.7);
+            padding: 20px;
+            border-radius: 5px;
+            border: 1px solid rgba(232, 213, 169, 0.2);
+        }
+        h1, h2 {
+            color: #e8d5a9;
+            border-bottom: 1px solid rgba(232, 213, 169, 0.3);
+            text-shadow: 0 0 10px rgba(232, 213, 169, 0.3);
+        }
+        .info-table {
+            margin-top: 20px;
+            width: 100%;
+        }
+        .info-table td {
+            padding: 5px 10px;
+            border-bottom: 1px solid rgba(232, 213, 169, 0.2);
+        }
+        .info-table td:first-child {
+            font-weight: bold;
+            color: #e8d5a9;
+        }
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        .sidebar li {
+            margin-bottom: 10px;
+        }
+        .sidebar a {
+            color: #e8d5a9;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .sidebar a:hover {
+            color: #fff;
+            text-shadow: 0 0 10px #e8d5a9;
+        }
+        .poem {
+            font-style: italic;
+            margin: 20px 0;
+            padding: 15px;
+            background-color: rgba(17, 17, 17, 0.5);
+            border-left: 3px solid #e8d5a9;
+            color: #e8d5a9;
+        }
+        .dialogue {
+            margin-top: 10px;
+            padding-left: 20px;
+        }
+        .tab-nav {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 0 0 10px 0;
+        }
+        .tab-btn {
+            background-color: rgba(17, 17, 17, 0.7);
+            border: 1px solid rgba(232, 213, 169, 0.3);
+            color: #e8d5a9;
+            padding: 8px 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .tab-btn:hover {
+            background-color: rgba(232, 213, 169, 0.2);
+        }
+        .tab-btn.active {
+            background-color: rgba(232, 213, 169, 0.3);
+            border-color: #e8d5a9;
+        }
+        .tab-content {
+            padding: 4px 0;
+        }
+        .tab-pane {
+            display: none;
+        }
+        .tab-pane.active {
+            display: block;
+        }
+        .character-image {
+            width: 100%;
+            height: auto;
+            display: none;
+        }
+        .character-image.active {
+            display: block;
+        }
+        /* 新增和修改的样式 */
+        .section {
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(232, 213, 169, 0.2);
+        }
+
+        .section:last-child {
+            border-bottom: none;
+        }
+
+        .dialogue-entry {
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed rgba(232, 213, 169, 0.2);
+        }
+
+        .dialogue-entry:last-child {
+            border-bottom: none;
+        }
+
+        .sidebar {
+            position: sticky;
+            top: 20px;
+            align-self: flex-start;
+        }
+
+        /* 修改目录样式 */
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar li {
+            margin-bottom: 10px;
+        }
+
+        /* 一级目录项 */
+        .sidebar > ul > li > a {
+            color: #94885f;
+            text-decoration: none;
+            font-size: 1.1em;
+            display: block;
+            padding: 5px 0;
+        }
+
+        /* 二级目录项 */
+        .sidebar ul ul {
+            padding-left: 20px;
+            margin-top: 5px;
+        }
+
+        .sidebar ul ul li {
+            margin-bottom: 5px;
+        }
+
+        .sidebar ul ul a {
+            color: #94885f;
+            text-decoration: none;
+            font-size: 0.95em;
+            opacity: 0.9;
+            display: block;
+            padding: 3px 0;
+        }
+
+        .sidebar a:hover {
+            text-decoration: underline;
+            color: #fff;
+            text-shadow: 0 0 10px #94885f;
+        }
+
+        /* 添加遮罩层 */
+        .page-wrapper {
+            background-color: rgba(0, 0, 0, 0.75);
+            min-height: 100vh;
+        }
+
+        .submenu {
+            display: none;
+            padding-left: 20px;
+            margin-top: 5px;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .submenu.active {
+            display: block;
+        }
+
+        .toggle-icon {
+            display: inline-block;
+            width: 16px;
+            text-align: center;
+            margin-left: 5px;
+            transition: transform 0.3s ease;
+        }
+
+        .menu-toggle {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            text-decoration: none;
+            color: #94885f;
+        }
+
+        .menu-toggle.active .toggle-icon {
+            transform: rotate(45deg);
+        }
+
+        .has-submenu > a {
+            display: flex !important;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <h2>目录</h2>
+            <ul>
+                <li><a href="#overview">概述</a></li>
+                <li><a href="#background">背景</a></li>
+                <li class="has-submenu">
+                    <a href="#dialogue-sources" class="menu-toggle">
+                        台词 <span class="toggle-icon">+</span>
+                    </a>
+                    <ul class="submenu">
+                        <li><a href="#first-meet">初见</a></li>
+                        <li><a href="#guangzhi">广智变身</a></li>
+                        <li><a href="#battle">战斗</a></li>
+                        <li><a href="#death">死亡</a></li>
+                        <li><a href="#defeat">击败</a></li>
+                    </ul>
+                </li>
+                <li><a href="#original-text">原著记载</a></li>
+                <li><a href="#achievements">成就</a></li>
+                <li><a href="#basic-info">基本信息</a></li>
+            </ul>
+        </div>
+        <div class="main-content">
+            <h1>金池长老</h1>
+            
+            <div class="character-info">
+                <div class="tab-nav">
+                    <button class="tab-btn active" data-tab="yingshen">影神图</button>
+                    <button class="tab-btn" data-tab="shiji">实机图</button>
+                </div>
+                <div class="tab-content">
+                    <img class="character-image active" id="yingshen" src="image/金池长老影神图.png" alt="金池长老影神图">
+                    <img class="character-image" id="shiji" src="image/金池长老.jpg" alt="金池长老实机图">
+                </div>
+                
+                <div class="poem">
+                    <p>禅院香火旧，贪心一念生。</p>
+                    <p>纵火图袈裟，终成身后名。</p>
+                </div>
+                
+                <table class="info-table">
+                    <tr>
+                        <td>名称</td>
+                        <td>金池长老</td>
+                    </tr>
+                    <tr>
+                        <td>分类</td>
+                        <td>BOSS</td>
+                    </tr>
+                    <tr>
+                        <td>地点</td>
+                        <td>观音禅院</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div id="overview" class="section">
+                <h2>概述</h2>
+                <p>金池长老是观音禅院的主持，年逾二百七十岁。他精通佛法，但因贪念而堕落，最终与黑熊精勾结，意图窃取袈裟。</p>
+            </div>
+
+            <div id="background" class="section">
+                <h2>背景</h2>
+                <p>金池长老原本是一位德高望重的高僧，常年主持观音禅院。他与黑熊精有所往来，习得一些养神服气的法术。在见到天命人的袈裟后，起了贪念，与弟子广智、广谋设计纵火，意图窃取。</p>
+            </div>
+
+            <div id="dialogue-sources" class="section">
+                <h2>台词</h2>
+                
+                <div id="first-meet" class="dialogue-entry">
+                    <h3>初见</h3>
+                    <blockquote>
+                        <p>阿弥陀佛，那三口洪钟终于响了。</p>
+                        <p>徒儿们，又有外面的老爷过来了。给我带新宝贝了！</p>
+                        <p>我看不见样貌，但我能闻到那股臊味。</p>
+                        <p>莫非是你？你回来了？</p>
+                        <p>定是你把那袈裟藏起来了。快还给我！</p>
+                    </blockquote>
+                </div>
+
+                <div id="guangzhi" class="dialogue-entry">
+                    <h3>广智变身</h3>
+                    <blockquote>
+                        <p>广智？我儿，你也回来了？</p>
+                        <p>好徒儿，那唐僧师徒烧死没有？袈裟呢！</p>
+                    </blockquote>
+                </div>
+
+                <div id="battle" class="dialogue-entry">
+                    <h3>战斗</h3>
+                    <blockquote>
+                        <p>徒儿们，教他欲走无门!</p>
+                        <p>拿了袈裟，死也瞑目，去罢!</p>
+                        <p>欺我老朽，可恨之极!</p>
+                    </blockquote>
+                </div>
+
+                <div id="death" class="dialogue-entry">
+                    <h3>死亡</h3>
+                    <blockquote>
+                        <p>这般不经烧，你不是东土来的老爷。</p>
+                        <p>什么锦斓袈裟，都一把火烧了才清静。</p>
+                    </blockquote>
+                </div>
+
+                <div id="defeat" class="dialogue-entry">
+                    <h3>击败</h3>
+                    <blockquote>
+                        <p>我今年二百七十岁，空挣了几百件袈裟，怎么得有他这一件？</p>
+                        <p>不，不不。广智广谋，那袈裟我不要了，不要了……你们别烧，都别烧了……</p>
+                    </blockquote>
+                </div>
+            </div>
+
+            <div id="original-text" class="section">
+                <h2>原著记载</h2>
+                <div class="quote">
+                    <p>《西游记》第十六回「观音院僧谋宝贝 黑风山怪盗袈裟」中描述其外貌：</p>
+                    <blockquote>
+                        <p>头上戴一顶毗卢方帽，猫睛石的宝顶光辉；身上穿一领锦绒褊衫，翡翠毛的金边晃亮。一对僧鞋攒八宝，一根拄杖嵌云星。满面皱痕，好似骊山老母；一双昏眼，却如东海龙君。口不关风因齿落，腰驼背屈为筋挛。</p>
+                    </blockquote>
+                    <p>原著中，金池长老是黑风山前观音院的老僧，常和黑熊精讲经，得传些养神服气的法术，已有二百七十岁高龄。借走唐僧袈裟后因起贪念，用广谋之计纵火未果，袈裟又被黑熊所盗，遂撞墙自尽。</p>
+                </div>
+                
+                <div class="poem">
+                    <p>堪叹老衲性愚蒙，枉作人间一寿翁。</p>
+                    <p>欲得袈裟传远世，岂知佛宝不凡同。</p>
+                    <p>但将容易为长久，定是萧条取败功。</p>
+                    <p>广智广谋成甚用？损人利己一场空。</p>
+                </div>
+            </div>
+
+            <div id="achievements" class="section">
+                <h2>成就</h2>
+                <ul>
+                    <li>【禅院逢友第九难】长老终于等到了东土的老爷。</li>
+                    <li>【余韵远传第八难】三钟响，幽魂藏。</li>
+                </ul>
+            </div>
+
+            <div id="basic-info" class="section">
+                <h2>基本信息</h2>
+                <table class="info-table">
+                    <tr>
+                        <td>名称</td>
+                        <td>金池长老</td>
+                    </tr>
+                    <tr>
+                        <td>分类</td>
+                        <td>妖王</td>
+                    </tr>
+                    <tr>
+                        <td>地点</td>
+                        <td>黑风山观音禅院</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll('.tab-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const tabId = button.getAttribute('data-tab');
+                document.querySelectorAll('.tab-btn, .character-image').forEach(el => el.classList.remove('active'));
+                button.classList.add('active');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+
+        document.querySelectorAll('.menu-toggle').forEach(toggle => {
+            toggle.addEventListener('click', (e) => {
+                e.preventDefault();
+                const submenu = toggle.nextElementSibling;
+                const isActive = toggle.classList.contains('active');
+
+                // 先关闭所有打开的子菜单
+                document.querySelectorAll('.menu-toggle.active').forEach(activeToggle => {
+                    if (activeToggle !== toggle) {
+                        activeToggle.classList.remove('active');
+                        activeToggle.nextElementSibling.classList.remove('active');
+                    }
+                });
+
+                // 切换当前子菜单的状态
+                if (!isActive) {
+                    toggle.classList.add('active');
+                    submenu.classList.add('active');
+                } else {
+                    toggle.classList.remove('active');
+                    submenu.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>白衣秀士 - 黑神话·悟空</title>
+    <style>
+        body {
+            font-family: 'ZCOOL XiaoWei', 'Microsoft YaHei', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('image/bg.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            background-color: #000;
+            color: #e8d5a9;
+        }
+        .container {
+            display: flex;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(5px);
+        }
+        .sidebar {
+            width: 250px;
+            background-color: rgba(17, 17, 17, 0.7);
+            padding: 20px;
+            margin-right: 20px;
+            border-right: 1px solid rgba(232, 213, 169, 0.2);
+        }
+        .main-content {
+            flex-grow: 1;
+        }
+        .character-info {
+            float: right;
+            width: 300px;
+            margin-left: 20px;
+            background-color: rgba(17, 17, 17, 0.7);
+            padding: 20px;
+            border-radius: 5px;
+            border: 1px solid rgba(232, 213, 169, 0.2);
+        }
+        h1, h2 {
+            color: #e8d5a9;
+            border-bottom: 1px solid rgba(232, 213, 169, 0.3);
+            text-shadow: 0 0 10px rgba(232, 213, 169, 0.3);
+        }
+        .info-table {
+            margin-top: 20px;
+            width: 100%;
+        }
+        .info-table td {
+            padding: 5px 10px;
+            border-bottom: 1px solid rgba(232, 213, 169, 0.2);
+        }
+        .info-table td:first-child {
+            font-weight: bold;
+            color: #e8d5a9;
+        }
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        .sidebar li {
+            margin-bottom: 10px;
+        }
+        .sidebar a {
+            color: #e8d5a9;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .sidebar a:hover {
+            color: #fff;
+            text-shadow: 0 0 10px #e8d5a9;
+        }
+        .poem {
+            font-style: italic;
+            margin: 20px 0;
+            padding: 15px;
+            background-color: rgba(17, 17, 17, 0.5);
+            border-left: 3px solid #e8d5a9;
+            color: #e8d5a9;
+        }
+        .dialogue {
+            margin-top: 10px;
+            padding-left: 20px;
+        }
+        .tab-nav {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 0 0 10px 0;
+        }
+        .tab-btn {
+            background-color: rgba(17, 17, 17, 0.7);
+            border: 1px solid rgba(232, 213, 169, 0.3);
+            color: #e8d5a9;
+            padding: 8px 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .tab-btn:hover {
+            background-color: rgba(232, 213, 169, 0.2);
+        }
+        .tab-btn.active {
+            background-color: rgba(232, 213, 169, 0.3);
+            border-color: #e8d5a9;
+        }
+        .tab-content {
+            padding: 4px 0;
+        }
+        .tab-pane {
+            display: none;
+        }
+        .tab-pane.active {
+            display: block;
+        }
+        .character-image {
+            width: 100%;
+            height: auto;
+            display: none;
+        }
+        .character-image.active {
+            display: block;
+        }
+        /* 新增和修改的样式 */
+        .section {
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(232, 213, 169, 0.2);
+        }
+
+        .section:last-child {
+            border-bottom: none;
+        }
+
+        .dialogue-entry {
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed rgba(232, 213, 169, 0.2);
+        }
+
+        .dialogue-entry:last-child {
+            border-bottom: none;
+        }
+
+        .sidebar {
+            position: sticky;
+            top: 20px;
+            align-self: flex-start;
+        }
+
+        /* 修改目录样式 */
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar li {
+            margin-bottom: 10px;
+        }
+
+        /* 一级目录项 */
+        .sidebar > ul > li > a {
+            color: #94885f;
+            text-decoration: none;
+            font-size: 1.1em;
+            display: block;
+            padding: 5px 0;
+        }
+
+        /* 二级目录项 */
+        .sidebar ul ul {
+            padding-left: 20px;
+            margin-top: 5px;
+        }
+
+        .sidebar ul ul li {
+            margin-bottom: 5px;
+        }
+
+        .sidebar ul ul a {
+            color: #94885f;
+            text-decoration: none;
+            font-size: 0.95em;
+            opacity: 0.9;
+            display: block;
+            padding: 3px 0;
+        }
+
+        .sidebar a:hover {
+            text-decoration: underline;
+            color: #fff;
+            text-shadow: 0 0 10px #94885f;
+        }
+
+        /* 添加遮罩层 */
+        .page-wrapper {
+            background-color: rgba(0, 0, 0, 0.75);
+            min-height: 100vh;
+        }
+
+        .submenu {
+            display: none;
+            padding-left: 20px;
+            margin-top: 5px;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .submenu.active {
+            display: block;
+        }
+
+        .toggle-icon {
+            display: inline-block;
+            width: 16px;
+            text-align: center;
+            margin-left: 5px;
+            transition: transform 0.3s ease;
+        }
+
+        .menu-toggle {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            text-decoration: none;
+            color: #94885f;
+        }
+
+        .menu-toggle.active .toggle-icon {
+            transform: rotate(45deg);
+        }
+
+        .has-submenu > a {
+            display: flex !important;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <h2>目录</h2>
+            <ul>
+                <li><a href="#overview">概述</a></li>
+                <li><a href="#background">背景</a></li>
+                <li><a href="#dialogue-sources">台词</a></li>
+                <li><a href="#achievements">成就</a></li>
+                <li><a href="#basic-info">基本信息</a></li>
+            </ul>
+        </div>
+        <div class="main-content">
+            <h1>白衣秀士</h1>
+            
+            <div class="character-info">
+                <div class="tab-nav">
+                    <button class="tab-btn active" data-tab="yingshen">影神图</button>
+                    <button class="tab-btn" data-tab="shiji">实机图</button>
+                </div>
+                <div class="tab-content">
+                    <img class="character-image active" id="yingshen" src="image/白衣秀士-影神图.png" alt="白衣秀士影神图">
+                    <img class="character-image" id="shiji" src="image/白衣.png" alt="白衣秀士实机图">
+                </div>
+                
+                <div class="poem">
+                    <p>翩翩恰少年，白衣配怒颜。</p>
+                    <p>吟诗折扇骨，嗔怒出枪尖。</p>
+                </div>
+                
+                <table class="info-table">
+                    <tr>
+                        <td>名称</td>
+                        <td>白衣秀士</td>
+                    </tr>
+                    <tr>
+                        <td>分类</td>
+                        <td>人物</td>
+                    </tr>
+                    <tr>
+                        <td>地点</td>
+                        <td>黑风山</td>
+                    </tr>
+                </table>
+            </div>
+
+            <p>春日，风和，白雾泽。一老狼架炉烹茶，看着水中白影喃喃："你我本不该在此。"</p>
+            <p>白衣秀士正自舞着一段枪法，闻及此言，倏地将枪掷到炉旁，将身一闪，已握住枪柄，立在老狼身前。</p>
+            
+            <div id="overview" class="section">
+                <h2>概述</h2>
+                <p>"饮血，还是喝茶？"</p>
+                <p>"喝茶。坐。"</p>
+                <p>二人对坐，老狼将一碗茶汤递与秀士。</p>
+                <p>秀士一饮而尽："好茶。"</p>
+                <p>老狼颔首，问："一个烧过的山场，可值许多把戏？"</p>
+                <p>秀士答："我奉大哥之命来此，绝无把戏。"</p>
+                <p>老狼反问："那我起死回生，难道不是把戏？"</p>
+                <p>秀士不语，老狼盯着秀士亦不语，他双目虽浑浊，却难掩焦急之情。</p>
+                <p>秀士思量片时，终是答道："这个还真不是把戏。"</p>
+                <p>"若非把戏，何解？"</p>
+                <p>"你可听过天上那童子，佛祖菩萨有个术法，拼凑外物，念动起死回生真言，遂救得性命。"</p>
+                <p>老狼苦笑摇头："大王绝无这等本事。"</p>
+                <p>"他没有，他得来的邪物有。"</p>
+                <p>老狼心急道："可我如此苟活，寝食难安。"</p>
+                <p>"必死则生，幸生则死，一息尚存，也算超然……"</p>
+                <p>老狼不语，秀士垂眼亦不语，他双目虽异瞳，却难掩怜悯之色。</p>
+                <p>老狼道："这茶留于你了。还是喝茶好。"</p>
+                <p>老狼拂袖起身，喟然而叹："饮他们的血，我于心何忍呐……"</p>
+                <p>他蹒跚离去，并非来时之路，只向水泽一侧的岔路拐过。</p>
+                <p>"叫大王，不用再来看我了。"</p>
+            </div>
+
+            <div id="background" class="section">
+                <h2>背景</h2>
+                <div class="background-content">
+                    <p>白衣秀士是一位神秘的角色，外表是一位风度翩翩的文士，擅长使枪，真实身份是一条白花蛇怪。他自称奉"大哥"之命而来，在后山要道担任内应。</p>
+                    <p>在游戏中初次相遇时，白衣秀士正在一处幽静之地修身养性，与一位老狼对饮清茶。他的言行举止颇有文人风骨，却也暗藏杀机。</p>
+                    <div class="quote">
+                        妙诀：只把个白衣秀士，一棒打死，拖将过来看处，却是一条白花蛇怪。
+                    </div>
+                    <p>白衣秀士与一位神秘的"大哥"有所关联，在黑风山一带活动。他似乎对观音禅院的往事知之甚详，对长老的冤魂也颇为关注。</p>
+                    <p>他时常提到"三口钟"的事情，这些钟声似乎与某些重要的秘密有关。白衣秀士的真实目的和立场都笼罩在迷雾之中，但他的一言一行都暗示着更深层的故事。</p>
+                </div>
+            </div>
+
+            <div id="dialogue-sources" class="section">
+                <h2>台词</h2>
+                <div class="dialogue-entry">
+                    <h3>开场台词</h3>
+                    <blockquote>
+                        <p>凤兮凤兮，何德之哀，往者不可谏，来者犹可追。</p>
+                        <p>小师父，天色已晚</p>
+                        <p>你来我这修身之地大开杀戒</p>
+                        <p>到底是何居心啊？</p>
+                    </blockquote>
+                </div>
+
+                <div class="dialogue-entry">
+                    <h3>战斗中</h3>
+                    <blockquote>
+                        <p>善若不失，恶则不长，小生劝你在思量思量</p>
+                        <p>逆天者亡！</p>
+                        <p>一张一驰！</p>
+                        <p>区区鼠辈！</p>
+                        <p>福祸无门，唯人所召，你还不明白吗？</p>
+                    </blockquote>
+                </div>
+
+                <div class="dialogue-entry">
+                    <h3>二阶段</h3>
+                    <blockquote>
+                        <p>如此苦苦相逼</p>
+                        <p>便怪不得小生现出本相！</p>
+                    </blockquote>
+                </div>
+
+                <div class="dialogue-entry">
+                    <h3>战败台词</h3>
+                    <blockquote>
+                        <p>朽木不可雕也。</p>
+                        <p>空有匹夫之勇，定非大哥说的那个人。</p>
+                    </blockquote>
+                </div>
+
+                <div class="dialogue-entry">
+                    <h3>战胜</h3>
+                    <blockquote>
+                        <p>且慢！</p>
+                        <p>是大哥要我来此做个内应，这才假意听命于那熊罴守这后山要道</p>
+                        <p>知君命不偶，同病亦同忧</p>
+                        <p>观音禅院是烧没了，可那长老的冤魂没有散</p>
+                        <p>贪根不拔，苦树常在</p>
+                        <p>你真正想要的东西，忘了最好</p>
+                        <p>那三口钟……你可都见过了？</p>
+                        <p>旁人念念不忘的，也是你所求的吗……</p>
+                    </blockquote>
+                </div>
+            </div>
+
+            <div id="achievements" class="section">
+                <h2>成就</h2>
+                <p>以下是与白衣秀士有关的成就：</p>
+                <ul>
+                    <li>【长蛇隐迹第六难】秀士诉了隐情，且先饶他一命。</li>
+                    <li>【余韵远传第八难】三钟响，幽魂藏。</li>
+                    <li>【禅院逢友第九难】长老终于等到了东土的老爷。</li>
+                    <li>【折梅见赠六十一难】一意逆流冷乡心，孰能轻易忘旧情？</li>
+                </ul>
+            </div>
+
+            <div id="basic-info" class="section">
+                <h2>基本信息</h2>
+                <table class="info-table">
+                    <tr>
+                        <td>名称</td>
+                        <td>白衣秀士</td>
+                    </tr>
+                    <tr>
+                        <td>分类</td>
+                        <td>人物</td>
+                    </tr>
+                    <tr>
+                        <td>地点</td>
+                        <td>黑风山</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll('.tab-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const tabId = button.getAttribute('data-tab');
+                document.querySelectorAll('.tab-btn, .character-image').forEach(el => el.classList.remove('active'));
+                button.classList.add('active');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

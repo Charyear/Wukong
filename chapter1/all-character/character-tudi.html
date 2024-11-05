@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>黑风山土地 - 黑神话·悟空</title>
+    <style>
+        body {
+            font-family: 'ZCOOL XiaoWei', 'Microsoft YaHei', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('image/bg.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            background-color: #000;
+            color: #e8d5a9;
+        }
+        .container {
+            display: flex;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(5px);
+        }
+        .sidebar {
+            width: 250px;
+            background-color: rgba(17, 17, 17, 0.7);
+            padding: 20px;
+            margin-right: 20px;
+            border-right: 1px solid rgba(232, 213, 169, 0.2);
+        }
+        .main-content {
+            flex-grow: 1;
+        }
+        .character-info {
+            float: right;
+            width: 300px;
+            margin-left: 20px;
+            background-color: rgba(17, 17, 17, 0.7);
+            padding: 20px;
+            border-radius: 5px;
+            border: 1px solid rgba(232, 213, 169, 0.2);
+        }
+        h1, h2 {
+            color: #e8d5a9;
+            border-bottom: 1px solid rgba(232, 213, 169, 0.3);
+            text-shadow: 0 0 10px rgba(232, 213, 169, 0.3);
+        }
+        .info-table {
+            margin-top: 20px;
+            width: 100%;
+        }
+        .info-table td {
+            padding: 5px 10px;
+            border-bottom: 1px solid rgba(232, 213, 169, 0.2);
+        }
+        .info-table td:first-child {
+            font-weight: bold;
+            color: #e8d5a9;
+        }
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        .sidebar li {
+            margin-bottom: 10px;
+        }
+        .sidebar a {
+            color: #e8d5a9;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .sidebar a:hover {
+            color: #fff;
+            text-shadow: 0 0 10px #e8d5a9;
+        }
+        .poem {
+            font-style: italic;
+            margin: 20px 0;
+            padding: 15px;
+            background-color: rgba(17, 17, 17, 0.5);
+            border-left: 3px solid #e8d5a9;
+            color: #e8d5a9;
+        }
+        .dialogue {
+            margin-top: 10px;
+            padding-left: 20px;
+        }
+        .tab-nav {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 0 0 10px 0;
+        }
+        .tab-btn {
+            background-color: rgba(17, 17, 17, 0.7);
+            border: 1px solid rgba(232, 213, 169, 0.3);
+            color: #e8d5a9;
+            padding: 8px 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .tab-btn:hover {
+            background-color: rgba(232, 213, 169, 0.2);
+        }
+        .tab-btn.active {
+            background-color: rgba(232, 213, 169, 0.3);
+            border-color: #e8d5a9;
+        }
+        .tab-content {
+            padding: 4px 0;
+        }
+        .tab-pane {
+            display: none;
+        }
+        .tab-pane.active {
+            display: block;
+        }
+        .character-image {
+            width: 100%;
+            height: auto;
+            display: none;
+        }
+        .character-image.active {
+            display: block;
+        }
+        /* 新增和修改的样式 */
+        .section {
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(232, 213, 169, 0.2);
+        }
+
+        .section:last-child {
+            border-bottom: none;
+        }
+
+        .dialogue-entry {
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed rgba(232, 213, 169, 0.2);
+        }
+
+        .dialogue-entry:last-child {
+            border-bottom: none;
+        }
+
+        .sidebar {
+            position: sticky;
+            top: 20px;
+            align-self: flex-start;
+        }
+
+        /* 修改目录样式 */
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar li {
+            margin-bottom: 10px;
+        }
+
+        /* 一级目录项 */
+        .sidebar > ul > li > a {
+            color: #94885f;
+            text-decoration: none;
+            font-size: 1.1em;
+            display: block;
+            padding: 5px 0;
+        }
+
+        /* 二级目录项 */
+        .sidebar ul ul {
+            padding-left: 20px;
+            margin-top: 5px;
+        }
+
+        .sidebar ul ul li {
+            margin-bottom: 5px;
+        }
+
+        .sidebar ul ul a {
+            color: #94885f;
+            text-decoration: none;
+            font-size: 0.95em;
+            opacity: 0.9;
+            display: block;
+            padding: 3px 0;
+        }
+
+        .sidebar a:hover {
+            text-decoration: underline;
+            color: #fff;
+            text-shadow: 0 0 10px #94885f;
+        }
+
+        /* 添加遮罩层 */
+        .page-wrapper {
+            background-color: rgba(0, 0, 0, 0.75);
+            min-height: 100vh;
+        }
+
+        .submenu {
+            display: none;
+            padding-left: 20px;
+            margin-top: 5px;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .submenu.active {
+            display: block;
+        }
+
+        .toggle-icon {
+            display: inline-block;
+            width: 16px;
+            text-align: center;
+            margin-left: 5px;
+            transition: transform 0.3s ease;
+        }
+
+        .menu-toggle {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            text-decoration: none;
+            color: #94885f;
+        }
+
+        .menu-toggle.active .toggle-icon {
+            transform: rotate(45deg);
+        }
+
+        .has-submenu > a {
+            display: flex !important;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <h2>目录</h2>
+            <ul>
+                <li><a href="#overview">概述</a></li>
+                <li><a href="#background">背景</a></li>
+                <li class="has-submenu">
+                    <a href="#dialogue-sources" class="menu-toggle">
+                        台词 <span class="toggle-icon">+</span>
+                    </a>
+                    <ul class="submenu">
+                        <li><a href="#first-meet">初遇</a></li>
+                        <li><a href="#flying-cicada">金蝉飞行</a></li>
+                        <li><a href="#temple-meet">土地庙相遇</a></li>
+                        <li><a href="#skill-teaching">技能传授</a></li>
+                        <li><a href="#temple-entrance">禅院入口</a></li>
+                        <li><a href="#boss-battles">BOSS战后</a></li>
+                    </ul>
+                </li>
+                <li><a href="#achievements">成就</a></li>
+                <li><a href="#basic-info">基本信息</a></li>
+            </ul>
+        </div>
+        <div class="main-content">
+            <h1>黑风山土地</h1>
+            
+            <div class="character-info">
+                <div class="tab-nav">
+                    <button class="tab-btn active" data-tab="yingshen">影神图</button>
+                    <button class="tab-btn" data-tab="shiji">实机图</button>
+                </div>
+                <div class="tab-content">
+                    <img class="character-image active" id="yingshen" src="image/黑风山土地影神图.png" alt="黑风山土地影神图" onerror="this.onerror=null; this.src='image/image-placeholder.png';">
+                    <img class="character-image" id="shiji" src="image/黑风山土地.png" alt="黑风山土地实机图" onerror="this.onerror=null; this.src='image/image-placeholder.png';">
+                </div>
+                
+                <div class="poem">
+                    <p>猛将如雷云，随电降尘凡。</p>
+                    <p>输赢两争持，苦命不苦难。</p>
+                </div>
+                
+                <table class="info-table">
+                    <tr>
+                        <td>名称</td>
+                        <td>黑风山土地</td>
+                    </tr>
+                    <tr>
+                        <td>分类</td>
+                        <td>人物</td>
+                    </tr>
+                    <tr>
+                        <td>地点</td>
+                        <td>黑风山</td>
+                    </tr>
+                </table>
+            </div>
+
+            <p>黑风山土地是黑风山关卡中的土地，形似人参。是天命人在黑风山遇到的第一个非敌对角色。随着剧情推进，他会传授天命人定身法和聚形散气。</p>
+
+            <div id="overview" class="section">
+                <h2>概述</h2>
+                <p>天规载，土地公有察点本坊生灵，保育此地水土的职责。</p>
+                <p>这日，黑风山土地公依例在山中巡视俗务，正见有位老道士自远处而来。他穿一领星辰点就的道袍，挎一个青藤编就的药篮，手里敲着渔鼓，嘴里唱着月高，三两步飘摇到了近前。</p>
+                <p>土地公仔细打量，认定不曾相识，但凭那鹤发童颜，星目含威的气度，便知不是凡人，赶紧道了个问讯："老道长，小仙稽首了。"</p>
+                <p>老道士微微颔首，将自己的药篮递了过去。土地公一瞧，篮中俱是些珍奇事物，灵丹妙药，不由心惊，问道："小仙如何受得起这般厚礼？"</p>
+                <p>那道士笑道："我原是路过此地，但料想此后不久，这山中有场大动荡，想这篮中之物，必能帮你熬上一阵，便来拜访了。"</p>
+                <p>"道长何出此言？"</p>
+                <p>"我有个故人，性子不良，如今虽积下些功业，但依着他那倨傲的本心，准是难以安生，总怕他再闯些烧身大祸来……"</p>
+                <p>土地公细细寻思，诚然道："小仙能帮些什么？"</p>
+                <p>老道士见他有些乖觉，招手让他上前，附耳传了他几门保命的法术，并嘱咐道："若你在山中遇着他，可将此两法相传。我不便出面，只能借你手，教他一二，全了一场情义。"</p>
+                <p>土地公感激不已，作揖深谢，那老道士还了一礼，就要乘云而去，土地公急急追问："敢问道长，仙居何处？"</p>
+                <p>那道士早已踏着祥云远去，天上飘下一片叶子，香味清远，叶尖极细极长。土地公似有所悟，赶紧朝着远处行礼作揖，直至云烟都不见了，方才离去。</p>
+            </div>
+
+            <div id="background" class="section">
+                <h2>背景</h2>
+                <div class="background-content">
+                    <p>影神图中土地所遇老道士，形象可能参考自《西游记》中的镇元大仙所变道士。</p>
+                    <p>孙悟空推倒人参果树，连夜出逃。镇元大仙驾云去追，追上之后变作道士，接近唐僧四人。</p>
+                    <div class="quote">
+                        第二十五回「镇元仙赶捉取经僧 孙行者大闹五庄观」<br>
+                        那大仙按落云头，摇身一变，变作个行脚全真。你道他怎生模样：<br>
+                        穿一领百纳袍，系一条吕公绦。手摇麈尾，渔鼓轻敲。<br>
+                        三耳草鞋登脚下，九阳巾子把头包。飘飘风满袖，口唱《月儿高》。
+                    </div>
+                </div>
+            </div>
+
+            <div id="dialogue-sources" class="section">
+                <h2>台词</h2>
+                <div id="first-meet" class="dialogue-entry">
+                    <h3>初遇</h3>
+                    <blockquote>
+                        <p>（地下的声音）不管来多少次，总是改不了这胡闹性子。</p>
+                        <p>（哎呀）发什么呆，拔根毛来拜一拜。（发现第一个土地庙）</p>
+                    </blockquote>
+                </div>
+
+                <div id="flying-cicada" class="dialogue-entry">
+                    <h3>金蝉飞行时</h3>
+                    <blockquote>
+                        <p>小猴子，你惊动了这的妖精，再往前走可要万万小心。</p>
+                        <p>小猴子，来这边。（哎……）这儿，这儿，看这儿。</p>
+                    </blockquote>
+                </div>
+
+                <div id="temple-meet" class="dialogue-entry">
+                    <h3>土地庙相遇</h3>
+                    <blockquote>
+                        <p>哎，等等！小神——是黑风山的土地，在此候你多时（了）。（哎）……像，真像。</p>
+                        <p>再往前走，就是——观音禅院，当年，也是香火鼎盛——（哎）只可惜那场大火哟……</p>
+                        <p>后来（啊），这禅院又被重建了，可人心 若是烧没了，修好一座破庙，又有什么用呢？</p>
+                        <p>（狼叫）啊？啊……你不记得此地，此地却是有些东西惦记着你。来者不善，小猴子自求多福！</p>
+                    </blockquote>
+                </div>
+
+                <div id="skill-teaching" class="dialogue-entry">
+                    <h3>技能传授</h3>
+                    <blockquote>
+                        <p>许久不用，没承想这定身术倒还好使，既是花果山来的故人，教你一招也无妨，来，速速把手伸来！</p>
+                        <p>写好了，日后遇到什么凶匪恶徒，只消用这手一指，心里默念一声"定"，就能让对方动弹不得，你也可喘息片刻，只是小老儿道行浅薄，这定身效果不消片刻就���失灵，遇到些夯货倒还好用，你权当是挣个傍身的手段罢。</p>
+                        <p>如今这些小儿，真是目无尊长！别怕，用刚学的法术与他玩玩！</p>
+                    </blockquote>
+                </div>
+
+                <div id="temple-entrance" class="dialogue-entry">
+                    <h3>禅院入口</h3>
+                    <blockquote>
+                        <p>嘘，别出声，小心惊动了那条大狗。后院那厮是黑风怪的道友，自称灵虚子。以你现在的道行，恐怕（狼叫）……糟了！</p>
+                        <p>小猴子快逃，还来得及。你若进了这道门，便回不了头了！</p>
+                    </blockquote>
+                </div>
+
+                <div id="boss-battles" class="dialogue-entry">
+                    <h3>BOSS战后对话</h3>
+                    <blockquote>
+                        <h4>灵虚子战后</h4>
+                        <p>（哈哈哈嘿嘿嘿）小瞧你了，既然结果了它，不妨把这里翻个底朝天。那黑风怪赏了灵虚子一颗金丹，若是寻到此物，就算没白来一遭。</p>
+
+                        <h4>白衣秀士战后</h4>
+                        <p>钟……？自那黑风怪回来后，山里便立起了三口洪钟，却不许旁人靠近。莫非那三口钟，与当年的火烧禅院有关？此人所言不像假话，小猴子，你可暗自留心。</p>
+
+                        <h4>金池长老战后</h4>
+                        <p>辟火罩！当年大圣从广目天王那里借来的神器，居然还在这里。你想必是超度过那个人了。唉，缘起缘落……只因多看一眼。天色不早，赶紧上山罢!</p>
+
+                        <h4>黑风大王战后</h4>
+                        <p>（咳咳咳—）他这聚形散气之术，看着花里胡哨，实则不难掌握。（嘿！）这黑风怪学艺不精，去了趟南海也不见长进。他刚才的几番变化，遗留了不少元气在此，（咳！）正好小老儿收些来用！</p>
+                        <p>聚形散气，无痕无迹; 里面门道大得很，自己慢慢领悟罢！</p>
+
+                        <h4>黑熊精战后</h4>
+                        <p>這熊怪说的倒不假，借再多的胆子，他也决计不敢自己谋害大圣！這幕后指使定然另有其人。</p>
+                        <p>（害！）别听他掰扯！小猴子，赶紧先把大圣（的）遗物取回来看看——</p>
+                    </blockquote>
+                </div>
+            </div>
+
+            <div id="achievements" class="section">
+                <h2>成就</h2>
+                <p>以下是与白衣秀士有关的成就：</p>
+                <ul>
+                    <li>【长蛇隐迹第六难】秀士诉了隐情，且先饶他一命。</li>
+                    <li>【余韵远传第八难】三钟响，幽魂藏。</li>
+                    <li>【禅院逢友第九难】长老终于等到了东土的老爷。</li>
+                    <li>【折梅见赠六十一难】一意逆流冷乡心，孰能轻易忘旧情？</li>
+                </ul>
+            </div>
+
+            <div id="basic-info" class="section">
+                <h2>基本信息</h2>
+                <table class="info-table">
+                    <tr>
+                        <td>名称</td>
+                        <td>黑风山土地</td>
+                    </tr>
+                    <tr>
+                        <td>分类</td>
+                        <td>人物</td>
+                    </tr>
+                    <tr>
+                        <td>地点</td>
+                        <td>黑风山</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll('.tab-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const tabId = button.getAttribute('data-tab');
+                document.querySelectorAll('.tab-btn, .character-image').forEach(el => el.classList.remove('active'));
+                button.classList.add('active');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+
+        document.querySelectorAll('.menu-toggle').forEach(toggle => {
+            toggle.addEventListener('click', (e) => {
+                e.preventDefault();
+                const submenu = toggle.nextElementSibling;
+                const isActive = toggle.classList.contains('active');
+
+                // 先关闭所有打开的子菜单
+                document.querySelectorAll('.menu-toggle.active').forEach(activeToggle => {
+                    if (activeToggle !== toggle) {
+                        activeToggle.classList.remove('active');
+                        activeToggle.nextElementSibling.classList.remove('active');
+                    }
+                });
+
+                // 切换当前子菜单的状态
+                if (!isActive) {
+                    toggle.classList.add('active');
+                    submenu.classList.add('active');
+                } else {
+                    toggle.classList.remove('active');
+                    submenu.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
