@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第二章·游戏攻略 - 黑神话·悟空</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Ma Shan Zheng', cursive;
+            margin: 0;
+            padding: 0;
+            background-color: #1a1a1a; /* 更深的背景色 */
+            color: #f4f4f4; /* 文字颜色调整以提高可读性 */
+        }
+        header {
+            position: relative;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            text-align: center;
+            border-bottom: 1px solid #333;
+            padding: 30px 0;
+        }
+        .top-nav {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+        .return-button {
+            display: inline-flex;
+            align-items: center;
+            color: #ff3333;
+            text-decoration: none;
+            padding: 8px 15px;
+            border: 1px solid #ff3333;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        .return-button:hover {
+            background-color: #ff3333;
+            color: #000;
+            transform: translateX(-5px);
+        }
+        .return-button .arrow {
+            margin-right: 8px;
+            font-size: 1.2em;
+        }
+        h1 {
+            margin: 20px 0;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        .guide-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* 优化布局 */
+            gap: 20px;
+            margin-top: 20px;
+            padding: 20px; /* 添加内边距 */
+        }
+        .guide-item {
+            background-color: #2c2c2c; /* 更深的卡片背景色 */
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3); /* 加深阴影 */
+            transition: transform 0.2s; /* 添加过渡效果 */
+        }
+        .guide-item:hover {
+            transform: scale(1.02); /* 鼠标悬停时放大 */
+        }
+        .guide-item h3 {
+            color: #d9534f; /* 新主题色 */
+        }
+        /* 新增样式 */
+        .guide-item p {
+            font-size: 14px;
+            color: #f4f4f4; /* 文字颜色调整 */
+        }
+        .guide-item a {
+            display: inline-block;
+            margin-top: 10px;
+            color: #5bc0de; /* 新主题色 */
+            text-decoration: none;
+        }
+        .guide-item a:hover {
+            text-decoration: underline;
+        }
+        footer {
+            text-align: center; /* 使文本居中 */
+            padding: 30px 0;
+            color: #666;
+            border-top: 1px solid #333;
+            margin-top: 50px;
+        }
+        .fallback-fonts {
+            font-family: 'Ma Shan Zheng', 'KaiTi', 'STKaiti', cursive;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="top-nav">
+            <a href="../menu.html?chapter=1" class="return-button">
+                <span class="arrow">←</span> 返回首页
+            </a>
+        </nav>
+        <h1>游戏攻略</h1>
+    </header>
+
+    <main>
+        <section id="game-guides">
+            <h2>黄风岭</h2>
+            <div class="guide-list">
+                <article class="guide-item">
+                    <h3>新手入门</h3>
+                    <p>了解游戏基本操作和机制，快速上手《黑神话·悟空》。</p>
+                    <ul>
+                        <li>基础操作：移动、跳跃、攻击、格挡、闪避</li>
+                        <li>战斗系统：连击、变身、法术、武器切换</li>
+                        <li>属性系统：生命、体力、灵力、悟性</li>
+                        <li>装备系统：武器、护具、饰品、消耗品</li>
+                    </ul>
+                    <a href="#basic-guide">阅读全文</a>
+                </article>
+
+                <article class="guide-item">
+                    <h3>黄风岭任务攻略</h3>
+                    <p>黄风岭区域主要任务和支线任务完整攻略。</p>
+                    <ul>
+                        <li>【黄金引路】任务流程：
+                            <ol>
+                                <li>在挟魂崖找到醉酒的黄袍员外</li>
+                                <li>寻找醒酒石为其解酒</li>
+                                <li>前往卧虎寺寻找食物</li>
+                                <li>获取碧藕交给黄袍员外</li>
+                                <li>返回初遇地点进行对决</li>
+                            </ol>
+                        </li>
+                        <li>【折梅见赠】支线任务：
+                            <ol>
+                                <li>击败黄袍员外后获得金片</li>
+                                <li>进入斯哈哩国遗迹</li>
+                                <li>探索古国秘密</li>
+                            </ol>
+                        </li>
+                        <li>重要奖励：
+                            <ul>
+                                <li>头冠-长嘴脸</li>
+                                <li>1,037灵蕴</li>
+                                <li>解锁隐藏地图：斯哈哩国</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <a href="#huangfeng-guide">阅读全文</a>
+                </article>
+
+                <article class="guide-item">
+                    <h3>战斗技巧</h3>
+                    <p>黄风岭区域BOSS战斗攻略。</p>
+                    <ul>
+                        <li>黄袍员外战斗要点：
+                            <ul>
+                                <li>第一阶段：注意躲避冲撞攻击</li>
+                                <li>第二阶段：防范范围AOE伤害</li>
+                                <li>弱点：头部和腹部</li>
+                                <li>推荐装备：铜头铁臂、身外身法</li>
+                            </ul>
+                        </li>
+                        <li>无头僧相关技能：
+                            <ul>
+                                <li>箭雨夺命：可通过法术解除</li>
+                                <li>三弦音波：需要及时躲避</li>
+                                <li>助战技能：可召唤帮助玩家</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <a href="#combat-guide">阅读全文</a>
+                </article>
+
+                <article class="guide-item">
+                    <h3>隐藏要素</h3>
+                    <p>黄风岭区域隐藏要素和彩蛋解析。</p>
+                    <ul>
+                        <li>隐藏成就：
+                            <ul>
+                                <li>【黄金引路十九难】：完成黄袍员外相关任务</li>
+                                <li>【折梅见赠六十一难】：解锁斯哈哩国</li>
+                                <li>【法性颇通七十五难】：获得无头僧全部法术</li>
+                            </ul>
+                        </li>
+                        <li>特殊对话触发条件：
+                            <ul>
+                                <li>与无头僧在枯木下对话</li>
+                                <li>完成定风庄支线任务</li>
+                                <li>收集完整的古国传说</li>
+                            </ul>
+                        </li>
+                        <li>开发者彩蛋：
+                            <ul>
+                                <li>1037灵蕴：华科大地址彩蛋</li>
+                                <li>野猪闯入：华科大校园典故</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <a href="#secrets-guide">阅读全文</a>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 黑神话·悟空官方平台. 保留所有权利。</p>
+    </footer>
+
+    <script>
+        // 创建弹出层样式
+        const style = document.createElement('style');
+        style.textContent = `
+            .modal {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.8);
+                z-index: 1000;
+                overflow-y: auto;
+            }
+            .modal-content {
+                position: relative;
+                background-color: #2c2c2c;
+                margin: 50px auto;
+                padding: 30px;
+                width: 80%;
+                max-width: 800px;
+                border-radius: 10px;
+                color: #f4f4f4;
+            }
+            .close-button {
+                position: absolute;
+                right: 20px;
+                top: 20px;
+                font-size: 24px;
+                cursor: pointer;
+                color: #d9534f;
+            }
+            .modal-content h2 {
+                color: #d9534f;
+                border-bottom: 1px solid #444;
+                padding-bottom: 10px;
+            }
+            .modal-content section {
+                margin: 20px 0;
+            }
+            .modal-content ul, .modal-content ol {
+                margin-left: 20px;
+            }
+            .modal-content img {
+                max-width: 100%;
+                height: auto;
+                margin: 10px 0;
+            }
+            .tip-box {
+                background-color: #3c3c3c;
+                padding: 15px;
+                border-left: 4px solid #d9534f;
+                margin: 10px 0;
+            }
+        `;
+        document.head.appendChild(style);
+
+        // 创建弹出层内容模板
+        const modalTemplates = {
+            'basic-guide': `
+                <h2>新手入门详细指南</h2>
+                <section>
+                    <h3>基础操作系统</h3>
+                    <div class="tip-box">
+                        <h4>移动系统</h4>
+                        <ul>
+                            <li>基础移动：WASD控制方向</li>
+                            <li>跳跃：空格键
+                                <ul>
+                                    <li>单次跳跃：轻按</li>
+                                    <li>二段跳：连按两次</li>
+                                    <li>滑翔：长按</li>
+                                </ul>
+                            </li>
+                            <li>翻滚：左Shift键
+                                <ul>
+                                    <li>可以躲避攻击</li>
+                                    <li>快速移动</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="tip-box">
+                        <h4>战斗系统</h4>
+                        <ul>
+                            <li>基础攻击：左键
+                                <ul>
+                                    <li>轻攻击连击</li>
+                                    <li>可以打断敌人</li>
+                                </ul>
+                            </li>
+                            <li>重攻击：右键
+                                <ul>
+                                    <li>蓄力攻击</li>
+                                    <li>破防效果</li>
+                                </ul>
+                            </li>
+                            <li>格挡：Q键
+                                <ul>
+                                    <li>完美格挡：减少体力消耗</li>
+                                    <li>反击时机：增加伤害</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+                <section>
+                    <h3>属性系统</h3>
+                    <ul>
+                        <li>生命值：
+                            <ul>
+                                <li>决定角色存活能力</li>
+                                <li>可通过道具恢复</li>
+                            </ul>
+                        </li>
+                        <li>体力值：
+                            <ul>
+                                <li>影响攻击和闪避</li>
+                                <li>自动恢复</li>
+                            </ul>
+                        </li>
+                        <li>灵力值：
+                            <ul>
+                                <li>施放法术消耗</li>
+                                <li>影响法术威力</li>
+                            </ul>
+                        </li>
+                        <li>悟性：
+                            <ul>
+                                <li>影响学习技能速度</li>
+                                <li>提高获得经验值</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>装备系统</h3>
+                    <div class="tip-box">
+                        <h4>武器系统</h4>
+                        <ul>
+                            <li>金刚棒：
+                                <ul>
+                                    <li>基础伤害高</li>
+                                    <li>适合近战</li>
+                                </ul>
+                            </li>
+                            <li>如意棒：
+                                <ul>
+                                    <li>攻击范围大</li>
+                                    <li>可变长度</li>
+                                </ul>
+                            </li>
+                            <li>法器：
+                                <ul>
+                                    <li>远程攻击</li>
+                                    <li>消耗灵力</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="tip-box">
+                        <h4>防具系统</h4>
+                        <ul>
+                            <li>铠甲：
+                                <ul>
+                                    <li>提供物理防御</li>
+                                    <li>影响移动速度</li>
+                                </ul>
+                            </li>
+                            <li>法衣：
+                                <ul>
+                                    <li>提供法术防御</li>
+                                    <li>加快灵力恢复</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+            `,
+            'huangfeng-guide': `
+                <h2>黄风岭任务详细攻略</h2>
+                <section>
+                    <h3>【黄金引路】主线任务</h3>
+                    <div class="tip-box">
+                        <h4>第一阶段：寻找黄袍员外</h4>
+                        <ul>
+                            <li>位置：挟魂崖
+                                <ul>
+                                    <li>从山脚小径前进</li>
+                                    <li>注意躲避巡逻的妖怪</li>
+                                </ul>
+                            </li>
+                            <li>任务目标：
+                                <ul>
+                                    <li>找到醉酒的黄袍员外</li>
+                                    <li>获取关于醒酒石的信息</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="tip-box">
+                        <h4>第二阶段：寻找醒酒石</h4>
+                        <ul>
+                            <li>位置：山腰洞窟
+                                <ul>
+                                    <li>需要解决机关谜题</li>
+                                    <li>击败守护妖怪</li>
+                                </ul>
+                            </li>
+                            <li>获取方式：
+                                <ul>
+                                    <li>完成石室机关</li>
+                                    <li>正确摆放石块</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+                <section>
+                    <h3>【折梅见赠】支线任务</h3>
+                    <div class="tip-box">
+                        <h4>开启条件</h4>
+                        <ul>
+                            <li>击败黄袍员外</li>
+                            <li>获得金片</li>
+                            <li>找到古国入口</li>
+                        </ul>
+                    </div>
+                    <div class="tip-box">
+                        <h4>探索古国</h4>
+                        <ul>
+                            <li>地图区域：
+                                <ul>
+                                    <li>废弃宫殿</li>
+                                    <li>地下密室</li>
+                                    <li>祭坛遗迹</li>
+                                </ul>
+                            </li>
+                            <li>关键剧情：
+                                <ul>
+                                    <li>了解古国历史</li>
+                                    <li>发现真相</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+            `,
+            'combat-guide': `
+                <h2>战斗技巧详解</h2>
+                <section>
+                    <h3>黄袍员外战斗攻略</h3>
+                    <div class="tip-box">
+                        <h4>第一阶段</h4>
+                        <ul>
+                            <li>攻击模式：
+                                <ul>
+                                    <li>冲撞攻击：预判躲避</li>
+                                    <li>范围攻击：注意地面标记</li>
+                                </ul>
+                            </li>
+                            <li>应对策略：
+                                <ul>
+                                    <li>利用地形掩护</li>
+                                    <li>把握反击时机</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="tip-box">
+                        <h4>第二阶段</h4>
+                        <ul>
+                            <li>新增技能：
+                                <ul>
+                                    <li>AOE范围攻击</li>
+                                    <li>召唤小怪</li>
+                                </ul>
+                            </li>
+                            <li>克制方法：
+                                <ul>
+                                    <li>优先清理小怪</li>
+                                    <li>注意躲避范围伤害</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+                <section>
+                    <h3>无头僧相关技能</h3>
+                    <div class="tip-box">
+                        <h4>技能解析</h4>
+                        <ul>
+                            <li>箭雨夺命：
+                                <ul>
+                                    <li>范围伤害技能</li>
+                                    <li>可用法术解除</li>
+                                </ul>
+                            </li>
+                            <li>三弦音波：
+                                <ul>
+                                    <li>直线攻击</li>
+                                    <li>需要横向躲避</li>
+                                </ul>
+                            </li>
+                            <li>助战技能：
+                                <ul>
+                                    <li>召唤帮手</li>
+                                    <li>提供增益效果</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+            `,
+            'secrets-guide': `
+                <h2>隐藏要素完整攻略</h2>
+                <section>
+                    <h3>隐藏成就获取</h3>
+                    <div class="tip-box">
+                        <h4>【黄金引路十九难】</h4>
+                        <ul>
+                            <li>触发条件：
+                                <ul>
+                                    <li>完成所有相关任务</li>
+                                    <li>收集全部线索</li>
+                                </ul>
+                            </li>
+                            <li>完成步骤：
+                                <ul>
+                                    <li>找到所有金片</li>
+                                    <li>解开古国之谜</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="tip-box">
+                        <h4>【折梅见赠六十一难】</h4>
+                        <ul>
+                            <li>前置条件：
+                                <ul>
+                                    <li>击败黄袍员外</li>
+                                    <li>获得特定道具</li>
+                                </ul>
+                            </li>
+                            <li>完成方式：
+                                <ul>
+                                    <li>探索完整遗迹</li>
+                                    <li>触发特殊剧情</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+                <section>
+                    <h3>特殊对话触发</h3>
+                    <div class="tip-box">
+                        <h4>关键条件</h4>
+                        <ul>
+                            <li>与无头僧对话：
+                                <ul>
+                                    <li>特定时间点</li>
+                                    <li>特定地点</li>
+                                </ul>
+                            </li>
+                            <li>完成支线任务：
+                                <ul>
+                                    <li>定风庄事件</li>
+                                    <li>收集传说</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+                <section>
+                    <h3>开发者彩蛋</h3>
+                    <div class="tip-box">
+                        <h4>华科大相关</h4>
+                        <ul>
+                            <li>1037灵蕴：
+                                <ul>
+                                    <li>对应校址门牌号</li>
+                                    <li>击败特定BOSS获得</li>
+                                </ul>
+                            </li>
+                            <li>野猪闯入：
+                                <ul>
+                                    <li>基于真实事件</li>
+                                    <li>校园趣闻再现</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+            `
+        };
+
+        // 创建弹出层
+        function createModal(content) {
+            const modal = document.createElement('div');
+            modal.className = 'modal';
+            modal.innerHTML = `
+                <div class="modal-content">
+                    <span class="close-button">&times;</span>
+                    ${content}
+                </div>
+            `;
+            document.body.appendChild(modal);
+
+            // 关闭按钮功能
+            const closeButton = modal.querySelector('.close-button');
+            closeButton.onclick = () => {
+                modal.style.display = 'none';
+                document.body.removeChild(modal);
+            };
+
+            // 点击外部关闭
+            modal.onclick = (e) => {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                    document.body.removeChild(modal);
+                }
+            };
+
+            return modal;
+        }
+
+        // 为每个"阅读全文"链接添加点击事件
+        document.querySelectorAll('.guide-item a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const guideId = this.getAttribute('href').substring(1);
+                const content = modalTemplates[guideId];
+                if (content) {
+                    const modal = createModal(content);
+                    modal.style.display = 'block';
+                }
+            });
+        });
+
+        // 添加键盘事件监听，按ESC键关闭弹出层
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                const modal = document.querySelector('.modal');
+                if (modal) {
+                    modal.style.display = 'none';
+                    document.body.removeChild(modal);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

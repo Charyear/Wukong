@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第二章·文化探索 - 黑神话·悟空</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+    <style>
+        /* 基本样式 */
+        body {
+            font-family: 'Ma Shan Zheng', cursive;
+            margin: 0;
+            padding: 0;
+            background-color: #0a0a0a; /* 深色背景 */
+            color: #e0e0e0; /* 浅色文字 */
+            background-image: linear-gradient(to bottom, #000000, #1a1a1a);
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        header, main, footer {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            position: relative;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            text-align: center;
+            border-bottom: 1px solid #333;
+            padding: 30px 0;
+        }
+
+        .top-nav {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            color: #ff3333;
+            text-decoration: none;
+            padding: 8px 15px;
+            border: 1px solid #ff3333;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .back-button:hover {
+            background-color: #ff3333;
+            color: #000;
+            transform: translateX(-5px);
+        }
+
+        .back-button .arrow {
+            margin-right: 8px;
+            font-size: 1.2em;
+        }
+
+        h1 {
+            margin: 20px 0;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        /* 搜索框样式 */
+        #search-container {
+            max-width: 600px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        #search-input {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid #333;
+            border-radius: 5px;
+            color: #fff;
+            transition: all 0.3s ease;
+        }
+
+        #search-input:focus {
+            background-color: rgba(255, 255, 255, 0.15);
+            border-color: #ff3333;
+            outline: none;
+        }
+
+        /* 网格布局 */
+        .culture-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            padding: 20px 0;
+        }
+
+        .culture-item {
+            background-color: rgba(30, 30, 30, 0.9);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            border: 1px solid #333;
+        }
+
+        .culture-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(255, 51, 51, 0.2);
+            border-color: #ff3333;
+        }
+
+        .culture-item h3 {
+            color: #ff3333;
+            margin-bottom: 15px;
+            font-size: 1.4em;
+        }
+
+        .culture-item p {
+            color: #ccc;
+            line-height: 1.6;
+        }
+
+        .culture-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            border: 1px solid #333;
+        }
+
+        .culture-item a {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            color: #666;
+            border-top: 1px solid #333;
+            margin-top: 50px;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .culture-grid {
+                grid-template-columns: 1fr;
+                padding: 10px;
+            }
+
+            header {
+                padding: 20px 10px;
+            }
+
+            .culture-item {
+                margin: 10px;
+            }
+        }
+
+        /* 添加滚动条样式 */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #1a1a1a;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #ff3333;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #ff4444;
+        }
+
+        /* 优化标题样式 */
+        #culture-content h2 {
+            text-align: center;
+            color: #ff3333;
+            font-size: 1.8em;
+            margin: 40px 0;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+        .fallback-fonts {
+            font-family: 'Ma Shan Zheng', 'KaiTi', 'STKaiti', cursive;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="top-nav">
+            <a href="../menu.html?chapter=2" class="back-button">
+                <span class="arrow">←</span> 返回首页
+            </a>
+        </nav>
+        <h1>文化探索</h1>
+    </header>
+
+    <main>
+        <div id="search-container">
+            <input type="text" id="search-input" placeholder="搜索文化元素...">
+        </div>
+
+        <section id="culture-content">
+            <h2>中国传统文化元素</h2>
+            <div class="culture-grid">
+                <!-- 文化元素将通过JavaScript动态加载 -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 黑神话·悟空官方平台. 保留所有权利。</p>
+    </footer>
+
+    <script>
+        // 文化元素数据
+        const cultureElements = [
+            { 
+                title: "道教文化", 
+                content: "游戏中融入了大量道教元素，如八卦、符咒等。", 
+                image: "path/to/daoism.jpg",
+                link: "daoism.html"
+            },
+            { 
+                title: "佛教影响", 
+                content: "佛教思想贯穷游戏，体现在人物设定和剧情中。", 
+                image: "path/to/buddhism.jpg",
+                link: "buddhism.html"
+            },
+            { 
+                title: "中国神话", 
+                content: "游戏世界观基于中国古代神话体系，包括各种神仙和妖怪。", 
+                image: "path/to/mythology.jpg",
+                link: "mythology.html"
+            },
+            { 
+                title: "古代建筑", 
+                content: "场景设计融入了中国古代建筑风格，如宫殿、寺庙等。", 
+                image: "path/to/architecture.jpg",
+                link: "architecture.html"
+            },
+            {
+                title: "西汉铜鎏金人物博山炉", 
+                content: "博山炉是中国古代的一种香炉，其造型独特，常被用于祭祀和装饰。", 
+                image: "../file/all-culture/culture/233px-考据-博山炉-故宫博物馆.jpg",
+                link: "../file/all-culture/culture_boshanlu.html"  // 更新这一行
+            },
+            // 可以继续添加更多文化元素
+        ];
+
+        // 动态加载内容
+        function loadCultureContent(elements) {
+            const grid = document.querySelector('.culture-grid');
+            grid.innerHTML = ''; // 清空现有内容
+            elements.forEach(element => {
+                const item = document.createElement('div');
+                item.className = 'culture-item';
+                item.innerHTML = `
+                    <a href="${element.link}">
+                        <h3>${element.title}</h3>
+                        <img src="${element.image}" alt="${element.title}">
+                        <p>${element.content}</p>
+                    </a>
+                `;
+                grid.appendChild(item);
+            });
+        }
+
+        // 初始加载
+        loadCultureContent(cultureElements);
+
+        // 搜索功能
+        const searchInput = document.getElementById('search-input');
+        searchInput.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            const filteredElements = cultureElements.filter(element => 
+                element.title.toLowerCase().includes(searchTerm) || 
+                element.content.toLowerCase().includes(searchTerm)
+            );
+            loadCultureContent(filteredElements);
+        });
+    </script>
+</body>
+</html>
