@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第一章·游戏攻略 - 黑神话·悟空</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Ma Shan Zheng', cursive;
+            margin: 0;
+            padding: 0;
+            background-color: #1a1a1a; /* 更深的背景色 */
+            color: #f4f4f4; /* 文字颜色调整以提高可读性 */
+        }
+        header {
+            position: relative;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            text-align: center;
+            border-bottom: 1px solid #333;
+            padding: 30px 0;
+        }
+        .top-nav {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+        .return-button {
+            display: inline-flex;
+            align-items: center;
+            color: #ff3333;
+            text-decoration: none;
+            padding: 8px 15px;
+            border: 1px solid #ff3333;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        .return-button:hover {
+            background-color: #ff3333;
+            color: #000;
+            transform: translateX(-5px);
+        }
+        .return-button .arrow {
+            margin-right: 8px;
+            font-size: 1.2em;
+        }
+        h1 {
+            margin: 20px 0;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        .guide-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* 优化布局 */
+            gap: 20px;
+            margin-top: 20px;
+            padding: 20px; /* 添加内边距 */
+        }
+        .guide-item {
+            background-color: #2c2c2c; /* 更深的卡片背景色 */
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3); /* 加深阴影 */
+            transition: transform 0.2s; /* 添加过渡效果 */
+        }
+        .guide-item:hover {
+            transform: scale(1.02); /* 鼠标悬停时放大 */
+        }
+        .guide-item h3 {
+            color: #d9534f; /* 新主题色 */
+        }
+        /* 新增样式 */
+        .guide-item p {
+            font-size: 14px;
+            color: #f4f4f4; /* 文字颜色调整 */
+        }
+        .guide-item a {
+            display: inline-block;
+            margin-top: 10px;
+            color: #5bc0de; /* 新主题色 */
+            text-decoration: none;
+        }
+        .guide-item a:hover {
+            text-decoration: underline;
+        }
+        footer {
+            text-align: center; /* 使文本居中 */
+            padding: 30px 0;
+            color: #666;
+            border-top: 1px solid #333;
+            margin-top: 50px;
+        }
+        .fallback-fonts {
+            font-family: 'Ma Shan Zheng', 'KaiTi', 'STKaiti', cursive;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="top-nav">
+            <a href="../menu.html?chapter=1" class="return-button">
+                <span class="arrow">←</span> 返回首页
+            </a>
+        </nav>
+        <h1>游戏攻略</h1>
+    </header>
+
+    <main>
+        <section id="game-guides">
+            <h2>黑风山攻略</h2>
+            <div class="guide-list">
+                <article class="guide-item">
+                    <h3>主线任务：观音禅院</h3>
+                    <p>探索观音禅院，揭开黑风大王的秘密。</p>
+                    <ul>
+                        <li>任务流程：
+                            <ol>
+                                <li>抵达观音禅院，调查火灾真相</li>
+                                <li>寻找并击败广智和尚</li>
+                                <li>探索地下密室，获取线索</li>
+                                <li>与黑风大王对峙</li>
+                            </ol>
+                        </li>
+                        <li>重要奖励：
+                            <ul>
+                                <li>起死回生真言</li>
+                                <li>观音禅院地图碎片</li>
+                                <li>黑风令牌</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <a href="#temple-guide">阅读全文</a>
+                </article>
+
+                <article class="guide-item">
+                    <h3>BOSS战：黑风大王</h3>
+                    <p>详细的黑风大王战斗攻略。</p>
+                    <ul>
+                        <li>战斗阶段：
+                            <ol>
+                                <li>第一阶段：地面战斗
+                                    <ul>
+                                        <li>注意躲避黑风冲击</li>
+                                        <li>利用柱子躲避范围攻击</li>
+                                        <li>在他施法时进行反击</li>
+                                    </ul>
+                                </li>
+                                <li>第二阶段：屋顶对决
+                                    <ul>
+                                        <li>防范突袭攻击</li>
+                                        <li>注意平台破坏机制</li>
+                                        <li>把握反击时机</li>
+                                    </ul>
+                                </li>
+                            </ol>
+                        </li>
+                        <li>推荐装备：
+                            <ul>
+                                <li>武器：金刚棒</li>
+                                <li>护具：避风铠</li>
+                                <li>饰品：定风珠</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <a href="#boss-guide">阅读��文</a>
+                </article>
+
+                <article class="guide-item">
+                    <h3>支线任务</h3>
+                    <p>黑风山区域支线任务攻略。</p>
+                    <ul>
+                        <li>【超度亡魂】：
+                            <ol>
+                                <li>收集僧人遗物</li>
+                                <li>寻找超度咒文</li>
+                                <li>在特定地点进行超度</li>
+                            </ol>
+                        </li>
+                        <li>【寻找经书】：
+                            <ol>
+                                <li>探索禅院废墟</li>
+                                <li>解开藏经阁机关</li>
+                                <li>收集残缺经书</li>
+                            </ol>
+                        </li>
+                        <li>【修复钟楼】：
+                            <ol>
+                                <li>找到三口铜钟</li>
+                                <li>击败守钟妖物</li>
+                                <li>重建钟楼</li>
+                            </ol>
+                        </li>
+                    </ul>
+                    <a href="#side-quests">阅读全文</a>
+                </article>
+
+                <article class="guide-item">
+                    <h3>隐藏要素</h3>
+                    <p>黑风山区域隐藏成就和彩蛋。</p>
+                    <ul>
+                        <li>隐藏成就：
+                            <ul>
+                                <li>【禅院逢友第九难】：与黑风大王的特殊对话</li>
+                                <li>【余韵远传第八难】：修复所有铜钟</li>
+                                <li>【超度圆满第七难】：完成所有超度任务</li>
+                            </ul>
+                        </li>
+                        <li>特殊对话触发：
+                            <ul>
+                                <li>在藏经阁废墟找到完整经书</li>
+                                <li>收集全部僧人遗物</li>
+                                <li>修复三口铜钟后敲响</li>
+                            </ul>
+                        </li>
+                        <li>隐藏装备：
+                            <ul>
+                                <li>黑风铠甲：完成所有支线任务</li>
+                                <li>禅院令牌：收集全部经书</li>
+                                <li>超度之证：完成超度任务</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <a href="#secrets">阅读全文</a>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 黑神话·悟空官方平台. 保留所有权利。</p>
+    </footer>
+
+    <script>
+        // 创建弹出层样式
+        const style = document.createElement('style');
+        style.textContent = `
+            .modal {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.8);
+                z-index: 1000;
+                overflow-y: auto;
+            }
+            .modal-content {
+                position: relative;
+                background-color: #2c2c2c;
+                margin: 50px auto;
+                padding: 30px;
+                width: 80%;
+                max-width: 800px;
+                border-radius: 10px;
+                color: #f4f4f4;
+            }
+            .close-button {
+                position: absolute;
+                right: 20px;
+                top: 20px;
+                font-size: 24px;
+                cursor: pointer;
+                color: #d9534f;
+            }
+            .modal-content h2 {
+                color: #d9534f;
+                border-bottom: 1px solid #444;
+                padding-bottom: 10px;
+            }
+            .modal-content section {
+                margin: 20px 0;
+            }
+            .modal-content ul, .modal-content ol {
+                margin-left: 20px;
+            }
+            .modal-content img {
+                max-width: 100%;
+                height: auto;
+                margin: 10px 0;
+            }
+            .tip-box {
+                background-color: #3c3c3c;
+                padding: 15px;
+                border-left: 4px solid #d9534f;
+                margin: 10px 0;
+            }
+        `;
+        document.head.appendChild(style);
+
+        // 创建弹出层内容模板
+        const modalTemplates = {
+            'temple-guide': `
+                <h2>观音禅院主线任务详细攻略</h2>
+                <section>
+                    <h3>任务前置要求</h3>
+                    <ul>
+                        <li>角色等级：建议10级以上</li>
+                        <li>推荐装备：金刚棒、避风铠、定风珠</li>
+                        <li>消耗品：生命丹x5、解毒丹x3</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>详细流程</h3>
+                    <ol>
+                        <li>抵达观音禅院
+                            <ul>
+                                <li>从山脚小径前进，注意躲避巡逻的妖兵</li>
+                                <li>可以使用墙壁上的藤蔓快速攀爬</li>
+                                <li>在禅院门口触发剧情</li>
+                            </ul>
+                        </li>
+                        <li>调查火灾真相
+                            <ul>
+                                <li>检查三处可疑的火源点：
+                                    <ol>
+                                        <li>藏经阁后院</li>
+                                        <li>禅房走廊</li>
+                                        <li>大殿门口</li>
+                                    </ol>
+                                </li>
+                                <li>在藏经阁废墟中找到线索：
+                                    <ul>
+                                        <li>烧毁的经书残页</li>
+                                        <li>广智和尚的笔记</li>
+                                        <li>可疑的火折子</li>
+                                    </ul>
+                                </li>
+                                <li>与幸存的小沙弥对话，获取重要信息</li>
+                            </ul>
+                        </li>
+                        <li>寻找广智和尚
+                            <ul>
+                                <li>追踪脚印到达钟楼：
+                                    <ul>
+                                        <li>注意地上的血迹指引</li>
+                                        <li>可以使用追踪术提高效率</li>
+                                    </ul>
+                                </li>
+                                <li>解决钟楼机关谜题：
+                                    <ol>
+                                        <li>按正确顺序敲响三口铜钟</li>
+                                        <li>找到隐藏在钟楼的机关开关</li>
+                                        <li>正确摆放佛像的方向</li>
+                                    </ol>
+                                </li>
+                                <li>击败变身后的广智和尚：
+                                    <ul>
+                                        <li>第一阶段：注意躲避火球攻击</li>
+                                        <li>第二阶段：在他施法时打断</li>
+                                        <li>最终阶段：利用柱子躲避范围技能</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>探索地下密室
+                            <ul>
+                                <li>找到三块碎片开启密室大门：
+                                    <ol>
+                                        <li>藏经阁废墟中的铜片</li>
+                                        <li>广智和尚身上的钥匙</li>
+                                        <li>钟楼顶部的机关零件</li>
+                                    </ol>
+                                </li>
+                                <li>避开机关陷阱：
+                                    <ul>
+                                        <li>地板机关：踩踏正确的砖块</li>
+                                        <li>墙壁机关：找出正确的拉杆顺序</li>
+                                        <li>天花板机关：注意躲避落石</li>
+                                    </ul>
+                                </li>
+                                <li>获取关键线索：起死回生真言</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </section>
+                <section>
+                    <h3>战斗提示</h3>
+                    <div class="tip-box">
+                        <p>广智和尚战斗要点：</p>
+                        <ul>
+                            <li>第一阶段：
+                                <ul>
+                                    <li>注意躲避火球攻击</li>
+                                    <li>可以利用柱子作为掩体</li>
+                                    <li>在他施法时进行反击</li>
+                                </ul>
+                            </li>
+                            <li>第二阶段：
+                                <ul>
+                                    <li>注意地面的火焰标记</li>
+                                    <li>在他施法时打断</li>
+                                    <li>可以使用水属性法术克制</li>
+                                </ul>
+                            </li>
+                            <li>最终阶段：
+                                <ul>
+                                    <li>利用柱子躲避范围技能</li>
+                                    <li>注意观察他的动作预判攻击</li>
+                                    <li>把握反击时机造成大量伤害</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+                <section>
+                    <h3>奖励详情</h3>
+                    <ul>
+                        <li>起死回生真言：
+                            <ul>
+                                <li>可用于复活NPC</li>
+                                <li>可召唤帮手参战</li>
+                                <li>特定剧情中的关键道具</li>
+                            </ul>
+                        </li>
+                        <li>观音禅院地图碎片：
+                            <ul>
+                                <li>解锁新区域</li>
+                                <li>获得额外探索点</li>
+                            </ul>
+                        </li>
+                        <li>黑风令牌：
+                            <ul>
+                                <li>可用于打开特定机关</li>
+                                <li>解锁新的支线任务</li>
+                            </ul>
+                        </li>
+                        <li>经验值：10000</li>
+                        <li>灵蕴：5000</li>
+                    </ul>
+                </section>
+            `,
+            'boss-guide': `
+                <h2>黑风大王BOSS战详细攻略</h2>
+                <section>
+                    <h3>战前准备</h3>
+                    <ul>
+                        <li>推荐等级：15级以上</li>
+                        <li>必备装备：
+                            <ul>
+                                <li>武器：金刚棒（+5强化）
+                                    <ul>
+                                        <li>增加攻击力</li>
+                                        <li>提高暴击率</li>
+                                    </ul>
+                                </li>
+                                <li>护具：避风铠（提高风属性抗性）
+                                    <ul>
+                                        <li>减少受到的风属性伤害</li>
+                                        <li>增加物理防御</li>
+                                    </ul>
+                                </li>
+                                <li>饰品：定风珠（减少被击退距离）
+                                    <ul>
+                                        <li>提高站姿稳定性</li>
+                                        <li>增加风属性抗性</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>消耗品：
+                            <ul>
+                                <li>大生命丹x10（恢复生命值）</li>
+                                <li>体力恢复丹x5（恢复体力值）</li>
+                                <li>解毒丹x3（解除毒素状态）</li>
+                                <li>金刚符x3（临时提高防御）</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>战斗阶段详解</h3>
+                    <div class="tip-box">
+                        <h4>第一阶段（地面战斗）</h4>
+                        <ul>
+                            <li>开场躲在柱子后方：
+                                <ul>
+                                    <li>等待黑风冲击结束</li>
+                                    <li>观察攻击模式</li>
+                                </ul>
+                            </li>
+                            <li>注意地面的黑风标记：
+                                <ul>
+                                    <li>会造成持续伤害</li>
+                                    <li>可以通过跳跃躲避</li>
+                                </ul>
+                            </li>
+                            <li>在他施法时快速靠近：
+                                <ul>
+                                    <li>利用短暂僵直时间</li>
+                                    <li>进行连续攻击</li>
+                                </ul>
+                            </li>
+                            <li>血量降至70%时进入第二阶段</li>
+                        </ul>
+                    </div>
+                    <div class="tip-box">
+                        <h4>第二阶段（屋顶对决）</h4>
+                        <ul>
+                            <li>注意平台会逐渐破碎：
+                                <ul>
+                                    <li>保持移动</li>
+                                    <li>注意脚下位置</li>
+                                </ul>
+                            </li>
+                            <li>当他高空俯冲时：
+                                <ul>
+                                    <li>等待最后一刻闪避</li>
+                                    <li>可以趁机反击</li>
+                                </ul>
+                            </li>
+                            <li>利用破碎的平台碎片：
+                                <ul>
+                                    <li>作为掩体</li>
+                                    <li>进行反击</li>
+                                </ul>
+                            </li>
+                            <li>血量降至30%时进入最终阶段</li>
+                        </ul>
+                    </div>
+                </section>
+                <section>
+                    <h3>特殊机制</h3>
+                    <ul>
+                        <li>黑风护盾：
+                            <ul>
+                                <li>每次被打破后有5秒无敌时间</li>
+                                <li>需要积累足够伤害才能打破</li>
+                            </ul>
+                        </li>
+                        <li>召唤小怪：
+                            <ul>
+                                <li>在血量低于50%时会召唤风妖</li>
+                                <li>可以选择处理或无视</li>
+                            </ul>
+                        </li>
+                        <li>狂暴状态：
+                            <ul>
+                                <li>血量低于20%时伤害提升50%</li>
+                                <li>攻击速度加快</li>
+                                <li>会使用新的技能组合</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </section>
+            `,
+            'side-quests': `
+                <h2>支线任务详细攻略</h2>
+                <section>
+                    <h3>【超度亡魂】任务</h3>
+                    <div class="tip-box">
+                        <h4>任务流程</h4>
+                        <ol>
+                            <li>收集僧人遗物
+                                <ul>
+                                    <li>禅房内的破损袈裟：
+                                        <ul>
+                                            <li>在东侧禅房</li>
+                                            <li>需要解开门锁</li>
+                                        </ul>
+                                    </li>
+                                    <li>藏经阁的木鱼：
+                                        <ul>
+                                            <li>在废墟深处</li>
+                                            <li>注意躲避落石</li>
+                                        </ul>
+                                    </li>
+                                    <li>钟楼下的念珠：
+                                        <ul>
+                                            <li>被妖怪把守</li>
+                                            <li>需要战斗获取</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>寻找超度咒文
+                                <ul>
+                                    <li>解开经书密码：
+                                        <ul>
+                                            <li>收集散落的经书页</li>
+                                            <li>按正确顺序排列</li>
+                                        </ul>
+                                    </li>
+                                    <li>找到隐藏的经文：
+                                        <ul>
+                                            <li>在暗格中</li>
+                                            <li>需要特定道具开启</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>超度地点：
+                                <ul>
+                                    <li>禅院大殿：
+                                        <ul>
+                                            <li>需要在特定时间</li>
+                                            <li>按正确顺序摆放遗物</li>
+                                        </ul>
+                                    </li>
+                                    <li>藏经阁废墟：
+                                        <ul>
+                                            <li>需要特定天气条件</li>
+                                            <li>完成特定仪式</li>
+                                        </ul>
+                                    </li>
+                                    <li>后山墓地：
+                                        <ul>
+                                            <li>需要在夜晚进行</li>
+                                            <li>击败守墓妖怪</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ol>
+                    </div>
+                </section>
+                <section>
+                    <h3>【寻找经书】任务</h3>
+                    <div class="tip-box">
+                        <h4>藏经阁机关解密</h4>
+                        <ul>
+                            <li>按正确顺序点亮四盏灯：
+                                <ul>
+                                    <li>东南角：青灯</li>
+                                    <li>西南角：红灯</li>
+                                    <li>西北角：白灯</li>
+                                    <li>东北角：黑灯</li>
+                                </ul>
+                            </li>
+                            <li>解开书架上的数字谜题：
+                                <ul>
+                                    <li>找到正确的数字组合</li>
+                                    <li>按照经书编号排列</li>
+                                </ul>
+                            </li>
+                            <li>找到隐藏在暗格中的钥匙：
+                                <ul>
+                                    <li>需要特定道具探测</li>
+                                    <li>解开机关打开暗格</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+                <section>
+                    <h3>【修复钟楼】任务</h3>
+                    <div class="tip-box">
+                        <h4>三口铜钟位置</h4>
+                        <ul>
+                            <li>山腰祠堂：
+                                <ul>
+                                    <li>需要解决机关</li>
+                                    <li>击败守卫妖怪</li>
+                                </ul>
+                            </li>
+                            <li>后山瀑布：
+                                <ul>
+                                    <li>需要潜水技能</li>
+                                    <li>注意水下机关</li>
+                                </ul>
+                            </li>
+                            <li>废弃矿洞：
+                                <ul>
+                                    <li>需要打败守卫</li>
+                                    <li>解开矿洞谜题</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+            `,
+            'secrets': `
+                <h2>隐藏要素完整攻略</h2>
+                <section>
+                    <h3>隐藏成就获取方法</h3>
+                    <div class="tip-box">
+                        <h4>【禅院逢友第九难】</h4>
+                        <ul>
+                            <li>在特定时间返回禅院：
+                                <ul>
+                                    <li>午夜时分</li>
+                                    <li>满月之夜</li>
+                                </ul>
+                            </li>
+                            <li>找到并对话特定NPC：
+                                <ul>
+                                    <li>需要携带特定道具</li>
+                                    <li>选择正确的对话选项</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="tip-box">
+                        <h4>【余韵远传第八难】</h4>
+                        <ul>
+                            <li>修复所有铜钟：
+                                <ul>
+                                    <li>收集所有零件</li>
+                                    <li>正确安装位置</li>
+                                </ul>
+                            </li>
+                            <li>按特定顺序敲响：
+                                <ul>
+                                    <li>根据音律提示</li>
+                                    <li>配合特定时间</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+                <section>
+                    <h3>隐藏装备获取</h3>
+                    <ul>
+                        <li>黑风铠甲：
+                            <ul>
+                                <li>完成所有支线任务</li>
+                                <li>在特定地点触发剧情</li>
+                                <li>击败守护BOSS</li>
+                            </ul>
+                        </li>
+                        <li>禅院令牌：
+                            <ul>
+                                <li>收集全部经书</li>
+                                <li>解开特殊谜题</li>
+                                <li>找到隐藏NPC</li>
+                            </ul>
+                        </li>
+                        <li>超度之证：
+                            <ul>
+                                <li>完成所有超度任务</li>
+                                <li>获得特殊祝福</li>
+                                <li>解锁新的能力</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </section>
+            `
+        };
+
+        // 创建弹出层
+        function createModal(content) {
+            const modal = document.createElement('div');
+            modal.className = 'modal';
+            modal.innerHTML = `
+                <div class="modal-content">
+                    <span class="close-button">&times;</span>
+                    ${content}
+                </div>
+            `;
+            document.body.appendChild(modal);
+
+            // 关闭按钮功能
+            const closeButton = modal.querySelector('.close-button');
+            closeButton.onclick = () => modal.style.display = 'none';
+
+            // 点击外部关闭
+            modal.onclick = (e) => {
+                if (e.target === modal) modal.style.display = 'none';
+            };
+
+            return modal;
+        }
+
+        // 为每个"阅读全文"链接添加点击事件
+        document.querySelectorAll('.guide-item a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const guideId = this.getAttribute('href').substring(1);
+                const content = modalTemplates[guideId];
+                if (content) {
+                    const modal = createModal(content);
+                    modal.style.display = 'block';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第一章·经典回顾 - 黑神话·悟空</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+    <style>
+        /* 基本样式 */
+        body {
+            font-family: 'Ma Shan Zheng', cursive;
+            margin: 0;
+            padding: 0;
+            background-color: #0a0a0a; /* 深色背景 */
+            color: #e0e0e0; /* 浅色文字 */
+            background-image: linear-gradient(to bottom, #000000, #1a1a1a);
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        header, main, footer {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            position: relative;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            text-align: center;
+            border-bottom: 1px solid #333;
+            padding: 30px 0;
+        }
+
+        .top-nav {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            color: #ff3333;
+            text-decoration: none;
+            padding: 8px 15px;
+            border: 1px solid #ff3333;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .back-button:hover {
+            background-color: #ff3333;
+            color: #000;
+            transform: translateX(-5px);
+        }
+
+        .back-button .arrow {
+            margin-right: 8px;
+            font-size: 1.2em;
+        }
+
+        h1 {
+            margin: 20px 0;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        /* 搜索框样式 */
+        #search-container {
+            max-width: 600px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        #search-input {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid #333;
+            border-radius: 5px;
+            color: #fff;
+            transition: all 0.3s ease;
+        }
+
+        #search-input:focus {
+            background-color: rgba(255, 255, 255, 0.15);
+            border-color: #ff3333;
+            outline: none;
+        }
+
+        /* 网格布局 */
+        .classics-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            padding: 20px 0;
+        }
+
+        .classic-item {
+            background-color: rgba(30, 30, 30, 0.9);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            border: 1px solid #333;
+        }
+
+        .classic-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(255, 51, 51, 0.2);
+            border-color: #ff3333;
+        }
+
+        .classic-item h3 {
+            color: #ff3333;
+            margin-bottom: 15px;
+            font-size: 1.4em;
+        }
+
+        .classic-item p {
+            color: #ccc;
+            line-height: 1.6;
+        }
+
+        .classic-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            border: 1px solid #333;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            color: #666;
+            border-top: 1px solid #333;
+            margin-top: 50px;
+        }
+
+         /* 加载更多按钮样式 */
+        .load-more {
+            display: block; /* 改为块级元素以便居中 */
+            margin: 20px auto; /* 自动左右边距以居中 */
+            padding: 12px 24px; /* 增加内边距 */
+            background-color: #ff3333; /* 按钮背景颜色 */
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            text-align: center;
+            font-size: 1.2em; /* 增加字体大小 */
+        }
+
+        .load-more:hover {
+            background-color: #c1121f; /* 悬停时的背景颜色 */
+        }
+
+        .load-more:active {
+            transform: scale(0.95); /* 点击时的缩放效果 */
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .classics-list {
+                grid-template-columns: 1fr;
+                padding: 10px;
+            }
+
+            header {
+                padding: 20px 10px;
+            }
+
+            .classic-item {
+                margin: 10px;
+            }
+        }
+        .fallback-fonts {
+            font-family: 'Ma Shan Zheng', 'KaiTi', 'STKaiti', cursive;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="top-nav">
+            <a href="../menu.html?chapter=1" class="back-button">
+                <span class="arrow">←</span> 返回首页
+            </a>
+        </nav>
+        <h1>经典回顾</h1>
+    </header>
+
+    <main>
+        <section id="classics-content">
+            <h2>《西游记》经典故事</h2>
+            <div class="classics-list">
+                <article class="classic-item">
+                    <h3>黑风山故事</h3>
+                    <img src="image/heifeng.jpg" alt="黑风山" loading="lazy">
+                    <div class="story-content">
+                        <h4>原著出处</h4>
+                        <ul>
+                            <li>第十六回：观音院僧谋宝贝 黑风山怪窃袈裟</li>
+                            <li>第十七回：孙行者大闹黑风山 观世音收服熊罴怪</li>
+                            <li>第二十六回：孙悟空三岛求方 观世音甘泉活树</li>
+                        </ul>
+                        <h4>故事梗概</h4>
+                        <p>唐僧师徒路过黑风山，在观音院借宿。黑风怪趁夜偷走袈裟，孙悟空追至黑风洞，与黑风怪展开激战。后来观世音菩萨出面，收服黑风怪为座下守山大神。这段故事展现了佛门中人的贪婪本性，也暗示了黑风怪与观音院之间的复杂关系。</p>
+                        <h4>影视对应</h4>
+                        <ul>
+                            <li>1986版《西游记》第9、10集：黑风山</li>
+                            <li>2011版《西游记》第5、6集：黑风洞</li>
+                        </ul>
+                    </div>
+                </article>
+
+                <article class="classic-item">
+                    <h3>观音院故事</h3>
+                    <img src="image/guanyin.jpg" alt="观音院" loading="lazy">
+                    <div class="story-content">
+                        <h4>原著出处</h4>
+                        <ul>
+                            <li>第十六回：观音院僧谋宝贝</li>
+                        </ul>
+                        <h4>故事梗概</h4>
+                        <p>观音院的和尚为贪图唐僧袈裟，暗中勾结黑风怪。这段故事展现了佛门中人的贪婪本性，也暗示了黑风怪与观音院之间的复杂���系。和尚们表面恭敬，实则暗藏祸心，最终导致了一系列事件的发生。</p>
+                        <h4>影视对应</h4>
+                        <ul>
+                            <li>1986版《西游记》第9集：观音院</li>
+                            <li>2011版《西游记》第5集：观音院</li>
+                        </ul>
+                    </div>
+                </article>
+
+                <article class="classic-item">
+                    <h3>起死回生</h3>
+                    <img src="image/qisi.png" alt="起死回生" loading="lazy">
+                    <div class="story-content">
+                        <h4>原著出处</h4>
+                        <ul>
+                            <li>第二十六回：孙悟空三岛求方 观世音甘泉活树</li>
+                        </ul>
+                        <h4>故事梗概</h4>
+                        <p>讲述了起死回生之法的来历，以及观世音菩萨如何用甘露水救活枯死的松树。这个故事展现了佛法的神奇力量，也暗示了生命的可贵。同时也体现了孙悟空为了救人不惜跋山涉水的精神。</p>
+                        <h4>影视对应</h4>
+                        <ul>
+                            <li>1986版《西游记》第13集：甘露水</li>
+                            <li>2011版《西游记》第8集：活树</li>
+                        </ul>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section id="references">
+            <h2>参考资料</h2>
+            <ul>
+                <li>《西游记》（人民文学出版社校注本）</li>
+                <li>1986版《西游记》电视剧</li>
+                <li>2011版《西游记》电视剧</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 黑神话·悟空官方平台. 保留所有权利。</p>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/intersection-observer@0.12.0/intersection-observer.min.js"></script>
+    
+    <script>
+        // 动态加载内容
+        function loadClassicContent(stories, append = false) {
+            const list = document.querySelector('.classics-list');
+            if (!append) {
+                list.innerHTML = ''; // 清空现有内容
+            }
+            stories.forEach(story => {
+                const item = document.createElement('div');
+                item.className = 'classic-item';
+                item.innerHTML = `
+                    <h3>${story.title}</h3>
+                    <img src="${story.image}" alt="${story.title}" loading="lazy">
+                    <p>${story.content}</p>
+                    <div class="details">${story.details}</div>
+                `;
+                list.appendChild(item);
+
+                // 添加点击展开详情的功能
+                item.addEventListener('click', function() {
+                    const details = this.querySelector('.details');
+                    details.style.display = details.style.display === 'none' ? 'block' : 'none';
+                });
+            });
+        }
+
+        // 初始加载
+        loadClassicContent(classicStories.slice(0, storiesPerPage));
+
+        // 搜索功能
+        const searchInput = document.getElementById('search-input');
+        searchInput.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            const filteredStories = classicStories.filter(story => 
+                story.title.toLowerCase().includes(searchTerm) || 
+                story.content.toLowerCase().includes(searchTerm)
+            );
+            loadClassicContent(filteredStories);
+            document.querySelector('.load-more').style.display = 'none';
+        });
+
+        // 加载更多功能
+        const loadMoreButton = document.querySelector('.load-more');
+        loadMoreButton.addEventListener('click', function() {
+            const start = currentPage * storiesPerPage;
+            const end = start + storiesPerPage;
+            const nextStories = classicStories.slice(start, end);
+            if (nextStories.length > 0) {
+                loadClassicContent(nextStories, true);
+                currentPage++;
+            }
+            if (end >= classicStories.length) {
+                this.style.display = 'none';
+            }
+        });
+
+        // 图片懒加载
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const image = entry.target;
+                        image.src = image.dataset.src;
+                        observer.unobserve(image);
+                    }
+                });
+            });
+
+            document.querySelectorAll('img[data-src]').forEach(img => {
+                imageObserver.observe(img);
+            });
+        } else {
+            // 如果浏览器不支持 IntersectionObserver，则直接加载所有图片
+            document.querySelectorAll('img[data-src]').forEach(img => {
+                img.src = img.dataset.src;
+            });
+        }
+    </script>
+</body>
+
+</html>
