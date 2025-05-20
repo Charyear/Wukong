@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大雄宝殿 - 佛教建筑瑰宝</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@400;700&display=swap');
+        
+        body {
+            font-family: 'Noto Serif SC', serif;
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            background-image: url('culture/bg.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            color: #ffffff;
+            min-height: 100vh;
+            line-height: 1.8;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+        }
+
+        .header {
+            text-align: center;
+            padding: 40px 0;
+            border-bottom: 2px solid rgba(255, 215, 0, 0.3);
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-family: 'Ma Shan Zheng', cursive;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .header .subtitle {
+            color: #ffd700;
+            font-size: 1.2em;
+            margin-top: 20px;
+        }
+
+        .section {
+            margin-bottom: 50px;
+            padding: 30px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+        }
+
+        .cultural-significance {
+            background-color: rgba(255, 215, 0, 0.1);
+            padding: 20px;
+            border-left: 4px solid #ffd700;
+            margin: 20px 0;
+        }
+
+        .image-container {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%; /* 16:9 比例 */
+            overflow: hidden;
+            border-radius: 8px;
+            border: 2px solid #ffd700;
+            margin-bottom: 20px;
+        }
+
+        .image-container img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            background-color: rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .image-container:hover img {
+            transform: translate(-50%, -50%) scale(1.05);
+        }
+
+        h2, h3 {
+            color: #ffd700;
+            font-family: 'Ma Shan Zheng', cursive;
+            margin: 30px 0 20px;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .feature-item {
+            background: rgba(255, 215, 0, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .quote {
+            font-style: italic;
+            color: #ffd700;
+            text-align: center;
+            margin: 30px 0;
+            font-size: 1.2em;
+            padding: 20px;
+            border-top: 1px solid rgba(255, 215, 0, 0.3);
+            border-bottom: 1px solid rgba(255, 215, 0, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>大雄宝殿</h1>
+            <div class="subtitle">
+                <p>佛法无边，庄严肃穆，中国佛教建筑艺术的巅峰之作</p>
+            </div>
+        </header>
+
+        <section class="section" id="introduction">
+            <h2>建筑寻源</h2>
+            <p>大雄宝殿是佛教寺院中的核心建筑，供奉佛祖释迦牟尼，"大雄"是佛的德号，象征着佛陀的大雄大力、降魔成道的无上威德。作为中国佛教建筑的精髓，它见证了佛教在中土的传播与发展。</p>
+            
+            <div class="cultural-significance">
+                <h3>名称寓意</h3>
+                <ul>
+                    <li>"大"：包含万有，象征佛法广大无边</li>
+                    <li>"雄"：慑伏群魔，展现佛陀威德</li>
+                    <li>"宝"：指佛、法、僧三宝，佛教的核心精髓</li>
+                    <li>"殿"：庄严道场，为修行者提供清净之所</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="section" id="historical-significance">
+            <h2>历史渊源</h2>
+            <p>大雄宝殿的建筑形制可追溯至东汉佛教传入中国之初。历经魏晋南北朝的本土化演变，至唐宋时期臻至完善。在游戏中，玩家将看到的是以唐代建筑风格为主的大雄宝殿，这一时期也正是中国佛教建筑的黄金时代。</p>
+            
+            <div class="cultural-significance">
+                <h3>建筑规制</h3>
+                <p>依据《营造法式》记载，大雄宝殿多为七间或五间，进深多为四椽或六椽。殿内设须弥座，上置三世佛或释迦牟尼佛像。游戏中还原了这一历史规制，让玩家能够身临其境地感受古代匠人的智慧。</p>
+            </div>
+        </section>
+
+        <section class="section" id="architectural-features">
+            <h2>建筑特色</h2>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <h3>空间布局</h3>
+                    <p>采用"金刚宝座塔式"布局，体现"天圆地方"的宇宙观。高台基、重檐歇山顶的设计，象征佛法至高无上。</p>
+                </div>
+                <div class="feature-item">
+                    <h3>装饰艺术</h3>
+                    <p>斗拱层叠、藻井华美，配以飞天伎乐、莲花图案等佛教题材装饰，展现"庄严佛土"的理念。</p>
+                </div>
+                <div class="feature-item">
+                    <h3>文化内涵</h3>
+                    <p>佛像布局遵循"前佛后祖"之制，两侧设十八罗汉，体现佛教等级制度与修行次第。</p>
+                </div>
+                <div class="feature-item">
+                    <h3>游戏演绎</h3>
+                    <p>在游戏中，玩家可通过第一视角感受大雄宝殿的庄严气势，体验传统佛教建筑的空间美学。</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="images">
+            <h2>建筑图鉴</h2>
+            <h3>游戏复原</h3>
+            <div class="image-container">
+                <img src="culture/大雄宝殿.jpg" alt="大雄宝殿游戏场景" title="游戏中还原的大雄宝殿">
+            </div>
+            
+            <h3>实景展示</h3>
+            <div class="image-container">
+                <img src="culture/大雄宝殿实景.jpg" alt="大雄宝殿实景" title="真实的大雄宝殿建筑">
+            </div>
+        </section>
+
+        <section class="section" id="cultural-value">
+            <h2>文化价值</h2>
+            <div class="quote">
+                <p>"一殿巍峨通三界，万年香火续千秋"</p>
+            </div>
+            <p>大雄宝殿是中国传统建筑艺术与佛教文化的完美结合。其建筑特征体现了"天人合一"的哲学思想，构件组合展现了中国古代工匠的智慧。在游戏中，我们不仅还原了建筑的物理形态，更重现了其蕴含的文化精神，让玩家在探索游戏的过程中，感受中国传统文化的深邃与魅力。</p>
+            
+            <div class="cultural-significance">
+                <h3>建筑寓意</h3>
+                <ul>
+                    <li>形制：象征佛教宇宙观中的须弥山</li>
+                    <li>布局：体现"中轴对称"的礼制思想</li>
+                    <li>装饰：融合佛教典故与中国传统纹样</li>
+                    <li>功能：作为寺院重心，承载修行与传法使命</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
+

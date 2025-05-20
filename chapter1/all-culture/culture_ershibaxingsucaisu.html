@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>二十八星宿彩塑 - 天文艺术瑰宝</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@400;700&display=swap');
+        
+        /* 复用基础样式 */
+        body {
+            font-family: 'Noto Serif SC', serif;
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            background-image: url('culture/bg.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            color: #ffffff;
+            min-height: 100vh;
+            line-height: 1.8;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+        }
+
+        /* 复用其他样式 */
+        .header {
+            text-align: center;
+            padding: 40px 0;
+            border-bottom: 2px solid rgba(255, 215, 0, 0.3);
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-family: 'Ma Shan Zheng', cursive;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        /* 添加星宿布局样式 */
+        .constellation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .constellation-item {
+            background: rgba(255, 215, 0, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .constellation-item:hover {
+            transform: translateY(-5px);
+        }
+
+        /* 图片展示优化 */
+        .image-container {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%;
+            overflow: hidden;
+            border-radius: 8px;
+            border: 2px solid #ffd700;
+            margin-bottom: 20px;
+        }
+
+        .image-container img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .image-container:hover img {
+            transform: translate(-50%, -50%) scale(1.05);
+        }
+
+        .cultural-significance {
+            background-color: rgba(255, 215, 0, 0.1);
+            padding: 20px;
+            border-left: 4px solid #ffd700;
+            margin: 20px 0;
+        }
+
+        .section {
+            margin-bottom: 50px;
+            padding: 30px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>二十八星宿彩塑</h1>
+            <div class="subtitle">
+                <p>天文与艺术的完美融合，古代天文智慧的立体呈现</p>
+            </div>
+        </header>
+
+        <section class="section" id="introduction">
+            <h2>文化渊源</h2>
+            <div class="cultural-significance">
+                <p>二十八星宿彩塑是中国古代天文学、宗教艺术与民间信仰的完美结合。它以立体彩塑的形式展现了中国古代独特的天文历法体系，体现了先民对宇宙规律的深刻认知。</p>
+                <h3>历史沿革</h3>
+                <ul>
+                    <li>起源：可追溯至春秋战国时期的天文观测</li>
+                    <li>发展：汉代确立完整的二十八宿体系</li>
+                    <li>成熟：唐宋时期与佛教艺术相融合</li>
+                    <li>传承：历代重修保护，延续至今</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="section" id="constellation-groups">
+            <h2>四象星宿</h2>
+            <div class="constellation-grid">
+                <div class="constellation-item">
+                    <h3>东方青龙七宿</h3>
+                    <p>角宿（轩辕）、亢宿（大辰）、氐宿（天根）、房宿（天驷）、心宿（天乙）、尾宿（天任）、箕宿（天玑）</p>
+                    <p class="game-feature">游戏中可观察东方星空，体验春季星象特点</p>
+                </div>
+                <div class="constellation-item">
+                    <h3>南方朱雀七宿</h3>
+                    <p>井宿（天井）、鬼宿（天社）、柳宿（天机）、星宿（天将）、张宿（天庙）、翼宿（天章）、轸宿（天衡）</p>
+                    <p class="game-feature">游戏中重现夏季星空，展现南方星宿特色</p>
+                </div>
+                <div class="constellation-item">
+                    <h3>西方白虎七宿</h3>
+                    <p>奎宿（天溷）、娄宿（天仓）、胃宿（天廪）、昴宿（天陈）、毕宿（天璇）、觜宿（天关）、参宿（天渊）</p>
+                    <p class="game-feature">游戏还原秋季星象，呈现西方星宿布局</p>
+                </div>
+                <div class="constellation-item">
+                    <h3>北方玄武七宿</h3>
+                    <p>斗宿（天籥）、牛宿（天牢）、女宿（天媒）、虚宿（天钩）、危宿（天虚）、室宿（天纪）、壁宿（天门）</p>
+                    <p class="game-feature">游戏模拟冬季星空，展示北方星宿特征</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="artistic-features">
+            <h2>艺术特色</h2>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <h3>造型艺术</h3>
+                    <p>采用泥塑彩绘工艺，人物形象生动传神，衣纹飘逸，体现了中国传统雕塑艺术的精髓。游戏中通过高精度3D建模还原了这些精美细节。</p>
+                </div>
+                <div class="feature-item">
+                    <h3>色彩艺术</h3>
+                    <p>运用传统矿物颜料，色彩绚丽持久，具有浓郁的民族特色。游戏中采用PBR材质还原了原有的色彩效果。</p>
+                </div>
+                <div class="feature-item">
+                    <h3>象征寓意</h3>
+                    <p>每尊彩塑都融入了星宿特征与神话传说，体现了中国古代天文学与神话的紧密联系。玩家可通过互动了解相关典故。</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="astronomical-significance">
+            <h2>天文价值</h2>
+            <div class="cultural-significance">
+                <h3>科学意义</h3>
+                <ul>
+                    <li>天文观测：反映古代精确的天象观测体系</li>
+                    <li>时令历法：指导农业生产和社会生活</li>
+                    <li>方位定位：建立了独特的空间定位系统</li>
+                    <li>节气划分：形成完整的二十四节气体系</li>
+                </ul>
+            </div>
+
+            <div class="cultural-significance">
+                <h3>历史演进与科学价值</h3>
+                <p>二十八星宿体系与农耕文明密不可分。我国阴历每月的日子与二十八宿相对应，因月亮绕地球一周约为二十八日，每日经过一区称为"宿"或"舍"。这种对应关系体现了古人对天文规律的深刻认知。</p>
+                
+                <div class="image-container">
+                    <img src="culture/中外星宫图.png" alt="传统星宫图" title="传统二十八星宿分布图">
+                </div>
+                <p class="image-description">中外星宫图展示了二十八星宿的分布及其与四象的关系</p>
+
+                <p>到明朝时期，徐光启通过与利玛窦的交流，参考欧洲天文学，增补了23个近南极星区的星官，实现了东西方天文学知识的首次重要融合。这一历史性突破展现了中国古代天文学家的开放胸襟与科学精神。</p>
+
+                <div class="image-container">
+                    <img src="culture/星图.png" alt="现代星宫对照图" title="二十八星宿与现代星座对照图">
+                </div>
+                <p class="image-description">现代天文图展示了二十八星宿与西方星座的对应关系</p>
+
+                <h3>现代天文学视角</h3>
+                <p>从现代天文学角度来看，二十八星宿是一套科学的天体观测系统：</p>
+                <ul>
+                    <li>坐标体系：可按赤道、黄道或地平坐标计算</li>
+                    <li>星官划分：由实际恒星组合而成</li>
+                    <li>定位方法：每宿设有距星作为计算起点</li>
+                    <li>精确测量：通过入宿度和去极度进行定位</li>
+                </ul>
+                
+                <p>这表明二十八星宿已超越了简单的星座概念，发展成为了一套完整的天体位置测量框架。在游戏中，玩家可以通过交互式星图，亲身体验这套古老而精确的天文计算系统。</p>
+            </div>
+        </section>
+
+        <section class="section" id="images">
+            <h2>视觉图鉴</h2>
+            <h3>游戏复原</h3>
+            <div class="image-container">
+                <img src="culture/二十八.png" alt="二十八星宿彩塑游戏场景" title="游戏中还原的二十八星宿彩塑">
+            </div>
+            
+            <h3>实物珍藏</h3>
+            <div class="image-container">
+                <img src="culture/二十八星宿彩塑实景.jpg" alt="二十八星宿彩塑实景" title="实物中的二十八星宿彩塑">
+            </div>
+        </section>
+
+        <section class="section" id="cultural-value">
+            <h2>文化价值</h2>
+            <div class="quote">
+                <p>"星宿列天垂象，彩塑传承文明"</p>
+            </div>
+            <div class="cultural-significance">
+                <h3>游戏演绎特色</h3>
+                <ul>
+                    <li>天象模拟：还原古代星空，展现二十八宿运行规律</li>
+                    <li>艺术重现：精确复原彩塑造型与色彩</li>
+                    <li>文化解读：提供详实的天文知识与神话传说</li>
+                    <li>互动体验：设计星宿寻访、天象观测等玩法</li>
+                    <li>科学探索：通过互动演示理解古代天文测量方法</li>
+                    <li>历史变迁：展现中西天文学交流融合的历史进程</li>
+                </ul>
+                <p>在游戏中，我们不仅完整还原了二十八星宿彩塑的艺术形态，更通过现代技术手段展现了中国古代天文学的智慧结晶，让玩家在探索游戏的过程中感受传统文化的魅力与科学价值。</p>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
+

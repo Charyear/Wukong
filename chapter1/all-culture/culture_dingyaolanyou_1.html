@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>定窑蓝釉 - 陶瓷艺术瑰宝</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@400;700&display=swap');
+        
+        /* 复用基础样式 */
+        body {
+            font-family: 'Noto Serif SC', serif;
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            background-image: url('culture/bg.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            color: #ffffff;
+            min-height: 100vh;
+            line-height: 1.8;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+        }
+
+        /* 复用其他样式 */
+        .header {
+            text-align: center;
+            padding: 40px 0;
+            border-bottom: 2px solid rgba(255, 215, 0, 0.3);
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-family: 'Ma Shan Zheng', cursive;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        /* 其他样式保持一致 */
+        .section {
+            margin-bottom: 50px;
+            padding: 30px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+        }
+
+        .image-container {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%;
+            overflow: hidden;
+            border-radius: 8px;
+            border: 2px solid #ffd700;
+            margin-bottom: 20px;
+        }
+
+        .image-container img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background-color: rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .image-container:hover img {
+            transform: translate(-50%, -50%) scale(1.05);
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .feature-item {
+            background: rgba(255, 215, 0, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .historical-note {
+            background-color: rgba(255, 215, 0, 0.1);
+            padding: 20px;
+            border-left: 4px solid #ffd700;
+            margin: 20px 0;
+        }
+
+        h2, h3 {
+            color: #ffd700;
+            font-family: 'Ma Shan Zheng', cursive;
+            margin: 30px 0 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>定窑蓝釉</h1>
+            <div class="subtitle">
+                <p>千年窑火，传承匠心，演绎中华陶瓷艺术之美</p>
+            </div>
+        </header>
+
+        <section class="section" id="introduction">
+            <h2>历史渊源</h2>
+            <div class="historical-note">
+                <p>定窑历史可追溯至唐代，北宋时期达到鼎盛，成为中国古代五大名瓷之一。以烧造白瓷为主，也兼有绿瓷、褐瓷、黑瓷等。</p>
+            </div>
+        </section>
+
+        <section class="section" id="features">
+            <h2>工艺特色</h2>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <h3>釉色特点</h3>
+                    <p>蓝釉瓷器色泽纯净，釉面莹润，展现独特的艺术魅力。</p>
+                </div>
+                <div class="feature-item">
+                    <h3>烧制工艺</h3>
+                    <p>采用高温烧制技术，釉层细腻均匀，胎体坚实。</p>
+                </div>
+                <div class="feature-item">
+                    <h3>艺术价值</h3>
+                    <p>融合传统与创新，体现了古代工匠的智慧与匠心。</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="research">
+            <h2>考古研究</h2>
+            <div class="historical-note">
+                <p>蓝釉定瓷在已发掘的定窑老窑址中未有明确碎片证据，其真实性和定窑的归属存在争议。这种争议本身反映了古代陶瓷工艺的复杂性和研究的深度。</p>
+            </div>
+        </section>
+
+        <section class="section" id="images">
+            <h2>视觉图鉴</h2>
+            <h3>游戏复原</h3>
+            <div class="image-container">
+                <img src="culture/定窑蓝釉游戏.png" alt="定窑蓝釉游戏场景" title="游戏中还原的定窑蓝釉器物">
+            </div>
+            
+            <h3>实物珍藏</h3>
+            <div class="image-container">
+                <img src="culture/定窑蓝釉实物.jpg" alt="定窑蓝釉实物" title="博物馆收藏的定窑蓝釉器物">
+            </div>
+        </section>
+
+        <section class="section" id="cultural-value">
+            <h2>文化价值</h2>
+            <p>定窑蓝釉的探讨不仅是对古代瓷器艺术的深入了解，更是对古代工匠智慧的致敬。在游戏中重现这一文物，让玩家能够：</p>
+            <ul>
+                <li>了解中国古代陶瓷工艺的发展历程</li>
+                <li>感受传统文化的魅力与内涵</li>
+                <li>体会古代工匠的匠心精神</li>
+                <li>探索历史研究的乐趣与挑战</li>
+            </ul>
+        </section>
+    </div>
+</body>
+</html>
+

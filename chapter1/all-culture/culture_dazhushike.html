@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大足石刻 - 佛教艺术瑰宝</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@400;700&display=swap');
+        
+        /* 复用之前的基础样式 */
+        body {
+            font-family: 'Noto Serif SC', serif;
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            background-image: url('culture/bg.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            color: #ffffff;
+            min-height: 100vh;
+            line-height: 1.8;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+        }
+
+        /* 其他样式保持与之前相同 */
+        .header {
+            text-align: center;
+            padding: 40px 0;
+            border-bottom: 2px solid rgba(255, 215, 0, 0.3);
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-family: 'Ma Shan Zheng', cursive;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        /* 添加时间轴样式 */
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .timeline-item {
+            padding: 20px;
+            margin: 20px 0;
+            background: rgba(255, 215, 0, 0.1);
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -10px;
+            top: 50%;
+            width: 20px;
+            height: 20px;
+            background: #ffd700;
+            border-radius: 50%;
+            transform: translateY(-50%);
+        }
+
+        /* 图片展示优化 */
+        .image-container {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%;
+            overflow: hidden;
+            border-radius: 8px;
+            border: 2px solid #ffd700;
+            margin-bottom: 20px;
+        }
+
+        .image-container img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .image-container:hover img {
+            transform: translate(-50%, -50%) scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>大足石刻</h1>
+            <div class="subtitle">
+                <p>佛道儒三教合璧，中国石窟艺术的集大成者</p>
+            </div>
+        </header>
+
+        <section class="section" id="introduction">
+            <h2>艺术瑰宝</h2>
+            <div class="cultural-significance">
+                <p>大足石刻是中国晚期石窟艺术的巅峰之作，以其"三教合一"的思想内涵、精湛的艺术技法和丰富的民俗题材闻名于世。作为世界文化遗产，它不仅展现了中国石窟艺术的最高成就，更记录了宋代巴蜀地区的社会生活百态。</p>
+                <h3>艺术特征</h3>
+                <ul>
+                    <li>造像风格：融合唐宋艺术特色，形成独特的"大足样式"</li>
+                    <li>题材内容：佛教、道教、儒家思想兼容并蓄</li>
+                    <li>技艺特点：圆雕、浮雕、线刻等多种技法并用</li>
+                    <li>保存状况：保存完整，彩绘艳丽依旧</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="section" id="historical-timeline">
+            <h2>历史沿革</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h3>唐末创始期（892年）</h3>
+                    <p>始凿于唐末五代，由僧人赵智凯开创，确立了大足石刻的基本风格。游戏中玩家可探访最早期的造像群，感受其朴拙古朴的艺术风格。</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>五代发展期（907-960年）</h3>
+                    <p>石刻艺术逐渐成熟，形成独特的艺术特色。游戏还原了这一时期的精品造像，展现艺术风格的演变过程。</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>两宋鼎盛期（960-1279年）</h3>
+                    <p>迎来艺术创作高峰，完成了宝顶山、北山等主要造像群。玩家可在游戏中欣赏到这一时期最具代表性的作品。</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>明清延续期</h3>
+                    <p>持续补刻修复，艺术传统得以延续。游戏中可见不同时期的修复痕迹，体现文物保护的历史。</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="artistic-features">
+            <h2>艺术特色</h2>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <h3>造像艺术</h3>
+                    <p>精工细琢的雕刻技艺，生动传神的造型表现，游戏中通过高精度3D建模完美还原了石刻的精妙细节。</p>
+                </div>
+                <div class="feature-item">
+                    <h3>思想内涵</h3>
+                    <p>三教合一的文化特色，现实主义的艺术表现，玩家可以在游戏中了解不同宗教题材的深层寓意。</p>
+                </div>
+                <div class="feature-item">
+                    <h3>民俗场景</h3>
+                    <p>丰富的世俗生活题材，真实反映宋代社会面貌，游戏中可近距离观察古代生活场景的细节。</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="masterpieces">
+            <h2>代表作品</h2>
+            <div class="natural-beauty">
+                <h3>精品赏析</h3>
+                <ul>
+                    <li>千手观音：技艺精湛，体现大足石刻的最高水平</li>
+                    <li>释迦说法图：构图宏大，展现佛教艺术的庄严</li>
+                    <li>父母恩重经变相：题材感人，反映儒家孝道思想</li>
+                    <li>太子思维图：刻画细腻，展现世俗人文关怀</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="section" id="images">
+            <h2>视觉图鉴</h2>
+            <h3>游戏复原</h3>
+            <div class="image-container">
+                <img src="culture/大足石刻.jpg" alt="大足石刻游戏场景" title="游戏中精心还原的大足石刻">
+            </div>
+            
+            <h3>实物珍藏</h3>
+            <div class="image-container">
+                <img src="culture/大足石刻实景.jpg" alt="大足石刻实景" title="实景中的大足石刻">
+            </div>
+        </section>
+
+        <section class="section" id="cultural-value">
+            <h2>文化价值</h2>
+            <div class="quote">
+                <p>"石雕千年，传承文明，见证华夏艺术的永恒魅力"</p>
+            </div>
+            <div class="natural-beauty">
+                <h3>游戏演绎特色</h3>
+                <ul>
+                    <li>细节还原：运用高精度3D扫描技术，完美重现石刻细节</li>
+                    <li>互动体验：设计丰富的互动内容，让玩家深入了解石刻艺术</li>
+                    <li>文化解读：配备专业的文物知识讲解，加深文化理解</li>
+                    <li>艺术探索：提供多角度观察视角，感受艺术创作之美</li>
+                </ul>
+                <p>通过游戏这一现代载体，我们不仅完整保存了大足石刻的艺术形态，更让玩家能够身临其境地感受中国传统艺术的独特魅力，实现了文化遗产的活态传承。</p>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
+

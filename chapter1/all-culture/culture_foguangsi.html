@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>山西省五台山佛光寺 - 佛教圣地</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@400;700&display=swap');
+        
+        /* 复用基础样式 */
+        body {
+            font-family: 'Noto Serif SC', serif;
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            background-image: url('culture/bg.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            color: #ffffff;
+            min-height: 100vh;
+            line-height: 1.8;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+        }
+
+        /* 复用其他样式 */
+        .header {
+            text-align: center;
+            padding: 40px 0;
+            border-bottom: 2px solid rgba(255, 215, 0, 0.3);
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-family: 'Ma Shan Zheng', cursive;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        /* 添加时间轴样式 */
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .timeline-item {
+            padding: 20px;
+            margin: 20px 0;
+            background: rgba(255, 215, 0, 0.1);
+            border-radius: 8px;
+            position: relative;
+        }
+
+        /* 其他样式保持一致 */
+        .section {
+            margin-bottom: 50px;
+            padding: 30px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .feature-item {
+            background: rgba(255, 215, 0, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .image-container {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%;
+            overflow: hidden;
+            border-radius: 8px;
+            border: 2px solid #ffd700;
+            margin-bottom: 20px;
+        }
+
+        .image-container img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .image-container:hover img {
+            transform: translate(-50%, -50%) scale(1.05);
+        }
+
+        .cultural-significance {
+            background-color: rgba(255, 215, 0, 0.1);
+            padding: 20px;
+            border-left: 4px solid #ffd700;
+            margin: 20px 0;
+        }
+
+        h2, h3 {
+            color: #ffd700;
+            font-family: 'Ma Shan Zheng', cursive;
+            margin: 30px 0 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>山西省五台山佛光寺</h1>
+            <div class="subtitle">
+                <p>千年古刹，佛法圣地，中国佛教建筑艺术的典范</p>
+            </div>
+        </header>
+
+        <section class="section" id="historical-timeline">
+            <h2>历史沿革</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h3>唐代创建</h3>
+                    <p>佛光寺始建于唐代，五台山已成为中国佛教重要中心。</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>宋代发展</h3>
+                    <p>佛教文化进一步繁荣，寺院规模不断扩大。</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>元代传承</h3>
+                    <p>获得皇室支持，成为重要佛教活动场所。</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>明清兴盛</h3>
+                    <p>多次重修扩建，佛教活动日益繁荣。</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="architectural-features">
+            <h2>建筑特色</h2>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <h3>建筑布局</h3>
+                    <p>依山而建，错落有致，展现独特的寺院建筑艺术。</p>
+                </div>
+                <div class="feature-item">
+                    <h3>艺术价值</h3>
+                    <p>建筑、雕塑、壁画融为一体，反映佛教艺术精华。</p>
+                </div>
+                <div class="feature-item">
+                    <h3>文化内涵</h3>
+                    <p>佛光寺名源于文殊菩萨显灵，具有深厚的文化底蕴。</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="images">
+            <h2>视觉图鉴</h2>
+            <h3>游戏复原</h3>
+            <div class="image-container">
+                <img src="culture/佛光寺.jpg" alt="佛光寺游戏场景" title="游戏中还原的佛光寺">
+            </div>
+            
+            <h3>实景展示</h3>
+            <div class="image-container">
+                <img src="culture/山西省五台山佛光寺实景.png" alt="佛光寺实景" title="实景中的佛光寺">
+            </div>
+        </section>
+
+        <section class="section" id="cultural-value">
+            <h2>文化价值</h2>
+            <div class="cultural-significance">
+                <p>佛光寺作为五台山重要的佛教圣地，不仅是研究中国佛教历史和文化的重要场所，更是：</p>
+                <ul>
+                    <li>中国佛教建筑艺术的典范</li>
+                    <li>佛教文化传承的重要载体</li>
+                    <li>世界文化遗产的重要组成部分</li>
+                    <li>游戏中展现中国传统文化的窗口</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
+
