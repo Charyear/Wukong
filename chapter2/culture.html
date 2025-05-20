@@ -18,7 +18,15 @@
             background-image: linear-gradient(to bottom, #000000, #1a1a1a);
             animation: fadeIn 0.5s ease-in;
         }
-
+        .copyright {
+            position: fixed;
+            bottom: 20px;
+            width: 100%;
+            text-align: center;
+            color: #666;
+            font-size: 12px;
+            font-family: 'Gill Sans MT', sans-serif;
+        }
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
@@ -211,7 +219,9 @@
         </nav>
         <h1>文化探索</h1>
     </header>
-
+    <div class="copyright">
+        ✎©2003-2024 https://charyear.github.io/Wukong 悟空之境·版权所有☯
+    </div>
     <main>
         <div id="search-container">
             <input type="text" id="search-input" placeholder="搜索文化元素...">
