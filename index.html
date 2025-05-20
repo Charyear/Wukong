@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>黑神话·悟空 - 直面天命</title>
     <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+    <link rel="preload" href="image/Cursor.svg" as="image">
+    <link rel="preload" href="file/menu_ima/FZSTK.TTF" as="font" type="font/ttf" crossorigin>
+    <script src="JS/static.js"></script> <!-- 引入 static.js -->
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap');
         @font-face {
@@ -119,6 +122,15 @@
             align-items: center;
             height: 100%;
         }
+        .copyright {
+            position: fixed;
+            bottom: 20px;
+            width: 100%;
+            text-align: center;
+            color: #666;
+            font-size: 12px;
+            font-family: 'Gill Sans MT', sans-serif;
+        }
         h2 {
             font-family: 'Ma Shan Zheng', cursive;
             font-size: 2em;
@@ -190,7 +202,6 @@
         #ch5:hover h2 { color: #FFA07A; }
         #ch6:hover h2 { color: #E0FFFF; }
     </style>
-    <link rel="preload" href="file/menu_ima/FZSTK.TTF" as="font" type="font/ttf" crossorigin>
 </head>
 <body>
     <div class="decorative-element"></div>
@@ -232,7 +243,10 @@
             <p>故事未完，征程继续</p>
         </div>
     </div>
-
-    <script src="JS/index.js"></script>
+    <div class="copyright">
+        ✎©2003-2024 https://charyear.github.io/Wukong 悟空之境·版权所有☯
+    </div>
+    <script src="JS/index.js" defer></script>
+    <script src="JS/static.js" defer></script>
 </body>
 </html>

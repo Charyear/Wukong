@@ -3,11 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>欢迎来到悟空世界</title>
-    <!-- 引入谷歌字体 -->
+    <title>悟空✯之境</title>
     <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+    <link rel="preload" href="image/logo-zh.png" as="image">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <style>
         body {
+            font-family: 'Ma Shan Zheng', cursive;
             cursor: url('image/Cursor.svg'), auto;
             margin: 0;
             padding: 0;
@@ -111,6 +114,7 @@
             text-align: center;
             color: #666;
             font-size: 12px;
+            font-family: 'Gill Sans MT', sans-serif;
         }
 
         .music-icon {
@@ -142,13 +146,14 @@
         }
 
         .nav-links a {
-            color: #ff0000;
+            color: #ffffff;
             text-decoration: none;
             margin: 0 10px;
             font-size: 14px;
         }
 
         .nav-links a:hover {
+            color: #ff0000;
             text-decoration: underline;
         }
 
@@ -157,7 +162,49 @@
             color: inherit;
             display: block;
         }
+
+        /* Modal styles */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.8); /* Darker background for better contrast */
+        }
+
+        .modal-content {
+            background-color: #1c1c1c; /* Dark background for a more thematic look */
+            margin: 10% auto;
+            padding: 20px;
+            border: 1px solid #444; /* Darker border for subtle contrast */
+            width: 60%; /* Changed from 80% to 60% for a narrower modal */
+            color: #fff; /* White text for better readability */
+            font-family: 'MV Boli', sans-serif;
+            text-align: center; /* Center text */
+            border-radius: 10px; /* Rounded corners */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7); /* Darker shadow for depth */
+        }
+
+        .close-button {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close-button:hover,
+        .close-button:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
     </style>
+    <!-- 引入不蒜子计数 -->
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 </head>
 <body>
     <video id="bg-video" poster="image/img_bg_title.png" loop muted autoplay playsinline>
@@ -193,17 +240,58 @@
     </div>
 
     <div class="nav-links">
-        <a href="index.html">关于本站</a> |
-        <a href="#">网站招聘</a> |
-        <a href="#">联系我们</a> |
+        <a href="#" id="recruitment-link">网站招聘</a> |
+        <a href="#" id="contact-link">联系我们</a> |
+        <a href="#" id="about-link">·自定义设计·</a> |
         <a href="https://wiki.biligame.com/wukong/%E9%A6%96%E9%A1%B5">玩家投稿</a> |
         <a href="https://www.heishenhua.com">友情链接</a>
     </div>
 
-    <div class="copyright">
-        Copyfrom©2003-2024 https://www.heishenhua.com. 黑马喽 版权所有
+    <div class="copyright" onclick="openAdminPage()">
+        ✎©2003-2024 https://charyear.github.io/Wukong 悟空之境·版权所有☯
     </div>
 
-    <script src="JS/menu.js"></script>
+    <!-- Modal for theme customization -->
+    <div id="team-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button_2">&times;</span>
+            <h2>Team information</h2>
+            <p>Shen Mingbo: Development document writing and data collection</p>
+            <p>Yan Huanpin: Develop PPT preparation and presentation</p>
+            <p>Wan Weichao: Make PPT and collect data</p>
+            <p>Zhang Ruibin: Web design and content</p>
+            <p>Xia Yue: Web design and production</p>
+            <p>Email:a3511341161@163.com</p>
+        </div>
+    </div>
+    <div id="theme-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>自定义主题颜色</h2>
+            <label for="bg-color">选择背景颜色:</label>
+            <input type="color" id="bg-color" name="bg-color" value="#1c1c1c">
+            <button id="apply-color">应用颜色</button>
+            <br><br>
+            <label for="video-upload">替换背景视频:</label>
+            <input type="file" id="video-upload" accept="video/mp4">
+            <button id="apply-video">应用视频</button>
+        </div>
+    </div>
+    <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+    <script src="JS/menu.js" defer></script>
+    <script>
+        function openAdminPage() {
+            const password = prompt("请输入管理员账号:");
+            const site_pv = document.getElementById('busuanzi_value_site_pv').innerText;
+            console.log('即将打开的URL：', "admin.html?pv=" + encodeURIComponent(site_pv));
+            if (password === "admin") {
+                
+                const adminUrl = "admin.html?pv=" + encodeURIComponent(site_pv);
+                window.open("admin.html?pv=100", "_blank"); // 使用 adminUrl 而不是 "admin.html"
+            } else {
+                alert("密码错误，无法进入管理员界面。");
+            }
+        }
+    </script>
 </body>
 </html>
