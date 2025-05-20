@@ -1,22 +1,34 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
+<html lang="zh-CN"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>第一章·文化探索 - 黑神话·悟空</title>
+    <title>文化探索 - 黑神话·悟空</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link rel="icon" href="image/music_icon.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&amp;display=swap" rel="stylesheet">
     <style>
         /* 基本样式 */
         body {
             font-family: 'Ma Shan Zheng', cursive;
             margin: 0;
             padding: 0;
-            background-color: #0a0a0a; /* 深色背景 */
-            color: #e0e0e0; /* 浅色文字 */
-            background-image: linear-gradient(to bottom, #000000, #1a1a1a);
-            animation: fadeIn 0.5s ease-in;
+            background-color: #000;
+            background-image: url('image/bg.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            color: #f0e68c;
+            min-height: 100vh;
+        }
+        .copyright {
+            position: fixed;
+            bottom: 20px;
+            width: 100%;
+            text-align: center;
+            color: #666;
+            font-size: 12px;
+            font-family: 'Gill Sans MT', sans-serif;
         }
 
         @keyframes fadeIn {
@@ -32,11 +44,10 @@
 
         header {
             position: relative;
-            background-color: rgba(0, 0, 0, 0.8);
             color: #fff;
             text-align: center;
-            border-bottom: 1px solid #333;
             padding: 30px 0;
+            background: none;
         }
 
         .top-nav {
@@ -88,8 +99,12 @@
             background-color: rgba(255, 255, 255, 0.1);
             border: 1px solid #333;
             border-radius: 5px;
-            color: #fff;
+            color: #f0e68c;
             transition: all 0.3s ease;
+        }
+
+        #search-input::placeholder {
+            color: #ddd;
         }
 
         #search-input:focus {
@@ -102,34 +117,36 @@
         .culture-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            padding: 20px 0;
+            gap: 30px;
+            padding: 20px;
         }
 
         .culture-item {
-            background-color: rgba(30, 30, 30, 0.9);
+            background-color: rgba(30, 30, 30, 0.85);
             border-radius: 10px;
             padding: 20px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.6);
             transition: all 0.3s ease;
-            border: 1px solid #333;
+            border: 1px solid #444;
         }
 
         .culture-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(255, 51, 51, 0.2);
-            border-color: #ff3333;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(255, 51, 51, 0.3);
+            border-color: #ff4444;
         }
 
         .culture-item h3 {
-            color: #ff3333;
-            margin-bottom: 15px;
-            font-size: 1.4em;
+            color: #ffcc00;
+            margin-bottom: 10px;
+            font-size: 1.6em;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
         }
 
         .culture-item p {
-            color: #ccc;
-            line-height: 1.6;
+            color: #ddd;
+            line-height: 1.5;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
         }
 
         .culture-item img {
@@ -145,14 +162,6 @@
             text-decoration: none;
             color: inherit;
             display: block;
-        }
-
-        footer {
-            text-align: center;
-            padding: 30px 0;
-            color: #666;
-            border-top: 1px solid #333;
-            margin-top: 50px;
         }
 
         /* 响应式设计 */
@@ -188,15 +197,6 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #ff4444;
         }
-
-        /* 优化标题样式 */
-        #culture-content h2 {
-            text-align: center;
-            color: #ff3333;
-            font-size: 1.8em;
-            margin: 40px 0;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
-        }
         .fallback-fonts {
             font-family: 'Ma Shan Zheng', 'KaiTi', 'STKaiti', cursive;
         }
@@ -209,25 +209,200 @@
                 <span class="arrow">←</span> 返回首页
             </a>
         </nav>
-        <h1>文化探索</h1>
+        <h1>中国传统文化探索</h1>
     </header>
-
+    <div class="copyright">
+        ✎©2003-2024 https://charyear.github.io/Wukong 悟空之境·版权所有☯
+    </div>
     <main>
         <div id="search-container">
             <input type="text" id="search-input" placeholder="搜索文化元素...">
         </div>
 
         <section id="culture-content">
-            <h2>中国传统文化元素</h2>
-            <div class="culture-grid">
-                <!-- 文化元素将通过JavaScript动态加载 -->
-            </div>
+            <div class="culture-grid"><div class="culture-item">
+                    <a href="../chapter1/all-culture/daoism.html" target="_blank">
+                        <h3>道教文化</h3>
+                        <img src="../chapter1/all-culture/culture/daoism.png" alt="道教文化">
+                        <p>游戏中融入了大量道教元素，如八卦、符咒等。</p>
+                    </a>
+                </div><div class="culture-item">
+                    <a href="../chapter1/all-culture/buddhism.html" target="_blank">
+                        <h3>佛教影响</h3>
+                        <img src="../chapter1/all-culture/culture/buddhism.png" alt="佛教影响">
+                        <p>佛教思想贯穷游戏，体现在人物设定和剧情中。</p>
+                    </a>
+                </div><div class="culture-item">
+                    <a href="../chapter1/all-culture/mythology.html" target="_blank">
+                        <h3>中国神话</h3>
+                        <img src="../chapter1/all-culture/culture/mythology.png" alt="中国神话">
+                        <p>游戏世界观基于中国古代神话体系，包括各种神仙和妖怪。</p>
+                    </a>
+                </div><div class="culture-item">
+                    <a href="../chapter1/all-culture/architecture.html" target="_blank">
+                        <h3>古代建筑</h3>
+                        <img src="../chapter1/all-culture/culture/architecture.png" alt="古代建筑">
+                        <p>场景设计融入了中国古代建筑风格，如宫殿、寺庙等。</p>
+                    </a>
+                </div><div class="culture-item">
+                    <a href="../chapter1/all-culture/culture_boshanlu_1.html" target="_blank">
+                        <h3>西汉铜鎏金人物博山炉</h3>
+                        <img src="../chapter1/all-culture/culture/233px-考据-博山炉-故宫博物馆.jpg" alt="西汉铜鎏金人物博山炉">
+                        <p>博山炉是中国古代的一香炉，其造型独特，常被用于祭祀和装饰。</p>
+                    </a>
+                </div><div class="culture-item">
+                    <a href="../chapter1/all-culture/culture_daxiongbaodian.html" target="_blank">
+                        <h3>大雄宝殿</h3>
+                        <img src="../chapter1/all-culture/culture/大雄宝殿实景.jpg" alt="大雄宝殿">
+                        <p>大雄宝殿是佛教寺院中的核心建筑，也是寺院的中心所在。它供奉的是佛祖释迦牟尼，释迦牟尼的德号叫“大雄”，因此得名大雄宝殿。</p>
+                    </a>
+                </div><div class="culture-item">
+                    <a href="../chapter1/all-culture/culture_ershibaxingsucaisu.html" target="_blank">
+                        <h3>二十八星宿彩塑</h3>
+                        <img src="../chapter1/all-culture/culture/二十八星宿彩塑实景.jpg" alt="二十八星宿彩塑">
+                        <p>二十八星宿彩塑，作为中国古代雕塑艺术中的瑰宝，以其精湛的工艺、丰富的文化内涵以及独特的艺术魅力，成为了研究中国古代天文学、宗教信仰、艺术风格以及民俗文化的重要实物资料。</p>
+                    </a>
+                </div><div class="culture-item">
+                    <a href="../chapter1/all-culture/culture_longshoudaigou_1.html" target="_blank">
+                        <h3>龙首带钩</h3>
+                        <img src="../chapter1/all-culture/culture/错金银嵌松石龙首带钩实物.jpg" alt="龙首带钩">
+                        <p>带钩，是古代贵族和文人武士所系腰带的挂钩，古又称“犀比”。最初为北方草原民族使用，春秋时期传入中原，在战国中晚期已相当普遍,出土及传世皆很多, 多用青铜铸造，也有用黄金、白银、铁、玉等制成。带钩是身份的象征，带钩所用的材质、制作精细程度、造型纹饰以及大小都是判断带钩价值的标准。春秋战国时期已有金银镶嵌工艺。</p>
+                    </a>
+                </div><div class="culture-item">
+                    <a href="../chapter1/all-culture/culture_guangwushan.html" target="_blank">
+                        <h3>光雾山</h3>
+                        <img src="../chapter1/all-culture/culture/光雾山实景.jpg" alt="光雾山">
+                        <p>光雾山位于中国四川省巴中市南江县境内，是集自然风光、人文景观与历史文化于一体的综合性旅游景区。</p>
+                    </a>
+                </div><div class="culture-item">
+                    <a href="../chapter1/all-culture/culture_foguangsi.html" target="_blank">
+                        <h3>山西省五台山佛光寺</h3>
+                        <img src="../chapter1/all-culture/culture/山西省五台山佛光寺实景.png" alt="山西省五台山佛光寺">
+                        <p>山西省五台山佛光寺是中国著名的佛教寺庙之一，以其悠久的历史、丰富的文化内涵以及壮丽的自然风光而闻名。</p>
+                    </a>
+                </div><div class="culture-item">
+                    <a href="../chapter1/all-culture/culture_dazhushike.html" target="_blank">
+                        <h3>大足石刻</h3>
+                        <img src="../chapter1/all-culture/culture/大足石刻实景.jpg" alt="大足石刻">
+                        <p>大足石刻，作为中国晚期石窟艺术的杰出代表，以其规模宏大、雕刻精美、内容丰富、技艺精湛而著称于世，不仅是中国石窟艺术宝库中的一颗璀璨明珠，也是世界文化遗产中一颗耀眼的瑰宝，深刻展现了唐宋时期中国佛教、道教以及儒家思想相互融合、共同发展的文化景观，生动诠释了中华民族兼容并蓄、开放包容的文化品格。</p>
+                    </a>
+                </div><div class="culture-item">
+                    <a href="../chapter1/all-culture/culture_dingyaolanyou_1.html" target="_blank">
+                        <h3>定窑蓝釉</h3>
+                        <img src="../chapter1/all-culture/culture/定窑蓝釉实物.jpg" alt="定窑蓝釉">
+                        <p>定窑蓝釉这一称谓可能蕴含对古代瓷器艺术的误读，因为定窑传统上以白瓷闻名，而非蓝釉。</p>
+                    </a>
+                </div><div class="culture-item">
+                    <a href="../chapter1/all-culture/culture_huayanshi.html" target="_blank">
+                        <h3>华严寺</h3>
+                        <img src="../chapter1/all-culture/culture/山西大同华严寺实景.jpg" alt="华严寺">
+                        <p>山西大同华严寺，坐落于中国山西省大同市古城西南隅的鼓楼西街，是一处集辽、金、明、清四朝佛教文化精粹于一体的宏伟建筑群。</p>
+                    </a>
+                </div><div class="culture-item">
+                    <a href="../chapter1/all-culture/culture_longdeshi.html" target="_blank">
+                        <h3>龙德寺塔</h3>
+                        <img src="../chapter1/all-culture/culture/浦江龙德寺塔实景.jpg" alt="龙德寺塔">
+                        <p>浦江龙德寺塔，也称龙峰塔，是一座位于浙江省金华市浦江县龙峰山上的古塔。它建于北宋大中祥符九年（1016年），因塔所在的山原名龙峰山，故得名龙德寺塔。</p>
+                    </a>
+                </div><div class="culture-item">
+                    <a href="../chapter1/all-culture/culture_manaobei_1.html" target="_blank">
+                        <h3>玛瑙杯</h3>
+                        <img src="../chapter1/all-culture/culture/镶金兽首玛瑙杯实物.jpg" alt="玛瑙杯">
+                        <p>镶金兽首玛瑙杯是唐代宫廷珍宝中的绝世佳作，展现了唐代皇室对奢华生活的追求和唐代社会的开放包容。</p>
+                    </a>
+                </div><div class="culture-item">
+                    <a href="../chapter1/all-culture/culture_meishizongci.html" target="_blank">
+                        <h3>梅氏宗祠</h3>
+                        <img src="../chapter1/all-culture/culture/景宁梅氏宗祠实景.png" alt="梅氏宗祠">
+                        <p>景宁梅氏宗祠位于中国浙江省丽水市景宁畲族自治县境内，是梅氏家族的圣地，也是研究中国古代宗族文化的重要实物资料。</p>
+                    </a>
+                </div><div class="culture-item">
+                    <a href="../chapter1/all-culture/culture_monizhu_1.html" target="_blank">
+                        <h3>摩尼珠</h3>
+                        <img src="../chapter1/all-culture/culture/摩尼珠游戏.png" alt="摩尼珠">
+                        <p>摩尼珠，又称如意宝珠，是佛教中的奇世珍宝。它象征着光明、智慧和财富，被认为具有神奇的力量和功效 。</p>
+                    </a>
+                </div><div class="culture-item">
+                    <a href="../chapter1/all-culture/culture_moyanzaoxiang.html" target="_blank">
+                        <h3>摩崖造像</h3>
+                        <img src="../chapter1/all-culture/culture/重庆大足石刻宝顶山摩崖造像实景.jpg" alt="摩崖造像">
+                        <p>重庆大足石刻宝顶山摩崖造像，是中国古代石刻艺术的瑰宝，以其规模宏大、内容丰富、技艺精湛、保存完好而著称于世，是中国乃至世界文化遗产中一颗璀璨的明珠。</p>
+                    </a>
+                </div><div class="culture-item">
+                    <a href="../chapter1/all-culture/culture_panlongmen.html" target="_blank">
+                        <h3>攀龙门</h3>
+                        <img src="../chapter1/all-culture/culture/安徽白崖寨攀龙门实景.png" alt="攀龙门">
+                        <p>安徽白崖寨攀龙门位于安徽省安庆市宿松县趾凤乡境内的白崖山上，是一处融合自然风光、历史文化与军事防御功能的古老门楼。</p>
+                    </a>
+                </div><div class="culture-item">
+                    <a href="../chapter1/all-culture/culture_qingtingyan_1.html" target="_blank">
+                        <h3>琉璃蜻蜓眼</h3>
+                        <img src="../chapter1/all-culture/culture/琉璃蜻蜓眼实物.jpg" alt="琉璃蜻蜓眼">
+                        <p>蜻蜓眼是古代一种饰物的俗称，由玻璃制成，玻璃又称琉璃,最早的单色玻璃出现在公元前2500年的西亚及埃及，后来发展出彩色玻璃。</p>
+                    </a>
+                </div><div class="culture-item">
+                    <a href="../chapter1/all-culture/culture_qingyuwenmeng_1.html" target="_blank">
+                        <h3>青玉螭纹盂</h3>
+                        <img src="../chapter1/all-culture/culture/青玉螭纹盂游戏.png" alt="青玉螭纹盂">
+                        <p>表面常雕刻有螭纹，螭是中国古代神话中与龙有关的神兽，其造型盘旋蜿蜒，攀援匍匐，故称之为蟠螭纹,螭纹采用高浮雕手法，形态生动，栩栩如生，展现出匠人精湛的雕刻技艺。</p>
+                    </a>
+                </div><div class="culture-item">
+                    <a href="../chapter1/all-culture/culture_sanfengcai_1.html" target="_blank">
+                        <h3>三彩风首壶</h3>
+                        <img src="../chapter1/all-culture/culture/三彩风首壶实物.jpg" alt="三彩风首壶">
+                        <p>三彩风首壶是唐代陶瓷艺术中的瑰宝，展现了唐代工匠的创造力与审美情趣，反映了当时社会的开放包容与文化交融。</p>
+                    </a>
+                </div><div class="culture-item">
+                    <a href="../chapter1/all-culture/culture_sanqingling_1.html" target="_blank">
+                        <h3>三清令</h3>
+                        <img src="../chapter1/all-culture/culture/三清令实物.jpg" alt="三清令">
+                        <p>三清令是中国古代道教文化中的重要符号，承载着丰富的历史内涵和文化价值。</p>
+                    </a>
+                </div><div class="culture-item">
+                    <a href="../chapter1/all-culture/culture_shisisi.html" target="_blank">
+                        <h3>时思寺</h3>
+                        <img src="../chapter1/all-culture/culture/时思寺实景.jpg" alt="时思寺">
+                        <p>时思寺坐落于中国浙江省温州市文成县百丈漈镇境内，是历史悠久、文化底蕴深厚的古代建筑群。</p>
+                    </a>
+                </div><div class="culture-item">
+                    <a href="../chapter1/all-culture/culture_tianningshita.html" target="_blank">
+                        <h3>天宁寺塔</h3>
+                        <img src="../chapter1/all-culture/culture/天宁寺塔实景.jpg" alt="天宁寺塔">
+                        <p>天宁寺塔，作为中国古建筑的杰出代表，以其悠久的历史渊源、独特的建筑风格、精湛的建筑技艺以及深厚的文化底蕴，成为了研究中国古代佛教文化、建筑艺术以及地方历史的重要实物资料，同时也是中国乃至世界文化遗产中一颗璀璨的明珠。</p>
+                    </a>
+                </div><div class="culture-item">
+                    <a href="../chapter1/all-culture/culture_tixiyunwenbi_1.html" target="_blank">
+                        <h3>剔犀云纹笔</h3>
+                        <img src="../chapter1/all-culture/culture/剔犀云纹笔实物.jpg" alt="剔犀云纹笔">
+                        <p>剔犀云纹笔是一种融合了剔犀漆器工艺与毛笔制作技艺的艺术品，展现了古代匠人的高超技艺和审美情趣。</p>
+                    </a>
+                </div><div class="culture-item">
+                    <a href="../chapter1/all-culture/culture_xiaoxitian.html" target="_blank">
+                        <h3>小西天</h3>
+                        <img src="../chapter1/all-culture/culture/隰县小西天实景.jpg" alt="小西天">
+                        <p>隰县小西天，又名千佛庵，坐落于山西省临汾市隰县城西凤凰山之巅，是一座历史悠久、文化底蕴深厚的佛教禅宗寺院。</p>
+                    </a>
+                </div><div class="culture-item">
+                    <a href="../chapter1/all-culture/culture_zangyunta.html" target="_blank">
+                        <h3>藏云塔</h3>
+                        <img src="../chapter1/all-culture/culture/藏云塔实景.jpg" alt="藏云塔">
+                        <p>藏云塔位于中国浙江省杭州市临安区西天目山墓塔群中，始建于元代。</p>
+                    </a>
+                </div><div class="culture-item">
+                    <a href="../chapter1/all-culture/culture_zuyinfochen_1.html" target="_blank">
+                        <h3>竹银拂尘</h3>
+                        <img src="../chapter1/all-culture/culture/竹银拂尘实物.jpg" alt="竹银拂尘">
+                        <p>柄部通常由质地坚硬且手感舒适的竹子制成，竹节凸起，形态自然。拂尘的尾部通常由马鬃、马尾等动物毛发制成，柔软而富有弹性。</p>
+                    </a>
+                </div><div class="culture-item">
+                    <a href="../chapter1/all-culture/culture_mutalin.html" target="_blank">
+                        <h3>灵岩寺墓塔林</h3>
+                        <img src="../chapter1/all-culture/culture/灵岩寺墓塔林实景.jpg" alt="灵岩寺墓塔林">
+                        <p>灵岩寺墓塔林，位于中国山东省济南市长清区灵岩寺的西崖之上，是唐代以来埋葬灵岩寺历代住持高僧的圣地，同时也是中国佛教文化中一颗璀璨的明珠，以其数量众多、历史悠久、造型独特、艺术价值极高而著称于世，被誉为中国第二大墓塔群，仅次于河南登封少林寺的塔林。</p>
+                    </a>
+                </div></div>
         </section>
     </main>
-
-    <footer>
-        <p>&copy; 2023 黑神话·悟空官方平台. 保留所有权利。</p>
-    </footer>
 
     <script>
         // 文化元素数据
@@ -235,32 +410,182 @@
             { 
                 title: "道教文化", 
                 content: "游戏中融入了大量道教元素，如八卦、符咒等。", 
-                image: "path/to/daoism.jpg",
-                link: "daoism.html"
+                image: "../chapter1/all-culture/culture/daoism.png",
+                link: "../chapter1/all-culture/daoism.html"
             },
             { 
                 title: "佛教影响", 
                 content: "佛教思想贯穷游戏，体现在人物设定和剧情中。", 
-                image: "path/to/buddhism.jpg",
-                link: "buddhism.html"
+                image: "../chapter1/all-culture/culture/buddhism.png",
+                link: "../chapter1/all-culture/buddhism.html"
             },
             { 
                 title: "中国神话", 
                 content: "游戏世界观基于中国古代神话体系，包括各种神仙和妖怪。", 
-                image: "path/to/mythology.jpg",
-                link: "mythology.html"
+                image: "../chapter1/all-culture/culture/mythology.png",
+                link: "../chapter1/all-culture/mythology.html"
             },
             { 
                 title: "古代建筑", 
                 content: "场景设计融入了中国古代建筑风格，如宫殿、寺庙等。", 
-                image: "path/to/architecture.jpg",
-                link: "architecture.html"
+                image: "../chapter1/all-culture/culture/architecture.png",
+                link: "../chapter1/all-culture/architecture.html"
             },
             {
                 title: "西汉铜鎏金人物博山炉", 
-                content: "博山炉是中国古代的一种香炉，其造型独特，常被用于祭祀和装饰。", 
+                content: "博山炉是中国古代的一香炉，其造型独特，常被用于祭祀和装饰。", 
                 image: "../chapter1/all-culture/culture/233px-考据-博山炉-故宫博物馆.jpg",
-                link: "../chapter1/all-culture/culture_boshanlu.html"  // 更新这一行
+                link: "../chapter1/all-culture/culture_boshanlu_1.html"  // 更新这一行
+            },
+            {
+                title: "大雄宝殿",
+                content: "大雄宝殿是佛教寺院中的核心建筑，也是寺院的中心所在。它供奉的是佛祖释迦牟尼，释迦牟尼的德号叫“大雄”，因此得名大雄宝殿。",
+                image: "../chapter1/all-culture/culture/大雄宝殿实景.jpg",
+                link: "../chapter1/all-culture/culture_daxiongbaodian.html"  // 更新这一行
+            },
+            {
+                title: "二十八星宿彩塑",
+                content: "二十八星宿彩塑，作为中国古代雕塑艺术中的瑰宝，以其精湛的工艺、丰富的文化内涵以及独特的艺术魅力，成为了研究中国古代天文学、宗教信仰、艺术风格以及民俗文化的重要实物资料。",
+                image: "../chapter1/all-culture/culture/二十八星宿彩塑实景.jpg",
+                link: "../chapter1/all-culture/culture_ershibaxingsucaisu.html"  // 更新这一行
+            },
+            {
+                title: "龙首带钩",
+                content: "带钩，是古代贵族和文人武士所系腰带的挂钩，古又称“犀比”。最初为北方草原民族使用，春秋时期传入中原，在战国中晚期已相当普遍,出土及传世皆很多, 多用青铜铸造，也有用黄金、白银、铁、玉等制成。带钩是身份的象征，带钩所用的材质、制作精细程度、造型纹饰以及大小都是判断带钩价值的标准。春秋战国时期已有金银镶嵌工艺。",
+                image: "../chapter1/all-culture/culture/错金银嵌松石龙首带钩实物.jpg",
+                link: "../chapter1/all-culture/culture_longshoudaigou_1.html"  // 更新这一行
+            },
+            {
+                title: "光雾山",
+                content: "光雾山位于中国四川省巴中市南江县境内，是集自然风光、人文景观与历史文化于一体的综合性旅游景区。",
+                image: "../chapter1/all-culture/culture/光雾山实景.jpg",
+                link: "../chapter1/all-culture/culture_guangwushan.html"  // 更新这一行
+            },
+            {
+                title: "山西省五台山佛光寺",
+                content: "山西省五台山佛光寺是中国著名的佛教寺庙之一，以其悠久的历史、丰富的文化内涵以及壮丽的自然风光而闻名。",
+                image: "../chapter1/all-culture/culture/山西省五台山佛光寺实景.png",
+                link: "../chapter1/all-culture/culture_foguangsi.html"  // 更新这一行
+            },
+            {
+                title: "大足石刻",
+                content: "大足石刻，作为中国晚期石窟艺术的杰出代表，以其规模宏大、雕刻精美、内容丰富、技艺精湛而著称于世，不仅是中国石窟艺术宝库中的一颗璀璨明珠，也是世界文化遗产中一颗耀眼的瑰宝，深刻展现了唐宋时期中国佛教、道教以及儒家思想相互融合、共同发展的文化景观，生动诠释了中华民族兼容并蓄、开放包容的文化品格。",
+                image: "../chapter1/all-culture/culture/大足石刻实景.jpg",
+                link: "../chapter1/all-culture/culture_dazhushike.html"  // 更新这一行
+            },
+            {
+                title: "定窑蓝釉",
+                content: "定窑蓝釉这一称谓可能蕴含对古代瓷器艺术的误读，因为定窑传统上以白瓷闻名，而非蓝釉。",
+                image: "../chapter1/all-culture/culture/定窑蓝釉实物.jpg",
+                link: "../chapter1/all-culture/culture_dingyaolanyou_1.html"  // 更新这一行
+            },
+            {
+                title: "华严寺",
+                content: "山西大同华严寺，坐落于中国山西省大同市古城西南隅的鼓楼西街，是一处集辽、金、明、清四朝佛教文化精粹于一体的宏伟建筑群。",
+                image: "../chapter1/all-culture/culture/山西大同华严寺实景.jpg",
+                link: "../chapter1/all-culture/culture_huayanshi.html"  // 更新这一行
+            },
+            {
+                title: "龙德寺塔",
+                content: "浦江龙德寺塔，也称龙峰塔，是一座位于浙江省金华市浦江县龙峰山上的古塔。它建于北宋大中祥符九年（1016年），因塔所在的山原名龙峰山，故得名龙德寺塔。",
+                image: "../chapter1/all-culture/culture/浦江龙德寺塔实景.jpg",
+                link: "../chapter1/all-culture/culture_longdeshi.html"  // 更新这一行
+            },
+            {
+                title: "玛瑙杯",
+                content: "镶金兽首玛瑙杯是唐代宫廷珍宝中的绝世佳作，展现了唐代皇室对奢华生活的追求和唐代社会的开放包容。",
+                image: "../chapter1/all-culture/culture/镶金兽首玛瑙杯实物.jpg",
+                link: "../chapter1/all-culture/culture_manaobei_1.html"  // 更新这一行
+            },
+            {
+                title: "梅氏宗祠",
+                content: "景宁梅氏宗祠位于中国浙江省丽水市景宁畲族自治县境内，是梅氏家族的圣地，也是研究中国古代宗族文化的重要实物资料。",
+                image: "../chapter1/all-culture/culture/景宁梅氏宗祠实景.png",
+                link: "../chapter1/all-culture/culture_meishizongci.html"  // 更新这一行
+            },
+            {
+                title: "摩尼珠",
+                content: "摩尼珠，又称如意宝珠，是佛教中的奇世珍宝。它象征着光明、智慧和财富，被认为具有神奇的力量和功效 。",
+                image: "../chapter1/all-culture/culture/摩尼珠游戏.png",
+                link: "../chapter1/all-culture/culture_monizhu_1.html"  // 更新这一行
+            },
+            {
+                title: "摩崖造像",
+                content: "重庆大足石刻宝顶山摩崖造像，是中国古代石刻艺术的瑰宝，以其规模宏大、内容丰富、技艺精湛、保存完好而著称于世，是中国乃至世界文化遗产中一颗璀璨的明珠。",
+                image: "../chapter1/all-culture/culture/重庆大足石刻宝顶山摩崖造像实景.jpg",
+                link: "../chapter1/all-culture/culture_moyanzaoxiang.html"  // 更新这一行
+            },
+            {
+                title: "攀龙门",
+                content: "安徽白崖寨攀龙门位于安徽省安庆市宿松县趾凤乡境内的白崖山上，是一处融合自然风光、历史文化与军事防御功能的古老门楼。",
+                image: "../chapter1/all-culture/culture/安徽白崖寨攀龙门实景.png",
+                link: "../chapter1/all-culture/culture_panlongmen.html"  // 更新这一行
+            },
+            {
+                title: "琉璃蜻蜓眼",
+                content: "蜻蜓眼是古代一种饰物的俗称，由玻璃制成，玻璃又称琉璃,最早的单色玻璃出现在公元前2500年的西亚及埃及，后来发展出彩色玻璃。",
+                image: "../chapter1/all-culture/culture/琉璃蜻蜓眼实物.jpg",
+                link: "../chapter1/all-culture/culture_qingtingyan_1.html"  // 更新这一行
+            },
+            {
+                title: "青玉螭纹盂",
+                content: "表面常雕刻有螭纹，螭是中国古代神话中与龙有关的神兽，其造型盘旋蜿蜒，攀援匍匐，故称之为蟠螭纹,螭纹采用高浮雕手法，形态生动，栩栩如生，展现出匠人精湛的雕刻技艺。",
+                image: "../chapter1/all-culture/culture/青玉螭纹盂游戏.png",
+                link: "../chapter1/all-culture/culture_qingyuwenmeng_1.html"  // 更新这一行
+            },
+            {
+                title: "三彩风首壶",
+                content: "三彩风首壶是唐代陶瓷艺术中的瑰宝，展现了唐代工匠的创造力与审美情趣，反映了当时社会的开放包容与文化交融。",
+                image: "../chapter1/all-culture/culture/三彩风首壶实物.jpg",
+                link: "../chapter1/all-culture/culture_sanfengcai_1.html"  // 更新这一行
+            },
+            {
+                title: "三清令",
+                content: "三清令是中国古代道教文化中的重要符号，承载着丰富的历史内涵和文化价值。",
+                image: "../chapter1/all-culture/culture/三清令实物.jpg",
+                link: "../chapter1/all-culture/culture_sanqingling_1.html"  // 更新这一行
+            },
+            {
+                title: "时思寺",
+                content: "时思寺坐落于中国浙江省温州市文成县百丈漈镇境内，是历史悠久、文化底蕴深厚的古代建筑群。",
+                image: "../chapter1/all-culture/culture/时思寺实景.jpg",
+                link: "../chapter1/all-culture/culture_shisisi.html"  // 更新这一行
+            },
+            {
+                title: "天宁寺塔",
+                content: "天宁寺塔，作为中国古建筑的杰出代表，以其悠久的历史渊源、独特的建筑风格、精湛的建筑技艺以及深厚的文化底蕴，成为了研究中国古代佛教文化、建筑艺术以及地方历史的重要实物资料，同时也是中国乃至世界文化遗产中一颗璀璨的明珠。",
+                image: "../chapter1/all-culture/culture/天宁寺塔实景.jpg",
+                link: "../chapter1/all-culture/culture_tianningshita.html"  // 更新这一行
+            },
+            {
+                title: "剔犀云纹笔",
+                content: "剔犀云纹笔是一种融合了剔犀漆器工艺与毛笔制作技艺的艺术品，展现了古代匠人的高超技艺和审美情趣。",
+                image: "../chapter1/all-culture/culture/剔犀云纹笔实物.jpg",
+                link: "../chapter1/all-culture/culture_tixiyunwenbi_1.html"  // 更新这一行
+            },
+            {
+                title: "小西天",
+                content: "隰县小西天，又名千佛庵，坐落于山西省临汾市隰县城西凤凰山之巅，是一座历史悠久、文化底蕴深厚的佛教禅宗寺院。",
+                image: "../chapter1/all-culture/culture/隰县小西天实景.jpg",
+                link: "../chapter1/all-culture/culture_xiaoxitian.html"  // 更新这一行
+            },
+            {
+                title: "藏云塔",
+                content: "藏云塔位于中国浙江省杭州市临安区西天目山墓塔群中，始建于元代。",
+                image: "../chapter1/all-culture/culture/藏云塔实景.jpg",
+                link: "../chapter1/all-culture/culture_zangyunta.html"  // 更新这一行
+            },
+            {
+                title: "竹银拂尘",
+                content: "柄部通常由质地坚硬且手感舒适的竹子制成，竹节凸起，形态自然。拂尘的尾部通常由马鬃、马尾等动物毛发制成，柔软而富有弹性。",
+                image: "../chapter1/all-culture/culture/竹银拂尘实物.jpg",
+                link: "../chapter1/all-culture/culture_zuyinfochen_1.html"  // 更新这一行
+            },
+            {
+                title: "灵岩寺墓塔林",
+                content: "灵岩寺墓塔林，位于中国山东省济南市长清区灵岩寺的西崖之上，是唐代以来埋葬灵岩寺历代住持高僧的圣地，同时也是中国佛教文化中一颗璀璨的明珠，以其数量众多、历史悠久、造型独特、艺术价值极高而著称于世，被誉为中国第二大墓塔群，仅次于河南登封少林寺的塔林。",
+                image: "../chapter1/all-culture/culture/灵岩寺墓塔林实景.jpg",
+                link: "../chapter1/all-culture/culture_mutalin.html"  // 更新这一行
             },
             // 可以继续添加更多文化元素
         ];
@@ -273,7 +598,7 @@
                 const item = document.createElement('div');
                 item.className = 'culture-item';
                 item.innerHTML = `
-                    <a href="${element.link}">
+                    <a href="${element.link}" target="_blank">
                         <h3>${element.title}</h3>
                         <img src="${element.image}" alt="${element.title}">
                         <p>${element.content}</p>
@@ -297,5 +622,7 @@
             loadCultureContent(filteredElements);
         });
     </script>
+
+
 </body>
 </html>

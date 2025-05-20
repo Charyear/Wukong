@@ -9,14 +9,32 @@
     <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
     <style>
         /* 基本样式 */
-        body {
+       body {
             font-family: 'Ma Shan Zheng', cursive;
             margin: 0;
             padding: 0;
             background-color: #0a0a0a; /* 深色背景 */
             color: #e0e0e0; /* 浅色文字 */
-            background-image: linear-gradient(to bottom, #000000, #1a1a1a);
+            background-image: linear-gradient(to bottom, #000000, #1a1a1a), url('image/bg3.png');
+            background-size: cover; /* 确保图片背景覆盖整个元素 */
+            background-position: center center; /* 图片背景居中显示 */
+            background-repeat: no-repeat; /* 图片背景不重复 */
             animation: fadeIn 0.5s ease-in;
+        }
+
+        /* 定义淡入动画 */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .copyright {
+            position: fixed;
+            bottom: 20px;
+            width: 100%;
+            text-align: center;
+            color: #666;
+            font-size: 12px;
+            font-family: 'Gill Sans MT', sans-serif;
         }
 
         @keyframes fadeIn {
@@ -190,6 +208,27 @@
         .fallback-fonts {
             font-family: 'Ma Shan Zheng', 'KaiTi', 'STKaiti', cursive;
         }
+
+        .story-content a {
+            color: #ffffff; /* 设置链接颜色为白色 */
+            text-decoration: none; /* 去掉下划线 */
+            transition: color 0.3s ease; /* 添加颜色过渡效果 */
+        }
+
+        .story-content a:hover {
+            color: #ff3333; /* 鼠标悬停时变为红色，提供视觉反馈 */
+        }
+
+        /* 参考资料部分的链接样式 */
+        #references a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        #references a:hover {
+            color: #ff3333;
+        }
     </style>
 </head>
 <body>
@@ -201,7 +240,9 @@
         </nav>
         <h1>经典回顾</h1>
     </header>
-
+    <div class="copyright">
+        ✎©2003-2024 https://charyear.github.io/Wukong 悟空之境·版权所有☯
+    </div>
     <main>
         <section id="classics-content">
             <h2>《西游记》经典故事</h2>
@@ -212,16 +253,16 @@
                     <div class="story-content">
                         <h4>原著出处</h4>
                         <ul>
-                            <li>第十六回：观音院僧谋宝贝 黑风山怪窃袈裟</li>
-                            <li>第十七回：孙行者大闹黑风山 观世音收服熊罴怪</li>
-                            <li>第二十六回：孙悟空三岛求方 观世音甘泉活树</li>
+                            <li><a href="https://www.zhonghuadiancang.com/wenxueyishu/xiyouji/55073.html" target="_blank">第十六回：观音院僧谋宝贝 黑风山怪窃袈裟</a></li>
+                            <li><a href="https://www.zhonghuadiancang.com/wenxueyishu/xiyouji/55074.html" target="_blank">第十七回：孙行者大闹黑风山 观世音收服熊罴怪</a></li>
+                            <li><a href="https://www.zhonghuadiancang.com/wenxueyishu/xiyouji/55083.html" target="_blank">第二十六回：孙悟空三岛求方 观世音甘泉活树</a></li>
                         </ul>
                         <h4>故事梗概</h4>
                         <p>唐僧师徒路过黑风山，在观音院借宿。黑风怪趁夜偷走袈裟，孙悟空追至黑风洞，与黑风怪展开激战。后来观世音菩萨出面，收服黑风怪为座下守山大神。这段故事展现了佛门中人的贪婪本性，也暗示了黑风怪与观音院之间的复杂关系。</p>
                         <h4>影视对应</h4>
                         <ul>
-                            <li>1986版《西游记》第9、10集：黑风山</li>
-                            <li>2011版《西游记》第5、6集：黑风洞</li>
+                            <li><a href="https://tv.cctv.com/2010/01/07/VIDE1354535397691719.shtml?spm=C55853485115.PN6hjciJxJ1y.0.0" target="_blank">1986版《西游记》第9、10集：黑风山</a></li>
+                            <li><a href="https://tv.cctv.com/2014/07/31/VIDE1406773646081195.shtml?spm=C55853485115.PN6hjciJxJ1y.0.0" target="_blank">2011版《西游记》第5、6集：黑风洞</a></li>
                         </ul>
                     </div>
                 </article>
@@ -232,14 +273,14 @@
                     <div class="story-content">
                         <h4>原著出处</h4>
                         <ul>
-                            <li>第十六回：观音院僧谋宝贝</li>
+                            <li><a href="https://www.zhonghuadiancang.com/wenxueyishu/xiyouji/55073.html" target="_blank">第十六回：观音院僧谋宝贝</a></li>
                         </ul>
                         <h4>故事梗概</h4>
-                        <p>观音院的和尚为贪图唐僧袈裟，暗中勾结黑风怪。这段故事展现了佛门中人的贪婪本性，也暗示了黑风怪与观音院之间的复杂���系。和尚们表面恭敬，实则暗藏祸心，最终导致了一系列事件的发生。</p>
+                        <p>观音院的和尚为贪图唐僧袈裟，暗中勾结黑风怪。这段故事展现了佛门中人的贪婪本性，也暗示了黑风怪与观音院之间的复杂关系。和尚们表面恭敬，实则暗藏祸心，最终导致了一系列事件的发生。</p>
                         <h4>影视对应</h4>
                         <ul>
-                            <li>1986版《西游记》第9集：观音院</li>
-                            <li>2011版《西游记》第5集：观音院</li>
+                            <li><a href="https://tv.cctv.com/2010/01/07/VIDE1354535397691719.shtml?spm=C55853485115.PN6hjciJxJ1y.0.0" target="_blank">1986版《西游记》第9集：观音院</a></li>
+                            <li><a href="https://tv.cctv.com/2014/07/31/VIDE1406773646081195.shtml?spm=C55853485115.PN6hjciJxJ1y.0.0" target="_blank">2011版《西游记》第5集：观音院</a></li>
                         </ul>
                     </div>
                 </article>
@@ -250,14 +291,14 @@
                     <div class="story-content">
                         <h4>原著出处</h4>
                         <ul>
-                            <li>第二十六回：孙悟空三岛求方 观世音甘泉活树</li>
+                            <li><a href="https://www.zhonghuadiancang.com/wenxueyishu/xiyouji/55083.html" target="_blank">第二十六回：孙悟空三岛求方 观世音甘泉活树</a></li>
                         </ul>
                         <h4>故事梗概</h4>
                         <p>讲述了起死回生之法的来历，以及观世音菩萨如何用甘露水救活枯死的松树。这个故事展现了佛法的神奇力量，也暗示了生命的可贵。同时也体现了孙悟空为了救人不惜跋山涉水的精神。</p>
                         <h4>影视对应</h4>
                         <ul>
-                            <li>1986版《西游记》第13集：甘露水</li>
-                            <li>2011版《西游记》第8集：活树</li>
+                            <li><a href="https://tv.cctv.com/2010/01/07/VIDE1355691330369124.shtml?spm=C55853485115.PN6hjciJxJ1y.0.0" target="_blank">1986版《西游记》第13集：甘露水</a></li>
+                            <li><a href="https://tv.cctv.com/2014/07/31/VIDE1406773646924255.shtml?spm=C55853485115.PN6hjciJxJ1y.0.0" target="_blank">2011版《西游记》第8集：活树</a></li>
                         </ul>
                     </div>
                 </article>
@@ -275,7 +316,6 @@
     </main>
 
     <footer>
-        <p>&copy; 2023 黑神话·悟空官方平台. 保留所有权利。</p>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/intersection-observer@0.12.0/intersection-observer.min.js"></script>
     
